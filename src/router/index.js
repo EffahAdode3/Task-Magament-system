@@ -7,11 +7,11 @@ import Dashboard from  '../views/Dashboard.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/',
-      name: ' Login ',
-      component:  Login 
-    },
+    // {
+    //   path: '/',
+    //   name: ' Login ',
+    //   component:  Login 
+    // },
     {
       path: '/Signpup',
       name: ' Signpup ',
@@ -23,7 +23,7 @@ const router = createRouter({
       component:  component 
     },
     {
-      path: '/Dashboard',
+      path: '/',
       name: ' Dashboard ',
       component:  Dashboard 
     },
