@@ -1,158 +1,212 @@
 <template>
-  <body>
-    <input type="checkbox" id="check">
-    <label for="check">
-      <i class="fas fa-bars" id="btn"></i>
-      <i class="fas fa-times" id="cancel"></i>
-    </label>
-    <div class="sidebar">
-      <header>My Menu</header>
-      <a href="#" class="active">
-        <i class="fas fa-qrcode"></i>
-        <span>Dashboard</span>
-      </a>
-      <a href="#">
-        <i class="fas fa-link"></i>
-        <span>Shortcuts</span>
-      </a>
-      <a href="#">
-        <i class="fas fa-stream"></i>
-        <span>Overview</span>
-      </a>
-      <a href="#">
-         <i class="fas fa-calendar"></i>
-        <span>Events</span>
-      </a>
-      <a href="#">
-        <i class="far fa-question-circle"></i>
-        <span>About</span>
-      </a>
-      <a href="#">
-        <i class="fas fa-sliders-h"></i>
-        <span>Services</span>
-      </a>
-      <a href="#">
-        <i class="far fa-envelope"></i>
-        <span>Contact</span>
-      </a>
-    </div>
-</body>
+  <template>
+  <div>
+    <nav :class="{ open: isNavOpen }">
+      <div class="logo">
+        <i class="bx bx-menu menu-icon" @click="toggleNav"></i>
+        <span class="logo-name">CodingLab</span>
+      </div>
+
+      <div class="sidebar">
+        <div class="logo">
+          <i class="bx bx-menu menu-icon" @click="toggleNav"></i>
+          <span class="logo-name">CodingLab</span>
+        </div>
+
+        <div class="sidebar-content">
+          <ul class="lists">
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-home-alt icon"></i>
+                <span class="link">Dashboard</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-bar-chart-alt-2 icon"></i>
+                <span class="link">Revenue</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-bell icon"></i>
+                <span class="link">Notifications</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-message-rounded icon"></i>
+                <span class="link">Messages</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-pie-chart-alt-2 icon"></i>
+                <span class="link">Analytics</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-heart icon"></i>
+                <span class="link">Likes</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-folder-open icon"></i>
+                <span class="link">Files</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="bottom-content">
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-cog icon"></i>
+                <span class="link">Settings</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-log-out icon"></i>
+                <span class="link">Logout</span>
+              </a>
+            </li>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="overlay" @click="closeNav"></section>
+  </div>
 </template>
 
-<style scoped>
-@import url('https://fonts.googleapis.com/css?family=Montserrat:600|Open+Sans:600&display=swap');
-*{
+<script>
+export default {
+  data() {
+    return {
+      isNavOpen: false
+    };
+  },
+  methods: {
+    toggleNav() {
+      this.isNavOpen = !this.isNavOpen;
+    },
+    closeNav() {
+      this.isNavOpen = false;
+    }
+  }
+};
+</script>
+
+
+</template>
+
+<style  scoped>
+/* Google Fonts - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
   margin: 0;
   padding: 0;
-  text-decoration: none;
-}
-.sidebar{
-  position: fixed;
-  width: 240px;
-  left: -240px;
-  height: 100%;
-  background: #1e1e1e;
-  transition: all .5s ease;
-}
-.sidebar header{
-  font-size: 28px;
-  color: white;
-  line-height: 70px;
-  text-align: center;
-  background: #1b1b1b;
-  user-select: none;
-  font-family: 'Montserrat', sans-serif;
-}
-.sidebar a{
-  display: block;
-  height: 65px;
-  width: 100%;
-  color: white;
-  line-height: 65px;
-  padding-left: 30px;
   box-sizing: border-box;
-  border-bottom: 1px solid black;
-  border-top: 1px solid rgba(255,255,255,.1);
-  border-left: 5px solid transparent;
-  font-family: 'Open Sans', sans-serif;
-  transition: all .5s ease;
+  font-family: "Poppins", sans-serif;
 }
-a.active,a:hover{
-  border-left: 5px solid #b93632;
-  color: #b93632;
+body {
+  min-height: 100%;
+  background: #e3f2fd;
 }
-.sidebar a i{
-  font-size: 23px;
-  margin-right: 16px;
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
 }
-.sidebar a span{
-  letter-spacing: 1px;
-  text-transform: uppercase;
+nav .logo {
+  display: flex;
+  align-items: center;
+  margin: 0 24px;
 }
-#check{
-  display: none;
-}
-label #btn,label #cancel{
-  position: absolute;
+.logo .menu-icon {
+  color: #333;
+  font-size: 24px;
+  margin-right: 14px;
   cursor: pointer;
-  color: white;
-  border-radius: 5px;
-  border: 1px solid #262626;
-  margin: 15px 30px;
-  font-size: 29px;
-  background: #262626;
-  height: 45px;
-  width: 45px;
-  text-align: center;
-  line-height: 45px;
-  transition: all .5s ease;
 }
-label #cancel{
-  opacity: 0;
-  visibility: hidden;
+.logo .logo-name {
+  color: #333;
+  font-size: 22px;
+  font-weight: 500;
 }
-#check:checked ~ .sidebar{
+nav .sidebar {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 260px;
+  padding: 20px 0;
+  background-color: #fff;
+  box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+}
+nav.open .sidebar {
   left: 0;
 }
-#check:checked ~ label #btn{
-  margin-left: 245px;
+.sidebar .sidebar-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 16px;
+}
+.sidebar-content .list {
+  list-style: none;
+}
+.list .nav-link {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  padding: 14px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.lists .nav-link:hover {
+  background-color: #4070f4;
+}
+.nav-link .icon {
+  margin-right: 14px;
+  font-size: 20px;
+  color: #707070;
+}
+.nav-link .link {
+  font-size: 16px;
+  color: #707070;
+  font-weight: 400;
+}
+.lists .nav-link:hover .icon,
+.lists .nav-link:hover .link {
+  color: #fff;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  height: 1000vh;
+  width: 200%;
   opacity: 0;
-  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  background: rgba(0, 0, 0, 0.3);
 }
-#check:checked ~ label #cancel{
-  margin-left: 245px;
+nav.open ~ .overlay {
   opacity: 1;
-  visibility: visible;
+  left: 260px;
+  pointer-events: auto;
 }
-@media(max-width : 860px){
-  .sidebar{
-    height: auto;
-    width: 70px;
-    left: 0;
-    margin: 100px 0;
-  }
-  header,#btn,#cancel{
-    display: none;
-  }
-  span{
-    position: absolute;
-    margin-left: 23px;
-    opacity: 0;
-    visibility: hidden;
-  }
-  .sidebar a{
-    height: 60px;
-  }
-  .sidebar a i{
-    margin-left: -10px;
-  }
-  a:hover {
-    width: 200px;
-    background: inherit;
-  }
-  .sidebar a:hover span{
-    opacity: 1;
-    visibility: visible;
-  }
-}
+
 </style>
