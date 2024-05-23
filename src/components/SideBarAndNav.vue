@@ -1,5 +1,4 @@
 <template>
-  <template>
   <div>
     <nav :class="{ open: isNavOpen }">
       <div class="logo">
@@ -99,8 +98,6 @@ export default {
 };
 </script>
 
-
-</template>
 
 <style  scoped>
 /* Google Fonts - Poppins */
