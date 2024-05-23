@@ -81,7 +81,7 @@
                     <div class="row todo-created-info">
                         <div class="col-auto d-flex align-items-center pr-2">
                             <i class="fa fa-info-circle my-2 px-2 text-black-50 btn" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Created date"></i>
-                            <label class="date-label my-2 text-black-50">28th Jun 2020</label>
+                            <label class="date-label my-2 text-black-50">{{ currentDate }}</label>
                         </div>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                     <div class="row">
                         <div class="col-auto d-flex align-items-center rounded bg-white border border-warning">
                             <i class="fa fa-hourglass-2 my-2 px-2 text-warning btn" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Due on date"></i>
-                            <h6 class="text my-2 pr-2">28th Jun 2020</h6>
+                            <h6 class="text my-2 pr-2">{{ currentDate }}</h6>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                     <div class="row todo-created-info">
                         <div class="col-auto d-flex align-items-center pr-2">
                             <i class="fa fa-info-circle my-2 px-2 text-black-50 btn" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Created date"></i>
-                            <label class="date-label my-2 text-black-50">28th Jun 2020</label>
+                            <label class="date-label my-2 text-black-50">{{ currentDate }}</label>
                         </div>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                     <div class="row todo-created-info">
                         <div class="col-auto d-flex align-items-center pr-2">
                             <i class="fa fa-info-circle my-2 px-2 text-black-50 btn" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Created date"></i>
-                            <label class="date-label my-2 text-black-50">28th Jun 2020</label>
+                            <label class="date-label my-2 text-black-50">{{ currentDate }}</label>
                         </div>
                     </div>
                 </div>
@@ -159,6 +159,23 @@
 </div>
 
 </template>
+
+
+<script>
+export default {
+  data() {
+    return {
+      currentDate: this.formatDate(new Date())
+    };
+  },
+  methods: {
+    formatDate(date) {
+      const options = { day: 'numeric', month: 'short', year: 'numeric' };
+      return date.toLocaleDateString('en-US', options);
+    }
+  }
+};
+</script>
 
 <style scoped>
 body {
