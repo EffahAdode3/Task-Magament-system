@@ -22,8 +22,32 @@
             </div>
         </div>
     </div>
-    <div class="col-auto d-flex align-items-center">
-            <!-- <label class="text-secondary my-2 pr-2 view-opt-label">Categories</label> -->
+
+
+
+
+
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-12 col-md-6 d-flex align-items-center mb-3 mb-md-0">
+                <select class="custom-select custom-select-sm w-100">
+                    <option selected disabled>Select Categories Applied For</option>
+                    <option value="personal">Personal</option>
+                    <option value="I.T Service">I.T Service</option>
+                    <option value="Networking">Networking</option>
+                    <option value="End User">End User</option>
+                    <option value="Cyber-Security">Cyber-Security</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-6 d-flex align-items-center">
+                <label for="start" class="date-label">Deadline:</label>
+                <input type="date" id="start" name="trip-start" class="date-input w-100"/>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="col-auto d-flex align-items-center">
+          
             <select class="custom-select custom-select-sm btn my-2">
                 <option selected disabled>Select Categories Applied For</option>
                 <option value="personal">Personal</option>
@@ -36,7 +60,7 @@
         <div class="col-auto d-flex align-items-center px-1 pr-3">
             <label for="start">Deadline          : </label> 
          <input type="date" id="start" name="trip-start"/>
-        </div>
+        </div> -->
     <div class="p-2 mx-4 border-black-25 border-bottom"></div>
     <div class="row m-1 p-3 px-5 justify-content-end">
         <div class="col-auto d-flex align-items-center px-1 pr-3">
@@ -101,6 +125,36 @@ body {
 .todo-item.editing .todo-actions .edit-icon {
     display: none !important;
 }
+
+
+
+
+.custom-select {
+            background-color: #f8f9fa;
+            border: 2px solid #6c757d;
+            border-radius: 4px;
+            color: #343a40;
+            font-weight: bold;
+        }
+        .custom-select:focus {
+            border-color: #343a40;
+            box-shadow: none;
+        }
+        .date-label {
+            font-size: 1em;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .date-input {
+            font-size: 1em;
+            padding: 5px;
+            border: 2px solid #6c757d;
+            border-radius: 4px;
+        }
+        .date-input:focus {
+            border-color: #343a40;
+            box-shadow: none;
+        }
 </style>
 
 
