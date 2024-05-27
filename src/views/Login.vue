@@ -36,7 +36,7 @@
         </div>
         <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
           <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
-            <h1><a href="http://blog.stackfindover.com/" rel="dofollow">Stackfindover</a></h1>
+            <h1><a href="http://blog.stackfindover.com/" rel="dofollow">My Todo-s</a></h1>
           </div>
           <div class="formbg-outer">
             <div class="formbg">
@@ -56,24 +56,24 @@
                     </div>
                     <input type="password" name="password">
                   </div>
-                  <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
+                  <!-- <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
                     <label for="checkbox">
                       <input type="checkbox" name="checkbox"> Stay signed in for a week
                     </label>
-                  </div>
+                  </div> -->
                   <div class="field padding-bottom--24">
                     <input type="submit" name="submit" value="Continue">
                   </div>
-                  <div class="field">
+                  <!-- <div class="field">
                     <a class="ssolink" href="#">Use single sign-on (Google) instead</a>
-                  </div>
+                  </div> -->
                 </form>
               </div>
             </div>
             <div class="footer-link padding-top--24">
-              <span>Don't have an account? <a href="/component">Sign up</a></span>
+              <span>Don't have an account? <a href="/Signpup">Sign up</a></span>
               <div class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
-                <span><a href="#">© Stackfindover</a></span>
+                <!-- <span><a href="#">© Stackfindover</a></span> -->
                 <span><a href="#">Contact</a></span>
                 <span><a href="#">Privacy & terms</a></span>
               </div>

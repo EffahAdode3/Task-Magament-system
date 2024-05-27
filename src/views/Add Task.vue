@@ -1,13 +1,10 @@
 <template>
     <div>
         <component :is="SideBarAndNavVue"></component>
-       <!-- <component :is="Content"></component> -->
-    
-
+       <component :is="Content"></component>
     </div>
 </template>
 <script>
-
 import Content from '../components/Content.vue'
 import SideBarAndNavVue from '../components/SideBarAndNav.vue'
 export default{

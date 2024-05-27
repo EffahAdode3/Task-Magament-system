@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '@/views/Login.vue'
 import Signpup from '../views/Signup.vue'
-import component from '../components/SideBarAndNav.vue'
+ import AddTask from  '../views/Add Task.vue'
 import Dashboard from  '../views/Dashboard.vue'
 
 const router = createRouter({
@@ -18,9 +18,9 @@ const router = createRouter({
       component:  Signpup 
     },
     {
-      path: '/component',
-      name: ' component ',
-      component:  component 
+      path: '/addTask',
+      name: ' AddTask ',
+      component:  AddTask 
     },
     {
       path: '/',

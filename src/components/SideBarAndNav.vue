@@ -3,30 +3,28 @@
     <nav :class="{ open: isNavOpen }">
       <div class="logo">
         <i class="bx bx-menu menu-icon" @click="toggleNav"></i>
-        <span class="logo-name">CodingLab</span>
+        <span class="logo-name">My Todo-s</span>
       </div>
-
       <div class="sidebar">
         <div class="logo">
           <i class="bx bx-menu menu-icon" @click="toggleNav"></i>
-          <span class="logo-name">CodingLab</span>
+          <span class="logo-name">My Todo-s</span>
         </div>
-
         <div class="sidebar-content">
           <ul class="lists">
             <li class="list">
-              <a href="#" class="nav-link">
+              <router-link to="/" class="nav-link" active-class="active">
                 <i class="bx bx-home-alt icon"></i>
                 <span class="link">Dashboard</span>
-              </a>
+              </router-link>
             </li>
             <li class="list">
-              <a href="#" class="nav-link">
+              <router-link to="/addTask" class="nav-link" active-class="active">
                 <i class="bx bx-bar-chart-alt-2 icon"></i>
-                <span class="link">Revenue</span>
-              </a>
+                <span class="link">Add Task</span>
+              </router-link>
             </li>
-            <li class="list">
+            <!-- <li class="list">
               <a href="#" class="nav-link">
                 <i class="bx bx-bell icon"></i>
                 <span class="link">Notifications</span>
@@ -49,27 +47,27 @@
                 <i class="bx bx-heart icon"></i>
                 <span class="link">Likes</span>
               </a>
-            </li>
+            </li> -->
             <li class="list">
-              <a href="#" class="nav-link">
+              <router-link to="/files" class="nav-link" active-class="active">
                 <i class="bx bx-folder-open icon"></i>
                 <span class="link">Files</span>
-              </a>
+              </router-link>
             </li>
           </ul>
 
           <div class="bottom-content">
             <li class="list">
-              <a href="#" class="nav-link">
+              <router-link to="/settings" class="nav-link" active-class="active">
                 <i class="bx bx-cog icon"></i>
                 <span class="link">Settings</span>
-              </a>
+              </router-link>
             </li>
             <li class="list">
-              <a href="#" class="nav-link">
+              <router-link to="/logout" class="nav-link" active-class="active">
                 <i class="bx bx-log-out icon"></i>
                 <span class="link">Logout</span>
-              </a>
+              </router-link>
             </li>
           </div>
         </div>
@@ -97,8 +95,6 @@ export default {
   }
 };
 </script>
-
-
 <style  scoped>
 /* Google Fonts - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
@@ -205,5 +201,11 @@ nav.open ~ .overlay {
   left: 260px;
   pointer-events: auto;
 }
-
+.nav-link.active {
+  background-color: #4070f4;
+  color: #fff;
+}
+.nav-link.active .icon {
+  color: #fff;
+}
 </style>
