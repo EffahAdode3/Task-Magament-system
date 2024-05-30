@@ -64,10 +64,10 @@
               </router-link>
             </li>
             <li class="list">
-              <router-link to="/logout" class="nav-link" active-class="active">
-                <i class="bx bx-log-out icon"></i>
-                <span class="link">Logout</span>
-              </router-link>
+              <button @click="logout" class="nav-link">
+    <i class="bx bx-log-out icon"></i>
+    <span class="link">Logout</span>
+  </button>
             </li>
           </div>
         </div>
@@ -85,13 +85,29 @@ export default {
       isNavOpen: false
     };
   },
+
+
+  mounted(){
+      var token = localStorage.getItem("token");
+      console.log(token);
+      if( token == undefined){
+        this.$router.push('/Login');
+
+      }
+      
+    },
   methods: {
     toggleNav() {
       this.isNavOpen = !this.isNavOpen;
     },
     closeNav() {
       this.isNavOpen = false;
-    }
+    },
+    logout(){
+        alert("logout");
+        localStorage.clear();
+        this.$router.push('/Login');
+      }
   }
 };
 </script>
