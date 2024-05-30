@@ -104,7 +104,7 @@ export default {
       this.isNavOpen = false;
     },
     logout(){
-        alert("logout");
+        alert("Are sure you want to Logout");
         localStorage.clear();
         this.$router.push('/Login');
       }
