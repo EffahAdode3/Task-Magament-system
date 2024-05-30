@@ -87,15 +87,15 @@ export default {
   },
 
 
-  mounted(){
-      var token = localStorage.getItem("token");
-      console.log(token);
-      if( token == undefined){
-        this.$router.push('/Login');
+  // mounted(){
+  //     var token = localStorage.getItem("token");
+  //     console.log(token);
+  //     if( token == undefined){
+  //       this.$router.push('/Login');
 
-      }
+  //     }
       
-    },
+  //   },
   methods: {
     toggleNav() {
       this.isNavOpen = !this.isNavOpen;
