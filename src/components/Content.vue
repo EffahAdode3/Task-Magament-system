@@ -13,7 +13,7 @@
     <div class="row m-1 p-3">
         <div class="col col-11 mx-auto">
             <div class="row bg-white rounded shadow-sm p-2 add-todo-wrapper align-items-center justify-content-center">
-                <div class="form-floating">
+                <div class="">
   <textarea class="form-control" placeholder="Add new .." id="floatingTextarea2" v-model="newTodo"  style="height: 100px"></textarea>
   <!-- <label for="floatingTextarea2">Comments</label> -->
 </div>
@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-12 col-md-6 d-flex align-items-center mb-3 mb-md-0">
                 <label class="Category-label">Select Categories</label>
-                <select v-model="category"   class="custom-select custom-select-sm w-100" >
+                <select v-model="category"   class="custom-select  w-100" >
                     <option value="Personal">Personal</option>
                     <option value="I.T Service">I.T Service</option>
                     <option value="Networking">Networking</option>
@@ -70,7 +70,7 @@ export default {
   methods: {
     addTodo() {
       if (!this.category || !this.deadline  || !this.newTodo) {
-        swal('Category and Deadline are required plus Add all apllied');
+        swal('All Feild Are Required');
         return;
       }
       const todoData = {
@@ -109,6 +109,7 @@ body {
     line-height: 1.6;
 }
 
+
 .add-todo-input,
 .edit-todo-input {
     outline: none;
@@ -124,11 +125,9 @@ body {
 .date-label {
     font-size: 0.8rem;
 }
-
 .edit-todo-input {
     font-size: 1.7rem !important;
 }
-
 .todo-actions {
     visibility: hidden !important;
 }
@@ -161,6 +160,13 @@ body {
             font-size: 1em;
             font-weight: bold;
             margin-right: 10px;
+        }
+
+        .custom-select{
+            font-size: 1em;
+            padding: 5px;
+            border: 2px solid #6c757d;
+            border-radius: 4px;
         }
         .date-input {
             font-size: 1em;

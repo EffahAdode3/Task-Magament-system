@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="indexZindex">
     <nav :class="{ open: isNavOpen }">
       <div class="logo">
         <i class="bx bx-menu menu-icon" @click="toggleNav"></i>
@@ -105,6 +105,11 @@ export default {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
+/* .indexZindex{
+  z-index: -1000000;
+
+} */
 body {
   min-height: 100%;
   background: #e3f2fd;
