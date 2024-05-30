@@ -4,20 +4,24 @@
     <h2>Account Registration</h2>
     <div class="form-group fullname">
       <label for="fullname"> User Name </label>
-      <input type="text" id="surname" placeholder="Enter your Surname"  v-model="formdata.surname" required >
+      <input type="text" id="userName" placeholder="Enter your user Name"  v-model="formdata.userName"  @focus="clearError('userName')" required >
+      <div v-if="errors.userName"  class="error">{{ errors.userName }}</div>
     </div>
     <div class="form-group email">
       <label for="email">Email Address</label>
-      <input  type="text" id="email" placeholder="Enter your email address" v-model="formdata.email" required >
+      <input  type="email" id="email" placeholder="Enter your email address" v-model="formdata.email" @focus="clearError('email')" required >
+      <div v-if="errors.email" class="error">{{ errors.email }}</div>
     </div>
     <div class="form-group password">
       <label for="password">Password</label>
-      <input  type="password" id="password" placeholder="Enter your password"  v-model="formdata.password" required >
+      <input  type="password" id="password" placeholder="Enter your password"  v-model="formdata.password" @focus="clearError('password')" required >
+      <div v-if="errors.password" class="error">{{ errors.password }}</div>
       <i id="pass-toggle-btn" class="fa-solid fa-eye"></i>
     </div>
     <div class="form-group password">
       <label for="password"> Comfirmed Password</label>
-      <input  type="password" id="cfmpassword" placeholder="Enter your Retype-password" v-model="confirmPassword" required>
+      <input  type="password" id="cfmpassword" placeholder="Enter your Retype-password" v-model="confirmPassword" @focus="clearError('confirmPassword')" required>
+      <div v-if="errors.confirmPassword"  class="error">{{ errors.confirmPassword }}</div>
       <i id="pass-toggle-btn" class="fa-solid fa-eye"></i>
     </div>
     <div class="form-group submit-btn">
@@ -39,33 +43,77 @@ export default{
    data(){
       return{          
           formdata:{
-          surname:'',
-            othernames:'',
+          userName:'',
             email:'',
             password:'',
            
         },
+        confirmPassword: '',
+        errors: {
+        userName: '',
+        email: '',
+        password: '',
         confirmPassword: ''
+      }
 
       }
-   
+  
    },
    methods:{
-      signup(){
-        if (this.formdata.password !== this.confirmPassword) {
-      swal("Passwords do not match!", "...Make sure the Password Match!");
-      return; 
+    validateEmail(email) {
+      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    },
+    validatePassword(password) {
+      return password.length >= 8 && /[a-z]/i.test(password) && /\d/.test(password);
+    },
+
+    validateUserName(userName) {
+    const re = /^[a-zA-Z0-9-_]{3,20}$/;
+    return re.test(userName);
+  },
+    validateForm() {
+      this.errors = { userName: '', email: '', password: '', confirmPassword: '' };
+      let valid = true;
+
+      if (!this.validateUserName(this.formdata.userName)) {
+      this.errors.userName = 'Username must be 3-20 characters long and can only contain letters, numbers, underscores, and hyphens.';
+      valid = false;
     }
-                  axios.post(`${base_url}/createuser`, this.formdata).then((response)=>{
-                      console.log(response);               
-                      if(response.data.status==='success'){
-                        localStorage.setItem('user',JSON.stringify(response.data.user));
-                           this.$router.push('/formData');        
+
+      if (!this.validateEmail(this.formdata.email)) {
+        this.errors.email = 'Invalid email format.';
+        valid = false;
+      }
+
+      if (!this.validatePassword(this.formdata.password)) {
+        this.errors.password = 'Password must be at least 8 characters long and contain both letters and numbers.';
+        valid = false;
+      }
+
+      if (this.formdata.password !== this.confirmPassword) {
+        this.errors.confirmPassword = 'Passwords do not match.';
+        valid = false;
+      }
+
+      return valid;
+    },
+    clearError(field) {
+      this.errors[field] = '';
+    },
+      signup(){
+        if (!this.validateForm()) {
+        return;
+      }
+                  axios.post(`${base_url}/createuser`, this.formdata).then((res)=>{
+                      console.log(res);               
+                      if(res.status===201){    
+                        localStorage.setItem('token', res.data.token)   
+                        this.$router.push('/addTask');
                           console.log("Succefully Done")
-            }else if(response.data.status==='exists'){
-                  swal('An Account has already been created with this email.. Please login instead','error');
-            }else{
-                 swal(`The ${this.formdata.email} must be a valid email address.`);
+            }        
+            if(res.status===409){
+                  swal(`An Account has already been created with this ${this.formdata.email} .. Please login instead','error`);
             }
            }).catch((error)=>{
              console.log(error)
@@ -189,5 +237,10 @@ transition: 0.2s ease;
 
 .submit-btn input:hover {
 background: #179b81;
+}
+
+.error {
+  color: red;
+  font-size: 0.875rem;
 }
 </style>

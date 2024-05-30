@@ -13,27 +13,25 @@
     <div class="row m-1 p-3">
         <div class="col col-11 mx-auto">
             <div class="row bg-white rounded shadow-sm p-2 add-todo-wrapper align-items-center justify-content-center">
-                <div class="col">
-                    <input class="form-control form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" placeholder="Add new ..">
-                </div>
+                <!-- <div class="form-floating"> -->
+  <textarea class="form-control" placeholder="Add new .." id="floatingTextarea2" v-model="newTodo"  style="height: 100px"></textarea>
+  <!-- <label for="floatingTextarea2">Comments</label> -->
+<!-- </div> -->
+                <!-- <div class="col">
+                    <input class="form-control form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" v-model="newTodo"  placeholder="Add new ..">
+                </div> -->
                 <div class="col-auto px-0 mx-0 mr-2">
-                    <button type="button" class="btn btn-primary">Add</button>
+                    <button @click="addTodo" type="button" class="btn btn-primary">Add</button>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-
-
     <div class="container my-4">
         <div class="row">
             <div class="col-12 col-md-6 d-flex align-items-center mb-3 mb-md-0">
-                <select class="custom-select custom-select-sm w-100">
-                    <option selected disabled>Select Categories Applied For</option>
-                    <option value="personal">Personal</option>
+                <label class="Category-label">Select Categories</label>
+                <select v-model="category"   class="custom-select custom-select-sm w-100" >
+                    <option value="Personal">Personal</option>
                     <option value="I.T Service">I.T Service</option>
                     <option value="Networking">Networking</option>
                     <option value="End User">End User</option>
@@ -42,31 +40,15 @@
             </div>
             <div class="col-12 col-md-6 d-flex align-items-center">
                 <label for="start" class="date-label">Deadline:</label>
-                <input type="date" id="start" name="trip-start" class="date-input w-100"/>
+                <input v-model="deadline" type="date" id="start" name="trip-start" class="date-input w-100"/>
             </div>
         </div>
     </div>
-    <!-- <div class="col-auto d-flex align-items-center">
-          
-            <select class="custom-select custom-select-sm btn my-2">
-                <option selected disabled>Select Categories Applied For</option>
-                <option value="personal">Personal</option>
-                <option value="I.T Service">I.T Service </option>
-                <option value="Networking">Networking</option>
-                <option value="End User">End User</option>
-                <option value="Cyber-Security ">Cyber-Security</option>
-            </select>
-        </div>
-        <div class="col-auto d-flex align-items-center px-1 pr-3">
-            <label for="start">Deadline          : </label> 
-         <input type="date" id="start" name="trip-start"/>
-        </div> -->
     <div class="p-2 mx-4 border-black-25 border-bottom"></div>
     <div class="row m-1 p-3 px-5 justify-content-end">
         <div class="col-auto d-flex align-items-center px-1 pr-3">
         </div>
-    </div>
- 
+    </div> 
     <div class="row mx-1 px-5 pb-3 w-80">
         <div class="col mx-auto">
         </div>
@@ -74,18 +56,51 @@
 </div>
 </template>
 <script>
+import axios from 'axios';
+import {base_url} from '../constant'
+import swal from 'sweetalert';
 export default {
   data() {
     return {
-      currentDate: this.formatDate(new Date())
+      newTodo: '',
+      category: '',
+      deadline: '',
     };
   },
   methods: {
-    formatDate(date) {
-      const options = { day: 'numeric', month: 'short', year: 'numeric' };
-      return date.toLocaleDateString('en-US', options);
-    }
-  }
+    addTodo() {
+      if (!this.category || !this.deadline  || !this.newTodo) {
+        swal('Category and Deadline are required plus Add all apllied');
+        return;
+      }
+      const todoData = {
+        newTodo: this.newTodo,
+        category: this.category,
+        deadline: this.deadline,
+      };
+      console.log(this.newTodo)
+      console.log(this.category)
+ // Retrieve token from localStorage 
+       const token = localStorage.getItem('token');
+       console.log(token)
+       axios.post(`${base_url}/todoList`, todoData, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => {
+          console.log('Todo added:', response.data);
+          swal('Your To-do Task is Created');
+          this.newTodo = '';
+          this.category = '';
+          this.deadline = '';
+        })
+        .catch(error => {
+          console.error('There was an error adding the todo:', error);
+        });
+    },
+  },
 };
 </script>
 <style scoped>
@@ -125,10 +140,6 @@ body {
 .todo-item.editing .todo-actions .edit-icon {
     display: none !important;
 }
-
-
-
-
 .custom-select {
             background-color: #f8f9fa;
             border: 2px solid #6c757d;
@@ -139,6 +150,12 @@ body {
         .custom-select:focus {
             border-color: #343a40;
             box-shadow: none;
+        }
+
+        .Category-label{
+            font-size: 1em;
+            font-weight: bold;
+            margin-right: 10px;
         }
         .date-label {
             font-size: 1em;

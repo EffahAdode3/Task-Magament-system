@@ -41,11 +41,13 @@
           <div class="formbg-outer">
             <div class="formbg">
               <div class="formbg-inner padding-horizontal--48">
+                <!-- <div class="error" v-if="errorMessage" @click="clearEmailError">{{ errorMessage }}</div> -->
                 <span class="padding-bottom--15">Sign in to your account</span>
-                <form id="stripe-login">
+                <form id="stripe-login" @submit.prevent="login">
+             
                   <div class="field padding-bottom--24">
                     <label for="email">Email</label>
-                    <input type="email" name="email">
+                    <input type="email" name="email" v-model="formdata.email">
                   </div>
                   <div class="field padding-bottom--24">
                     <div class="grid--50-50">
@@ -54,7 +56,7 @@
                         <a href="#">Forgot your password?</a>
                       </div>
                     </div>
-                    <input type="password" name="password">
+                    <input type="password" name="password" v-model="formdata.password">
                   </div>
                   <!-- <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
                     <label for="checkbox">
@@ -85,9 +87,43 @@
   </body>
 </template>
 
-
 <script>
+  import axios from 'axios'
+  import {base_url} from '../constant'
+  import swal from 'sweetalert'
 
+export default{
+  data(){
+    return{
+      errorMessage:'',
+      formdata:{
+              email:'',
+              password:''
+          }
+    }
+  },
+  methods:{
+    login(){ 
+     axios.post(`${base_url}/login`, {email: this.formdata.email,
+      password: this.formdata.password,}).then((res)=>{
+        console.log('Response:', res);
+      if(res.status === 200){
+        localStorage.setItem('token', res.data.token)   
+        this.$router.push('/');
+        console.log("Login Succefully");
+      }
+    }).catch((error) => {
+      console.log('Error:', error.response.data); 
+    this.errorMessage = error.response.data.message;
+    swal(`${this.errorMessage}`)
+    console.log(this.errorMessage);
+      });  
+    },
+    // clearEmailError(){
+    //   this.errorMessage = '';
+    // } 
+}
+}
 </script>
 
 <style scoped>
@@ -106,6 +142,9 @@ body {
 h1 {
     letter-spacing: -1px;
 }
+
+
+
 a {
   color: #5469d4;
   text-decoration: unset;
@@ -229,7 +268,11 @@ label {
     grid-template-columns: 50% 50%;
     align-items: center;
 }
-
+.error {
+  color: red;
+  font-size: 1.5em;
+  margin-top: 5px;
+}
 .field input {
     font-size: 16px;
     line-height: 28px;

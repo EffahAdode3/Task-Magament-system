@@ -1,2 +1,2 @@
-export const base_url="https://sts.ug.edu.gh/itsev8engine/api/dash"
+export const base_url="http://localhost:9878"
 
