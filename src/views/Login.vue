@@ -99,7 +99,7 @@ export default{
       formdata:{
               email:'',
               password:''
-          }
+ }
     }
   },
   methods:{
