@@ -1,6 +1,6 @@
 <template>
     <div>
-        <component :is="SideBarAndNavVue"></component>
+     <component :is="SideBarAndNavVue"></component>
        <component :is="Content"></component>
     </div>
 </template>

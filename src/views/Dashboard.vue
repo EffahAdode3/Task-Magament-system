@@ -1,24 +1,21 @@
 <template>
     <div>
         <component :is="SideBarAndNavVue"></component>
-       <!-- <component :is="Content"></component> -->
-    
-
+       <component :is="ContentDashboard"></component>
     </div>
 </template>
 <script>
-
-import Content from '../components/Content.vue'
+import ContentDashboard from '../components/ContentDashboard.vue'
 import SideBarAndNavVue from '../components/SideBarAndNav.vue'
 export default{
     components:{
     
-        Content,
+        ContentDashboard,
         SideBarAndNavVue,
     },
     data(){
         return{
-           Content,
+            ContentDashboard,
            SideBarAndNavVue
         }
     }
