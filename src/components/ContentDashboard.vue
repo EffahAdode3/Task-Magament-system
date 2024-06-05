@@ -54,7 +54,7 @@
 
      mounted(){
       const  createdAtinvaribale = this.TOListDos.createdAt
-      createdAtinvaribale.toDateString();
+      // createdAtinvaribale.toDateString();
       console.log(createdAtinvaribale);
 
      }, 
