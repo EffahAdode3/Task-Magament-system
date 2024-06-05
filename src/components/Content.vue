@@ -79,52 +79,54 @@ export default {
 //   },
 
 
-  methods: {
-
+methods: {
     addTodo() {
-
-        function formatDate(dayOfWeek, day, month, year) {
- var daysOfWeek = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
- var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
- return daysOfWeek[dayOfWeek] + " " + months[month] + " " + day + " " + year;
- }
- 
- formatDate(this.deadline.getUTCDay(), this.deadline.getUTCDate(),
- this.deadline.getUTCMonth(), this.deadline.getUTCFullYear());
-
-
-      if (!this.category || !this.deadline  || !this.newTodo) {
-        swal('All Feild Are Required');
-        return;
-      }
-      const todoData = {
-        newTodo: this.newTodo,
-        category: this.category,
-        deadline: this.deadline,
-      };
-      console.log(this.newTodo)
-      console.log(this.category)
- // Retrieve token from localStorage 
-       const token = localStorage.getItem('token');
-       console.log(token)
-       axios.post(`${base_url}/todoList`, todoData, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            return daysOfWeek[date.getUTCDay()] + " " + months[date.getUTCMonth()] + " " + date.getUTCDate() + " " + date.getUTCFullYear();
         }
-      })
-        .then(response => {
-          console.log('Todo added:', response.data);
-          swal('Your To-do Task is Created');
-          this.newTodo = '';
-          this.category = '';
-          this.deadline = '';
+
+        if (!this.category || !this.deadline || !this.newTodo) {
+            swal('All Fields Are Required');
+            return;
+        }
+
+        const formattedDeadline = formatDate(this.deadline);
+        const todoData = {
+            newTodo: this.newTodo,
+            category: this.category,
+            deadline: formattedDeadline,
+        };
+
+        console.log(this.newTodo);
+        console.log(this.category);
+        console.log(formattedDeadline);
+
+        // Retrieve token from localStorage
+        const token = localStorage.getItem('token');
+        console.log(token);
+
+        axios.post(`${base_url}/todoList`, todoData, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
         })
-        .catch(error => {
-          console.error('There was an error adding the todo:', error);
-        });
+            .then(response => {
+                console.log('Todo added:', response.data);
+                swal('Your To-do Task is Created');
+                this.newTodo = '';
+                this.category = '';
+                this.deadline = '';
+            })
+            .catch(error => {
+                console.error('There was an error adding the todo:', error);
+            });
     },
-  },
+},
+
 };
 </script>
 <style scoped>
