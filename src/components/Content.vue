@@ -39,7 +39,7 @@
                 </select>
             </div>
             <div class="col-12 col-md-6 d-flex align-items-center">
-                <label for="start" class="date-label">Deadline:</label>
+                <label for="start" class="date-label">Due Date:</label>
                 <input v-model="deadline" type="date" id="start" name="trip-start" class="date-input w-100"/>
             </div>
         </div>
@@ -67,6 +67,18 @@ export default {
       deadline: '',
     };
   },
+
+  computed(){
+    function formatDate(dayOfWeek, day, month, year) {
+ var daysOfWeek = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+ var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+ return daysOfWeek[dayOfWeek] + " " + months[month] + " " + day + " " + year;
+ }
+ formatDate(this.deadline.getUTCDay(), this.deadline.getUTCDate(),
+ this.deadline.getUTCMonth(), this.deadline.getUTCFullYear());
+  },
+
+  
   methods: {
     addTodo() {
       if (!this.category || !this.deadline  || !this.newTodo) {

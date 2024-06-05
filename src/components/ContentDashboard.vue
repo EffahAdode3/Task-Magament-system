@@ -9,7 +9,7 @@
       <th scope="col">#</th>
       <th scope="col">To Do</th>
       <th scope="col">Categories</th>
-      <th scope="col">Deadline</th>
+      <th scope="col">Due Date</th>
       <th scope="col">Created At</th>
     </tr>
   </thead>
