@@ -68,19 +68,31 @@ export default {
     };
   },
 
-  computed(){
-    function formatDate(dayOfWeek, day, month, year) {
+//   computed(){
+//     function formatDate(dayOfWeek, day, month, year) {
+//  var daysOfWeek = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+//  var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+//  return daysOfWeek[dayOfWeek] + " " + months[month] + " " + day + " " + year;
+//  }
+//  formatDate(this.deadline.getUTCDay(), this.deadline.getUTCDate(),
+//  this.deadline.getUTCMonth(), this.deadline.getUTCFullYear());
+//   },
+
+
+  methods: {
+
+    addTodo() {
+
+        function formatDate(dayOfWeek, day, month, year) {
  var daysOfWeek = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
  var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
  return daysOfWeek[dayOfWeek] + " " + months[month] + " " + day + " " + year;
  }
+ 
  formatDate(this.deadline.getUTCDay(), this.deadline.getUTCDate(),
  this.deadline.getUTCMonth(), this.deadline.getUTCFullYear());
-  },
 
-  
-  methods: {
-    addTodo() {
+
       if (!this.category || !this.deadline  || !this.newTodo) {
         swal('All Feild Are Required');
         return;
