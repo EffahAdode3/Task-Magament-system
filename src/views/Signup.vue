@@ -105,19 +105,42 @@ export default{
         if (!this.validateForm()) {
         return;
       }
-                  axios.post(`${base_url}/createuser`, this.formdata).then((res)=>{
-                      console.log(res);               
-                      if(res.status===201){    
-                        this.$router.push('/login');
-                          console.log("Succefully Done")
-            };        
-            if(res.status===409){
-                  swal(`An Account has already been created with this ${this.formdata.email} .. Please login instead','error`);
-            }
-           }).catch((error)=>{
-             console.log(error)
-          swal('Sorry,Unable to Create your Account');
-        });
+        //           axios.post(`${base_url}/createuser`, this.formdata)
+        //           .then((res)=>{
+        //               console.log(res);               
+        //               if(res.status===201){    
+        //                 this.$router.push('/login');
+        //                   console.log("Succefully Done")
+        //     };        
+        //     if(res.status===409){
+        //           swal(`An Account has already been created with this ${this.formdata.email} .. Please login instead','error`);
+        //     }
+        //    }).catch((error)=>{
+        //      console.log(error)
+        //   swal('Sorry,Unable to Create your Account');
+        // });
+
+        axios.post(`${base_url}/createuser`, this.formdata)
+  .then((res) => {
+    console.log(res);               
+    if (res.status === 201) {    
+      this.$router.push('/login');
+      console.log("Successfully Done");
+    }        
+    if (res.status === 409) {
+      swal(`An Account has already been created with this ${this.formdata.email} .. Please login instead`, 'error');
+    }
+  })
+  .catch((error) => {
+    console.error("Error details:", error.response ? error.response : error);
+    if (error.response && error.response.status === 400) {
+      swal('Validation error, please check your input.', 'error');
+    } else if (error.response && error.response.status === 500) {
+      swal('Server error, please try again later.', 'error');
+    } else {
+      swal('Sorry, your account could not be created.');
+    }
+  });
       } 
    }
    }
