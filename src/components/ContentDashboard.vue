@@ -25,7 +25,7 @@
     
   </tbody>
 </table> -->
-<div  v-for="(toTolist, index) in TOListDos" :key="index" >
+<div class="card" v-for="(toTolist, index) in TOListDos" :key="index" >
   <h5 class="card-header">{{ toTolist.createdAt }}</h5>
   <div class="card-body">
     <h5 class="card-title">{{toTolist. category}}</h5>
