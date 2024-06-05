@@ -25,7 +25,7 @@
     
   </tbody>
 </table> -->
-<!-- <div class="card" v-for="(toTolist, index) in TOListDos" :key="index" >
+<div class="card" v-for="(toTolist, index) in TOListDos" :key="index" >
   <h5 class="card-header">{{ toTolist.createdAt }}</h5>
   <div class="card-body">
     <h5 class="card-title">{{toTolist. category}}</h5>
@@ -35,14 +35,6 @@
   <br>
   <br>
   <br>
-</div> -->
-<div class="card" style="width: 18rem;">
-  <div class="card-body"   v-for="(toTolist, index) in TOListDos" :key="index" >
-    <h5 class="card-title">{{ toTolist.createdAt }}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{toTolist. category}}</h6>
-    <p class="card-text">{{toTolist.newTodo}}</p>
-    <a href="#" class="card-link">{{toTolist.deadline}}</a>
-  </div>
 </div>
 </div>
 </template>
@@ -84,11 +76,15 @@
 
      </script>
 
-<!-- <style scoped>
+<style scoped>
 
-.table {
+/* .table {
     margin: 0 auto;
     width: 50%;
     border-collapse: collapse;
+} */
+
+.card{
+  position: relative;
 }
-</style> -->
+</style>
