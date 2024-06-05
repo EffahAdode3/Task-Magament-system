@@ -111,13 +111,13 @@ export default{
                         // localStorage.setItem('token', res.data.token)   
                         this.$router.push('/login');
                           console.log("Succefully Done")
-            }        
+            };        
             if(res.status===409){
                   swal(`An Account has already been created with this ${this.formdata.email} .. Please login instead','error`);
             }
            }).catch((error)=>{
              console.log(error)
-          swal('Sorry,Your account could not be created');
+          swal('Sorry,Unable to Create your Account');
         });
       } 
    }
