@@ -52,12 +52,12 @@
        };
      },
 
-     mounted(){
-      const  createdAtinvaribale = this.TOListDos.createdAt
-      // createdAtinvaribale.toDateString();
-      console.log('trtwetwerrtwerrtwerter', createdAtinvaribale);
+    //  mounted(){
+    //   const  createdAtinvaribale = this.TOListDos.createdAt
+    //   // createdAtinvaribale.toDateString();
+    //   console.log('trtwetwerrtwerrtwerter'createdAtinvaribale);
 
-     }, 
+    //  }, 
 
      created(){
         const token = localStorage.getItem('token');
