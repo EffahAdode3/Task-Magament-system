@@ -133,17 +133,14 @@ export default{
   })
   .catch((error) => {
     console.error("Error details:", error.response ? error.response : error);
-    if (error.response && error.response.status === 400) {
-      swal('Validation error, please check your input.', 'error');
-    } else if (error.response && error.response.status === 500) {
+    if (error.response && error.response.status === 500) {
       swal('Server error, please try again later.', 'error');
-    } else {
-      swal('Sorry, your account could not be created.');
-    }
-  });
-      } 
+    } 
+    }  
+  );
    }
-   }
+  }
+}
 </script>
 
 <style scoped>
