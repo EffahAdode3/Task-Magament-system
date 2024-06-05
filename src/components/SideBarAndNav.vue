@@ -122,10 +122,11 @@ export default {
   font-family: "Poppins", sans-serif;
 }
 
-/* .indexZindex{
-  z-index: -1000000;
+.indexZindex{
+  z-index: 100;
+  position: absolute;
 
-} */
+}
 body {
   min-height: 100%;
   background: #e3f2fd;
