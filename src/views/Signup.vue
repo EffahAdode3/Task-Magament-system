@@ -108,8 +108,8 @@ export default{
                   axios.post(`${base_url}/createuser`, this.formdata).then((res)=>{
                       console.log(res);               
                       if(res.status===201){    
-                        localStorage.setItem('token', res.data.token)   
-                        this.$router.push('/addTask');
+                        // localStorage.setItem('token', res.data.token)   
+                        this.$router.push('/login');
                           console.log("Succefully Done")
             }        
             if(res.status===409){

@@ -64,7 +64,7 @@
     mounted() {
   const token = localStorage.getItem('token');
   console.log("Retrieved token:", token);  // Check the console for this output
-  if (token) {
+  if (!token) {
     axios.get(`${base_url}/getAllToDo`, {
       headers: {
         'Authorization': `Bearer ${token}`,

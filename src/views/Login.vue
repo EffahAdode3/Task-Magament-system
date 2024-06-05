@@ -109,6 +109,7 @@ export default{
         console.log('Response:', res);
       if(res.status === 200){
         localStorage.setItem('token', res.data.token)   
+        // localStorage.setItem('user', JSON.stringify(res.data.user))  
         this.$router.push('/');
         console.log("Login Succefully");
       }
