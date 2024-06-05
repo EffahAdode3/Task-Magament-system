@@ -3,7 +3,7 @@
     <br>
     <br>
     <br>
- <!-- <table class="table">
+ <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -24,8 +24,8 @@
 
     
   </tbody>
-</table> -->
-<div class="card" v-for="(toTolist, index) in TOListDos" :key="index" >
+</table>
+<!-- <div class="card" v-for="(toTolist, index) in TOListDos" :key="index" >
   <h5 class="card-header">{{ createdAtinvaribale }}</h5>
   <div class="card-body">
     <h5 class="card-title">{{toTolist. category}}</h5>
@@ -35,7 +35,7 @@
   <br>
   <br>
   <br>
-</div>
+</div> -->
 </div>
 </template>
 
