@@ -65,11 +65,11 @@
 
      </script>
 
-<style scoped>
+<!-- <style scoped>
 
 .table {
     margin: 0 auto;
     width: 50%;
     border-collapse: collapse;
 }
-</style>
+</style> -->
