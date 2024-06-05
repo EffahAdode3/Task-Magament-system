@@ -40,50 +40,50 @@
                    
        };
      },
-    //  created(){
-    //     const token = localStorage.getItem('token');
-    //    console.log(token)
-    //      axios.get(`${base_url}/getAllToDo`, {
-    //         headers: {
-    //       'Authorization': `Bearer ${token}`,
-    //       'Content-Type': 'application/json'
-    //     }
-    //      })
-    //        .then((response) => {
-    //          this.TOListDos = response.data.allToDoList;
-    //          console.log(this.TOListDos);
-    //          console.log(response.data);
-    //        })
-    //        .catch((error) => {
-    //          console.error("Error fetching products:", error);
-    //        });
-    //    }
+     created(){
+        const token = localStorage.getItem('token');
+       console.log(token)
+         axios.get(`${base_url}/getAllToDo`, {
+            headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+         })
+           .then((response) => {
+             this.TOListDos = response.data.allToDoList;
+             console.log(this.TOListDos);
+             console.log(response.data);
+           })
+           .catch((error) => {
+             console.error("Error fetching products:", error);
+           });
+       }
 
 
 
-    mounted() {
-  const token = localStorage.getItem('token');
-  console.log("Retrieved token:", token);  // Check the console for this output
-  if (!token) {
-    axios.get(`${base_url}/getAllToDo`, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
-    })
-    .then((response) => {
-      this.TOListDos = response.data.allToDoList;
-      console.log(this.TOListDos);
-      console.log(response.data);
-    })
-    .catch((error) => {
-      console.error("Error fetching products:", error);
-    });
-  } else {
-    console.error("Token not found in localStorage");
-    // Handle the case when the token is not available, e.g., redirect to login
-  }
-}
+//     mounted() {
+//   const token = localStorage.getItem('token');
+//   console.log("Retrieved token:", token);  // Check the console for this output
+//   if (!token) {
+//     axios.get(`${base_url}/getAllToDo`, {
+//       headers: {
+//         'Authorization': `Bearer ${token}`,
+//         'Content-Type': 'application/json'
+//       }
+//     })
+//     .then((response) => {
+//       this.TOListDos = response.data.allToDoList;
+//       console.log(this.TOListDos);
+//       console.log(response.data);
+//     })
+//     .catch((error) => {
+//       console.error("Error fetching products:", error);
+//     });
+//   } else {
+//     console.error("Token not found in localStorage");
+//     // Handle the case when the token is not available, e.g., redirect to login
+//   }
+// }
     }
 
        
