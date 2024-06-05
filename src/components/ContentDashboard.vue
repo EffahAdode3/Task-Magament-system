@@ -55,7 +55,7 @@
      mounted(){
       const  createdAtinvaribale = this.TOListDos.createdAt
       // createdAtinvaribale.toDateString();
-      console.log(createdAtinvaribale);
+      console.log('trtwetwerrtwerrtwerter', createdAtinvaribale);
 
      }, 
 
