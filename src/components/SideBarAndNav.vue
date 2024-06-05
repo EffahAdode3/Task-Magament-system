@@ -87,15 +87,15 @@ export default {
   },
 
 
-  // mounted(){
-  //     var token = localStorage.getItem("token");
-  //     console.log(token);
-  //     if( token == undefined){
-  //       this.$router.push('/Login');
+  mounted(){
+      var token = localStorage.getItem("token");
+      console.log(token);
+      if( token === null){
+        this.$router.push('/login');
 
-  //     }
+      }
       
-  //   },
+    },
   methods: {
     toggleNav() {
       this.isNavOpen = !this.isNavOpen;
@@ -106,7 +106,7 @@ export default {
     logout(){
         // alert("Are sure you want to Logout");
         localStorage.clear();
-        this.$router.push('/Login');
+        this.$router.push('/login');
       }
   }
 };
