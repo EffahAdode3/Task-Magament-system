@@ -32,6 +32,9 @@
     <p class="card-text">{{toTolist.newTodo}}</p>
     <a href="#" class="btn btn-secondary">{{toTolist.deadline}}</a>
   </div>
+  <br>
+  <br>
+  <br>
 </div>
 </div>
 </template>
