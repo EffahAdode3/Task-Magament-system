@@ -3,7 +3,7 @@
     <br>
     <br>
     <br>
- <table class="table">
+ <!-- <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -24,7 +24,15 @@
 
     
   </tbody>
-</table>
+</table> -->
+<div class="card" v-for="(toTolist, index) in TOListDos" :key="index" >
+  <h5 class="card-header">{{ toTolist.createdAt }}</h5>
+  <div class="card-body">
+    <h5 class="card-title">{{toTolist. category}}</h5>
+    <p class="card-text">{{toTolist.newTodo}}</p>
+    <a href="#" class="btn btn-secondary">{{toTolist.deadline}}</a>
+  </div>
+</div>
 </div>
 </template>
 
