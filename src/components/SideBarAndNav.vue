@@ -101,8 +101,8 @@ export default {
     }
 
     const payload = JSON.parse(atob(tokenParts[1]));
+    console.log("234234542352345345", payload);
     const currentTime = Math.floor(Date.now() / 1000);
-
     if (payload.exp <= currentTime) {
       // Token has expired
       console.log('Token expire')
