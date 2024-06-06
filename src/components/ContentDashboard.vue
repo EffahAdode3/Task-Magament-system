@@ -25,17 +25,6 @@
     
   </tbody>
 </table>
-<!-- <div class="card" v-for="(toTolist, index) in TOListDos" :key="index" >
-  <h5 class="card-header">{{ createdAtinvaribale }}</h5>
-  <div class="card-body">
-    <h5 class="card-title">{{toTolist. category}}</h5>
-    <p class="card-text">{{toTolist.newTodo}}</p>
-    <a href="#" class="btn btn-secondary">{{toTolist.deadline}}</a>
-  </div>
-  <br>
-  <br>
-  <br>
-</div> -->
 </div>
 </template>
 
@@ -51,14 +40,6 @@
                    
        };
      },
-
-    //  mounted(){
-    //   const  createdAtinvaribale = this.TOListDos.createdAt
-    //   // createdAtinvaribale.toDateString();
-    //   console.log('trtwetwerrtwerrtwerter'createdAtinvaribale);
-
-    //  }, 
-
      created(){
         const token = localStorage.getItem('token');
        console.log(token)

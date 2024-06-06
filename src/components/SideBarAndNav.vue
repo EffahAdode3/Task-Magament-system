@@ -92,7 +92,10 @@ export default {
       console.log(token);
       if( token === null){
         this.$router.push('/login');
-
+      }
+      if (res.status === 401){
+        localStorage.clear();
+        this.$router.push('/login');
       }
       
     },
