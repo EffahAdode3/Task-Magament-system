@@ -93,12 +93,10 @@ export default {
       if( token === null){
         this.$router.push('/login');
       }
-      var date = new Date();
-// date.getTime() is in milliseconds and thus we've got to divide by 1000
-if(token.exp<date){
-    console.log('The token has expired');
+      if (token.exp < new Date()/1000) {
+    console.log("EXPIRED");
 }else{
-    console.log('The token is still valid');
+  console.log("VALID");
 }
       
     },
