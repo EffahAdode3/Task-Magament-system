@@ -19,7 +19,7 @@
       <td>{{toTolist.newTodo}}</td>
       <td>{{toTolist. category}}</td>
       <td>{{toTolist.deadline}}</td>
-      <td>{{ toTolist.createdAt }}</td>
+      <td>{{ toTolist.formattedCreatedAt }}</td>
     </tr>
 
     
