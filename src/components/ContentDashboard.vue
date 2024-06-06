@@ -37,8 +37,7 @@
    export default {
      data() {
        return {
-        TOListDos: [],    
-                   
+        TOListDos: [],                    
        };
      },
      created(){
@@ -54,14 +53,11 @@
              this.TOListDos = response.data.allToDoList;
              console.log(this.TOListDos);
              console.log(response.data);
-
-       
            })
            .catch((error) => {
              console.error("Error fetching products:", error);
            });
        }
-
     }
 
        

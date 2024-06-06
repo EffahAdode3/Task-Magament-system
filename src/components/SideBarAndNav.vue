@@ -93,8 +93,9 @@ export default {
       if( token === null){
         this.$router.push('/login');
       }
-     
-      
+      if (!token) {
+      this.logout();
+    }   
     },
   methods: {
     toggleNav() {
