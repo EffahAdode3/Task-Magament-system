@@ -18,7 +18,7 @@
   </thead>
   <tbody>
     <tr v-for="(toTolist, index) in TOListDos" :key="index">
-      <td>{{ toTolist.formattedCreatedAt }}</td>
+      <td>{{ new Date(toTolist.CreatedAt).toDateString() }}</td>
       <td>{{toTolist. category}}</td>
       <td>{{toTolist.newTodo}}</td>
       <td>{{new Date(toTolist.deadline).toDateString()}}</td>
