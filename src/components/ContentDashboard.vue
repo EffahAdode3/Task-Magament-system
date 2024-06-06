@@ -19,7 +19,7 @@
       <td>{{toTolist.newTodo}}</td>
       <td>{{toTolist. category}}</td>
       <td>{{toTolist.deadline}}</td>
-      <td>{{ toTolist.formattedCreatedAt }}</td>
+      <td>{{ toTolist.createdAt }}</td>
     </tr>
 
     
@@ -50,12 +50,6 @@
         }
          })
            .then((response) => {
-
-
-            if (response.data.message === "Token has expired" ){
-        localStorage.clear();
-        this.$router.push('/login');
-      }
              this.TOListDos = response.data.allToDoList;
              console.log(this.TOListDos);
              console.log(response.data);
