@@ -93,7 +93,7 @@ export default {
       if( token === null){
         this.$router.push('/login');
       }
-      if (res.status === 401){
+      if (token === "Token has expired"){
         localStorage.clear();
         this.$router.push('/login');
       }
