@@ -52,7 +52,7 @@
            .then((response) => {
 
 
-            if (response.data === "Token has expired" ){
+            if (response.data.message === "Token has expired" ){
         localStorage.clear();
         this.$router.push('/login');
       }
