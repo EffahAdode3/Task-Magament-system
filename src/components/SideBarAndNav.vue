@@ -93,11 +93,7 @@ export default {
       if( token === null){
         this.$router.push('/login');
       }
-      if (token.exp < new Date()/1000) {
-    console.log("EXPIRED");
-}else{
-  console.log("VALID");
-}
+     
       
     },
   methods: {
