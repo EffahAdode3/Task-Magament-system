@@ -93,13 +93,24 @@ export default {
         this.$router.push('/login');
       }
 
-      const currentTime = Math.floor(Date.now() / 1000);
-      if (token.payload.exp <= currentTime) {
-        // return res.status(401).json({ message: "Token has expired" });
-        localStorage.clear();
-        this.$router.push('/login');
-      }
-    },
+
+    // Parse the token to get the payload
+    const tokenParts = token.split('.');
+    if (tokenParts.length !== 3) {
+      throw new Error("Invalid token format");
+    }
+
+    const payload = JSON.parse(atob(tokenParts[1]));
+    const currentTime = Math.floor(Date.now() / 1000);
+
+    if (payload.exp <= currentTime) {
+      // Token has expired
+      console.log('Token expire')
+      localStorage.clear();
+      this.$router.push('/login');
+    }
+  },
+
   methods: {
     toggleNav() {
       this.isNavOpen = !this.isNavOpen;
