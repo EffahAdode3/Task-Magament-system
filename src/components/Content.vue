@@ -81,28 +81,28 @@ export default {
 
 methods: {
     addTodo() {
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            return daysOfWeek[date.getUTCDay()] + " " + months[date.getUTCMonth()] + " " + date.getUTCDate() + " " + date.getUTCFullYear();
-        }
+        // function formatDate(dateString) {
+        //     const date = new Date(dateString);
+        //     const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        //     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        //     return daysOfWeek[date.getUTCDay()] + " " + months[date.getUTCMonth()] + " " + date.getUTCDate() + " " + date.getUTCFullYear();
+        // }
 
         if (!this.category || !this.deadline || !this.newTodo) {
             swal('All Fields Are Required');
             return;
         }
 
-        const formattedDeadline = formatDate(this.deadline);
+        // const formattedDeadline = formatDate(this.deadline);
         const todoData = {
             newTodo: this.newTodo,
             category: this.category,
-            deadline: formattedDeadline,
+            deadline: this.deadline,
         };
 
         console.log(this.newTodo);
         console.log(this.category);
-        console.log(formattedDeadline);
+        console.log(this.deadline);
 
         // Retrieve token from localStorage
         const token = localStorage.getItem('token');

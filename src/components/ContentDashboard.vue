@@ -21,15 +21,9 @@
       <td>{{ toTolist.formattedCreatedAt }}</td>
       <td>{{toTolist. category}}</td>
       <td>{{toTolist.newTodo}}</td>
-      <td>{{toTolist.deadline}}</td>
-      <!-- <th scope="row">{{ index }}</th> -->
-
-     
-      
-   
+      <td>{{new Date(toTolist.deadline).toDateString()}}</td>
+      <!-- <th scope="row">{{ index }}</th> -->  
     </tr>
-
-    
   </tbody>
 </table>
 </div>
