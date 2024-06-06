@@ -95,7 +95,7 @@ export default {
       }
       var date = new Date();
 // date.getTime() is in milliseconds and thus we've got to divide by 1000
-if(token.exp<date.getTime()/1000){
+if(token.exp<date){
     console.log('The token has expired');
 }else{
     console.log('The token is still valid');
