@@ -11,6 +11,8 @@
       <th scope="col">Categories</th>
       <th scope="col">To Do Task</th>
       <th scope="col">Due Date</th>
+      <th scope="col">Comments</th>
+      <th scope="col"> Statuses</th>
     
     </tr>
   </thead>
