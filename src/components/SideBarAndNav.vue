@@ -93,10 +93,13 @@ export default {
       if( token === null){
         this.$router.push('/login');
       }
-      if (token === "Token has expired"){
-        localStorage.clear();
-        this.$router.push('/login');
-      }
+      var date = new Date();
+// date.getTime() is in milliseconds and thus we've got to divide by 1000
+if(token.exp<date.getTime()/1000){
+    console.log('The token has expired');
+}else{
+    console.log('The token is still valid');
+}
       
     },
   methods: {
