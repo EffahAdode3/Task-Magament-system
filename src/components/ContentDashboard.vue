@@ -50,14 +50,17 @@
         }
          })
            .then((response) => {
+
+
+            if (response.data === "Token has expired" ){
+        localStorage.clear();
+        this.$router.push('/login');
+      }
              this.TOListDos = response.data.allToDoList;
              console.log(this.TOListDos);
              console.log(response.data);
 
-             if (response.status === 401){
-        localStorage.clear();
-        this.$router.push('/login');
-      }
+       
            })
            .catch((error) => {
              console.error("Error fetching products:", error);
