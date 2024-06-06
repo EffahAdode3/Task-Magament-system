@@ -86,16 +86,19 @@ export default {
     };
   },
 
-
   mounted(){
       var token = localStorage.getItem("token");
       console.log(token);
       if( token === null){
         this.$router.push('/login');
       }
-      if (!token) {
-      this.logout();
-    }   
+
+      const currentTime = Math.floor(Date.now() / 1000);
+      if (token.payload.exp <= currentTime) {
+        // return res.status(401).json({ message: "Token has expired" });
+        localStorage.clear();
+        this.$router.push('/login');
+      }
     },
   methods: {
     toggleNav() {
