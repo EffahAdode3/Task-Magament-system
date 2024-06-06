@@ -6,20 +6,25 @@
  <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">To Do</th>
+      <!-- <th scope="col">#</th> -->
+      <th scope="col">Date</th>
       <th scope="col">Categories</th>
+      <th scope="col">To Do Task</th>
       <th scope="col">Due Date</th>
-      <th scope="col">Created At</th>
+    
     </tr>
   </thead>
   <tbody>
     <tr v-for="(toTolist, index) in TOListDos" :key="index">
-      <th scope="row">{{ index }}</th>
-      <td>{{toTolist.newTodo}}</td>
-      <td>{{toTolist. category}}</td>
-      <td>{{toTolist.deadline}}</td>
       <td>{{ toTolist.formattedCreatedAt }}</td>
+      <td>{{toTolist. category}}</td>
+      <td>{{toTolist.newTodo}}</td>
+      <td>{{toTolist.deadline}}</td>
+      <!-- <th scope="row">{{ index }}</th> -->
+
+     
+      
+   
     </tr>
 
     
