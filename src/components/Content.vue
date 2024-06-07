@@ -20,9 +20,9 @@
                 <!-- <div class="col">
                     <input class="form-control form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" v-model="newTodo"  placeholder="Add new ..">
                 </div> -->
-                <div class="col-auto px-0 mx-0 mr-2">
+                <!-- <div class="col-auto px-0 mx-0 mr-2">
                     <button @click="addTodo" type="button" class="btn btn-primary">Add</button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -44,15 +44,19 @@
             </div>
         </div>
     </div>
-    <div class="p-2 mx-4 border-black-25 border-bottom"></div>
+    <div class="col-auto px-0 mx-0 mr-2 d-flex justify-content-center">
+    <button @click="addTodo" type="button" class="btn btn-primary">Add</button>
+</div>
+
+    <!-- <div class="p-2 mx-4 border-black-25 border-bottom"></div>
     <div class="row m-1 p-3 px-5 justify-content-end">
         <div class="col-auto d-flex align-items-center px-1 pr-3">
         </div>
-    </div> 
-    <div class="row mx-1 px-5 pb-3 w-80">
+    </div>  -->
+    <!-- <div class="row mx-1 px-5 pb-3 w-80">
         <div class="col mx-auto">
         </div>
-    </div>
+    </div> -->
 </div>
 </template>
 <script>
@@ -67,33 +71,14 @@ export default {
       deadline: '',
     };
   },
-
-//   computed(){
-//     function formatDate(dayOfWeek, day, month, year) {
-//  var daysOfWeek = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-//  var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-//  return daysOfWeek[dayOfWeek] + " " + months[month] + " " + day + " " + year;
-//  }
-//  formatDate(this.deadline.getUTCDay(), this.deadline.getUTCDate(),
-//  this.deadline.getUTCMonth(), this.deadline.getUTCFullYear());
-//   },
-
-
+  
 methods: {
     addTodo() {
-        // function formatDate(dateString) {
-        //     const date = new Date(dateString);
-        //     const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        //     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        //     return daysOfWeek[date.getUTCDay()] + " " + months[date.getUTCMonth()] + " " + date.getUTCDate() + " " + date.getUTCFullYear();
-        // }
-
+       
         if (!this.category || !this.deadline || !this.newTodo) {
             swal('All Fields Are Required');
             return;
         }
-
-        // const formattedDeadline = formatDate(this.deadline);
         const todoData = {
             newTodo: this.newTodo,
             category: this.category,
