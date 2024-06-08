@@ -43,7 +43,7 @@
               <div class="formbg-inner padding-horizontal--48">
                 <!-- <div class="error" v-if="errorMessage" @click="clearEmailError">{{ errorMessage }}</div> -->
                 <span class="padding-bottom--15">Sign in to your account</span>
-                <form id="stripe-login" @submit.prevent="login">
+                <form id="stripe-login" @submit.prevent="login" :class="{ disabled: toggledisabled }">
              
                   <div class="field padding-bottom--24">
                     <label for="email">Email</label>
@@ -70,6 +70,9 @@
                     <a class="ssolink" href="#">Use single sign-on (Google) instead</a>
                   </div> -->
                 </form>
+                <div v-if="toggledisabled" class="loading-overlay">
+      <img src="../assets/loading.gif" alt="Loading">
+    </div>
               </div>
             </div>
             <div class="footer-link padding-top--24">
@@ -96,6 +99,7 @@ export default{
   data(){
     return{
       errorMessage:'',
+      toggledisabled:false,
       
       formdata:{
               email:'',
@@ -105,6 +109,7 @@ export default{
   },
   methods:{
     login(){ 
+      this.toggledisabled = true;
      axios.post(`${base_url}/login`, {email: this.formdata.email,
       password: this.formdata.password,}).then((res)=>{
         console.log('Response:', res);
@@ -115,15 +120,14 @@ export default{
         console.log("Login Succefully");
       }
     }).catch((error) => {
+      this.toggledisabled = false;
       console.log('Error:', error.response.data); 
     this.errorMessage = error.response.data.message;
     swal(`${this.errorMessage}`)
     console.log(this.errorMessage);
       });  
     },
-    // clearEmailError(){
-    //   this.errorMessage = '';
-    // } 
+   
 }
 }
 </script>
@@ -370,4 +374,21 @@ a.ssolink {
     transform: translateX(0px);
   }
 } 
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loading-overlay img {
+  max-height: 200px;
+}
 </style>
