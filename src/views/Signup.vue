@@ -132,7 +132,14 @@ export default{
     console.error("Error details:", error.response ? error.response : error);
     if (error.response && error.response.status === 500) {
       swal('Server error, please try again later.', 'error');
-    } 
+    } else if (error.response && error.response.status === 409) {
+        console.log("Conflict detected in catch block"); // Debugging line
+        swal({
+          title: "Conflict",
+          text: `An Account has already been created with this ${this.formdata.email}. Please login instead.`,
+          icon: "error"
+        });
+      }
     }  
   );
    }
