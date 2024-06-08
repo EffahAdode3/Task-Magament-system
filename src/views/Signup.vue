@@ -1,6 +1,6 @@
 <template>
     <body>                
-  <form @submit.prevent="signup" >
+  <form @submit.prevent="signup" :class="{ disabled: toggledisabled }" >
     <h2>Account Registration</h2>
     <div class="form-group fullname">
       <label for="fullname"> User Name </label>
@@ -32,9 +32,9 @@
  </div>
     
   </form>
-  <!-- <div v-if="toggledisabled" class="loading-overlay">
+  <div v-if="toggledisabled" class="loading-overlay">
       <img src="../assets/loading.gif" alt="Loading">
-    </div> -->
+    </div>
 </body>
 </template>
 <script>
@@ -45,7 +45,7 @@ export default{
    data(){
    
       return{          
-        // toggledisabled:false,
+        toggledisabled:false,
           formdata:{
           userName:'',
             email:'',
@@ -109,10 +109,10 @@ export default{
         if (!this.validateForm()) {
         return;
       }
-      // this.toggledisabled = true;
+      this.toggledisabled = true;
         axios.post(`${base_url}/createuser`, this.formdata)
   .then((res) => {
-    // this.toggledisabled = false;
+    this.toggledisabled = false;
     console.log(res);               
     if (res.status === 201) {    
       this.$router.push('/login');
