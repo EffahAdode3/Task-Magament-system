@@ -118,14 +118,6 @@ export default{
       this.$router.push('/login');
       console.log("Successfully Done");
     }        
-    else if (res.status === 409) {
-          console.log("Conflict detected"); // Debugging line
-          swal({
-            title: "Conflict",
-            text: `An Account has already been created with this ${this.formdata.email}. Please login instead.`,
-            icon: "error"
-          });
-        }
   })
   .catch((error) => {
     // this.toggledisabled = false;
