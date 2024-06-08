@@ -120,7 +120,7 @@ export default{
     }        
   })
   .catch((error) => {
-    // this.toggledisabled = false;
+    this.toggledisabled = false;
     console.error("Error details:", error.response ? error.response : error);
     if (error.response && error.response.status === 500) {
       swal('Server error, please try again later.', 'error');
