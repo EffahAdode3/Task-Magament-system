@@ -45,7 +45,7 @@ export default{
    data(){
    
       return{          
-        toggledisabled:false,
+        // toggledisabled:false,
           formdata:{
           userName:'',
             email:'',
@@ -109,10 +109,10 @@ export default{
         if (!this.validateForm()) {
         return;
       }
-      this.toggledisabled = true;
+      // this.toggledisabled = true;
         axios.post(`${base_url}/createuser`, this.formdata)
   .then((res) => {
-    this.toggledisabled = false;
+    // this.toggledisabled = false;
     console.log(res);               
     if (res.status === 201) {    
       this.$router.push('/login');
@@ -123,7 +123,7 @@ export default{
     }
   })
   .catch((error) => {
-    this.toggledisabled = false;
+    // this.toggledisabled = false;
     console.error("Error details:", error.response ? error.response : error);
     if (error.response && error.response.status === 500) {
       swal('Server error, please try again later.', 'error');
