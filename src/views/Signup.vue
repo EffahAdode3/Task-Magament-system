@@ -1,6 +1,6 @@
 <template>
-    <body>
-  <form @submit.prevent="signup" :class="{ disabled: toggledisabled }">
+    <body>                
+  <form @submit.prevent="signup" >
     <h2>Account Registration</h2>
     <div class="form-group fullname">
       <label for="fullname"> User Name </label>
@@ -32,9 +32,9 @@
  </div>
     
   </form>
-  <div v-if="toggledisabled" class="loading-overlay">
+  <!-- <div v-if="toggledisabled" class="loading-overlay">
       <img src="../assets/loading.gif" alt="Loading">
-    </div>
+    </div> -->
 </body>
 </template>
 <script>
