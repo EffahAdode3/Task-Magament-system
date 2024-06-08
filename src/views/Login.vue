@@ -116,7 +116,7 @@ export default{
       if(res.status === 200){
         localStorage.setItem('token', res.data.token)   
         localStorage.setItem('user', JSON.stringify(res.data.user))  
-        this.$router.push('/');
+        this.$router.push('/addTask');
         console.log("Login Succefully");
       }
     }).catch((error) => {
