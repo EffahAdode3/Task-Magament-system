@@ -1,6 +1,6 @@
 <template>
     <body>
-  <form @submit.prevent="signup">
+  <form @submit.prevent="signup" :class="{ disabled: toggledisabled }">
     <h2>Account Registration</h2>
     <div class="form-group fullname">
       <label for="fullname"> User Name </label>
@@ -25,14 +25,16 @@
       <i id="pass-toggle-btn" class="fa-solid fa-eye"></i>
     </div>
     <div class="form-group submit-btn">
-      <input type="submit" value="Submit"  >
-    
+      <input type="submit" value="Submit">
     </div>
     <div class="field">
     <span><a href="/Login">Already having accounts?  Click to Login</a></span>
  </div>
     
   </form>
+  <div v-if="toggledisabled" class="loading-overlay">
+      <img src="../assets/loading.gif" alt="Loading">
+    </div>
 </body>
 </template>
 <script>
@@ -41,7 +43,9 @@ import {base_url} from '../constant'
 import swal from 'sweetalert';
 export default{
    data(){
+   
       return{          
+        toggledisabled:false,
           formdata:{
           userName:'',
             email:'',
@@ -105,23 +109,10 @@ export default{
         if (!this.validateForm()) {
         return;
       }
-        //           axios.post(`${base_url}/createuser`, this.formdata)
-        //           .then((res)=>{
-        //               console.log(res);               
-        //               if(res.status===201){    
-        //                 this.$router.push('/login');
-        //                   console.log("Succefully Done")
-        //     };        
-        //     if(res.status===409){
-        //           swal(`An Account has already been created with this ${this.formdata.email} .. Please login instead','error`);
-        //     }
-        //    }).catch((error)=>{
-        //      console.log(error)
-        //   swal('Sorry,Unable to Create your Account');
-        // });
-
+      this.toggledisabled = true;
         axios.post(`${base_url}/createuser`, this.formdata)
   .then((res) => {
+    this.toggledisabled = false;
     console.log(res);               
     if (res.status === 201) {    
       this.$router.push('/login');
@@ -132,6 +123,7 @@ export default{
     }
   })
   .catch((error) => {
+    this.toggledisabled = false;
     console.error("Error details:", error.response ? error.response : error);
     if (error.response && error.response.status === 500) {
       swal('Server error, please try again later.', 'error');
@@ -261,5 +253,21 @@ background: #179b81;
 .error {
   color: red;
   font-size: 0.875rem;
+
+}.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loading-overlay img {
+  max-height: 200px;
 }
 </style>
