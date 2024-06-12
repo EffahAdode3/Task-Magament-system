@@ -33,6 +33,8 @@
       <td>{{toTolist. category}}</td>
       <td>{{toTolist.newTodo}}</td>
       <td>{{new Date(toTolist.deadline).toDateString()}}</td>
+      <!-- <td>{{toTolist.comments}}</td> -->
+      <td>{{toTolist.statuses}}</td>
 
     </tr>
   </tbody>
