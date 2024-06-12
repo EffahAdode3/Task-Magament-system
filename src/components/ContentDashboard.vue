@@ -3,10 +3,10 @@
     <br>
     <br>
     <br>
- <table class="table">
+ <table class="table table-bordered">
   <thead>
     <tr>
-      <!-- <th scope="col">#</th> -->
+    
       <th scope="col">Date</th>
       <th scope="col">
             <div class="dropdown">
@@ -34,7 +34,7 @@
       <td>{{toTolist. category}}</td>
       <td>{{toTolist.newTodo}}</td>
       <td>{{new Date(toTolist.deadline).toDateString()}}</td>
-      <!-- <th scope="row">{{ index }}</th> -->  
+
     </tr>
   </tbody>
 </table>
