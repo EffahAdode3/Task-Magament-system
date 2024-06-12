@@ -83,12 +83,13 @@ methods: {
             newTodo: this.newTodo,
             category: this.category,
             deadline: this.deadline,
+            statuses: 'Pending',
         };
 
         console.log(this.newTodo);
         console.log(this.category);
         console.log(this.deadline);
-
+        console.log(todoData.statuses);
         // Retrieve token from localStorage
         const token = localStorage.getItem('token');
         console.log(token);
