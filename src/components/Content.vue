@@ -120,7 +120,6 @@ body {
     line-height: 1.6;
 }
 
-
 .add-todo-input,
 .edit-todo-input {
     outline: none;
@@ -152,13 +151,13 @@ body {
 }
 .custom-select {
             background-color: #f8f9fa;
-            border: 2px solid #6c757d;
+            border: 2px solid blue;
             border-radius: 4px;
-            color: #343a40;
+            color: blue;
             font-weight: bold;
         }
         .custom-select:focus {
-            border-color: #343a40;
+            border-color: blue;
             box-shadow: none;
         }
 
@@ -176,17 +175,17 @@ body {
         .custom-select{
             font-size: 1em;
             padding: 5px;
-            border: 2px solid #6c757d;
+            border: 2px solid blue;         
             border-radius: 4px;
         }
         .date-input {
             font-size: 1em;
             padding: 5px;
-            border: 2px solid #6c757d;
+            border: 2px solid blue;
             border-radius: 4px;
         }
         .date-input:focus {
-            border-color: #343a40;
+             border-color: blue; 
             box-shadow: none;
         }
 </style>

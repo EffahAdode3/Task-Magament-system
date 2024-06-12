@@ -86,13 +86,7 @@
         }
       }
     }
-
-
-
-    
-
      </script>
-
 <style scoped>
 .card{
   position: relative;

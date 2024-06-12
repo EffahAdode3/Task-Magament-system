@@ -42,15 +42,13 @@ import axios from 'axios'
 import {base_url} from '../constant'
 import swal from 'sweetalert';
 export default{
-   data(){
-   
+   data(){ 
       return{          
         toggledisabled:false,
           formdata:{
           userName:'',
             email:'',
-            password:'',
-           
+            password:'',       
         },
         confirmPassword: '',
         errors: {
@@ -59,9 +57,7 @@ export default{
         password: '',
         confirmPassword: ''
       }
-
       }
-  
    },
    methods:{
     validateEmail(email) {
@@ -105,15 +101,16 @@ export default{
     clearError(field) {
       this.errors[field] = '';
     },
-      signup(){
+    
+    signup(){
         if (!this.validateForm()) {
         return;
       }
       this.toggledisabled = true;
-        axios.post(`${base_url}/createuser`, this.formdata)
+   axios.post(`${base_url}/createuser`, this.formdata)
   .then((res) => {
     this.toggledisabled = false;
-    console.log(res);               
+    // console.log(res);               
     if (res.status === 201) {    
       this.$router.push('/login');
       console.log("Successfully Done");
@@ -121,11 +118,11 @@ export default{
   })
   .catch((error) => {
     this.toggledisabled = false;
-    console.error("Error details:", error.response ? error.response : error);
+    // console.error("Error details:", error.response ? error.response : error);
     if (error.response && error.response.status === 500) {
       swal('Server error, please try again later.', 'error');
     } else if (error.response && error.response.status === 409) {
-        console.log("Conflict detected in catch block"); // Debugging line
+        // console.log("Conflict detected in catch block"); // Debugging line
         swal({
           title: "Conflict",
           text: `An Account has already been created with this ${this.formdata.email}. Please login instead.`,
