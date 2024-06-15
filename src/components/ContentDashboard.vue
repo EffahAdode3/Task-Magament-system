@@ -39,7 +39,7 @@
       <!-- <td>{{toTolist.comments}}</td> -->
       <td>
             <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+              <button :class="statusButtonClass" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ toTolist.statuses }}
               </button>    
               <ul class="dropdown-menu" aria-labelledby="statusDropdownButton">
