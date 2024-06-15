@@ -14,7 +14,7 @@
                 Categories
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#" @click= fetchAllDate()>All-Category</a></li>
+                <li><a class="dropdown-item" href="#" @click= "fetchAllData()">All-Category</a></li>
                 <li><a class="dropdown-item" href="#" @click="fetchData('Personal')">Personal</a></li>
                 <li><a class="dropdown-item" href="#" @click="fetchData('I.T Service')">I.T Service</a></li>
                 <li><a class="dropdown-item" href="#" @click="fetchData('Networking')">Networking</a></li>
