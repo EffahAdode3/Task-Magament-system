@@ -61,7 +61,7 @@
      data() {
        return {
         TOListDos: [],    
-        statuses: ''                 
+        // statuses: ''                 
        };
      },
      created(){
@@ -120,10 +120,9 @@
         .catch(error => {
           console.error('Error updating status:', error);
         });
-    }
-  },
-  computed: {
-  statusButtonClass() {
+    },
+
+    statusButtonClass() {
    switch (this.toTolist.statuses) {
         case 'Pending':
           return 'btn btn-secondary dropdown-toggle bg-danger text-white';
@@ -135,7 +134,21 @@
           return 'btn btn-secondary dropdown-toggle';
       }
   },
-},
+  },
+//   computed: {
+//   statusButtonClass() {
+//    switch (this.toTolist.statuses) {
+//         case 'Pending':
+//           return 'btn btn-secondary dropdown-toggle bg-danger text-white';
+//         case 'Completed':
+//           return 'btn btn-secondary dropdown-toggle bg-primary text-white';
+//         case 'In-Progress':
+//           return 'btn btn-secondary dropdown-toggle bg-warning text-white';
+//         default:
+//           return 'btn btn-secondary dropdown-toggle';
+//       }
+//   },
+// },
       }
     
      </script>
