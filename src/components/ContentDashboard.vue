@@ -98,7 +98,7 @@
               console.error('Error fetching data:', error);
             });
         },
-
+// update Status
         updateStatus(id, status) {
       const token = localStorage.getItem('token');
       axios.put(`${base_url}/updateStatus/${id}`, { status }, {
