@@ -14,6 +14,7 @@
                 Categories
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="#" @click= fetchAllDate()>All-Category</a></li>
                 <li><a class="dropdown-item" href="#" @click="fetchData('Personal')">Personal</a></li>
                 <li><a class="dropdown-item" href="#" @click="fetchData('I.T Service')">I.T Service</a></li>
                 <li><a class="dropdown-item" href="#" @click="fetchData('Networking')">Networking</a></li>
@@ -83,8 +84,36 @@
            .catch((error) => {
              console.error("Error fetching products:", error);
            });
-       },
+            
+          },
+  
+
        methods: {
+
+        // fetch Data using the Category
+           fetchAllDate(){
+    const token = localStorage.getItem('token');
+       console.log(token)
+         axios.get(`${base_url}/getAllToDo`, {
+            headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+         })
+           .then((response) => {
+             this.TOListDos = response.data.allToDoList;
+             console.log(this.TOListDos);
+             console.log(response.data);
+           })
+           .catch((error) => {
+             console.error("Error fetching products:", error);
+           });
+            
+          },
+   },
+
+
+        // fetching data using category
         fetchData(category) {
           const token = localStorage.getItem('token');
           console.log("Selected Category:", category);
