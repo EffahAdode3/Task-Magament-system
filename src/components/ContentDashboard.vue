@@ -134,4 +134,19 @@
 .card{
   position: relative;
 }
+
+.pending {
+  background-color: red;
+  color: white;
+}
+
+.completed {
+  background-color: blue;
+  color: white;
+}
+
+.in-progress {
+  background-color: orange;
+  color: white;
+}
 </style>
