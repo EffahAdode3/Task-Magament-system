@@ -37,7 +37,18 @@
       <td>{{toTolist.newTodo}}</td>
       <td>{{new Date(toTolist.deadline).toDateString()}}</td>
       <!-- <td>{{toTolist.comments}}</td> -->
-      <td>{{toTolist.statuses}}</td>
+      <td>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ toTolist.statuses }}
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="statusDropdownButton">
+                <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'Pending')">Pending</a></li>
+                <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'Completed')">Completed</a></li>
+                <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'In Progress')">In Progress</a></li>
+              </ul>
+            </div>
+          </td>
     </tr>
   </tbody>
 </table>
