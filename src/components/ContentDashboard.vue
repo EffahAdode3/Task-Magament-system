@@ -39,7 +39,7 @@
       <!-- <td>{{toTolist.comments}}</td> -->
       <td>
             <div class="dropdown">
-              <button :class="statusButtonClass" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ toTolist.statuses }}
               </button>    
               <ul class="dropdown-menu" aria-labelledby="statusDropdownButton">
@@ -121,20 +121,7 @@
         });
     }
   },
-  computed: {
-    statusButtonClass() {
-      switch (this.toTolist.statuses) {
-        case 'Pending':
-          return 'btn btn-secondary dropdown-toggle text-white bg-danger';
-        case 'Completed':
-          return 'btn btn-secondary dropdown-toggle text-white bg-primary';
-        case 'In-Progress':
-          return 'btn btn-secondary dropdown-toggle text-white bg-warning';
-        default:
-          return 'btn btn-secondary dropdown-toggle';
-      }
-    },
-  },
+ 
       }
     
      </script>
