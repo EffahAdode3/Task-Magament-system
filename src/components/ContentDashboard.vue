@@ -194,7 +194,6 @@
 import axios from "axios";
 import { base_url } from '../constant';
 import AuthMixin from '../authMixin';
-
 export default {
   mixins: [AuthMixin],
   data() {
