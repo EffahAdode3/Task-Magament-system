@@ -266,8 +266,6 @@ export default {
           return 'btn btn-warning dropdown-toggle'; // Yellow for Completed
         case 'In-Progress':
           return 'btn btn-primary dropdown-toggle'; // Blue for In-Progress
-        default:
-          return 'btn btn-secondary dropdown-toggle'; // Default color
       }
     }
   }
