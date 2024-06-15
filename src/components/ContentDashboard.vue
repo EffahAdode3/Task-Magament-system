@@ -10,7 +10,7 @@
       <th scope="col">Date</th>
       <th scope="col">
             <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 Categories
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -39,7 +39,7 @@
       <!-- <td>{{toTolist.comments}}</td> -->
       <td>
             <div class="dropdown">
-              <button :class="statusButtonClass" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ toTolist.statuses }}
               </button>    
               <ul class="dropdown-menu" aria-labelledby="statusDropdownButton">
@@ -60,8 +60,7 @@
    export default {
      data() {
        return {
-        TOListDos: [],    
-        // statuses: ''                 
+        TOListDos: [],                    
        };
      },
      created(){
@@ -120,35 +119,8 @@
         .catch(error => {
           console.error('Error updating status:', error);
         });
-    },
-
-    statusButtonClass() {
-   switch (this.TOListDos.statuses) {
-        case 'Pending':
-          return 'btn btn-secondary dropdown-toggle bg-danger text-white';
-        case 'Completed':
-          return 'btn btn-secondary dropdown-toggle bg-primary text-white';
-        case 'In-Progress':
-          return 'btn btn-secondary dropdown-toggle bg-warning text-white';
-        default:
-          return 'btn btn-secondary dropdown-toggle';
-      }
+    }
   },
-  },
-//   computed: {
-//   statusButtonClass() {
-//    switch (this.toTolist.statuses) {
-//         case 'Pending':
-//           return 'btn btn-secondary dropdown-toggle bg-danger text-white';
-//         case 'Completed':
-//           return 'btn btn-secondary dropdown-toggle bg-primary text-white';
-//         case 'In-Progress':
-//           return 'btn btn-secondary dropdown-toggle bg-warning text-white';
-//         default:
-//           return 'btn btn-secondary dropdown-toggle';
-//       }
-//   },
-// },
       }
     
      </script>
