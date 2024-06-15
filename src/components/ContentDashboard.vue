@@ -39,10 +39,9 @@
       <!-- <td>{{toTolist.comments}}</td> -->
       <td>
             <div class="dropdown">
-              <button class="statusButtonClass" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ toTolist.statuses }}
-              </button>
-        
+              </button>    
               <ul class="dropdown-menu" aria-labelledby="statusDropdownButton">
                 <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'Pending')">Pending</a></li>
                 <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'Completed')">Completed</a></li>
