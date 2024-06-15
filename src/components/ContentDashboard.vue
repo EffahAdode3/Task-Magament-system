@@ -121,11 +121,18 @@
         });
     }
   },
- 
 
+  
   computed: {
   statusButtonClass() {
-    return 'btn btn-secondary dropdown-toggle';
+    switch (this.toTolist.statuses) {
+        case 'Pending':
+          return 'btn btn-secondary dropdown-toggle bg-danger text-white';
+        case 'Completed':
+          return 'btn btn-secondary dropdown-toggle bg-primary text-white';
+        case 'In-Progress':
+          return 'btn btn-secondary dropdown-toggle bg-warning text-white';
+      }
   },
 },
       }
