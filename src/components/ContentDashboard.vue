@@ -98,7 +98,8 @@
               console.error('Error fetching data:', error);
             });
         },
-// update Status
+        
+ // update Status
         updateStatus(id, status) {
       const token = localStorage.getItem('token');
       axios.put(`${base_url}/updateStatus/${id}`, { status }, {
@@ -110,10 +111,10 @@
         .then(response => {
           console.log("Status Updated:", response.data);
           // Update the status in the local state
-          // const item = this.TOListDos.find(todo => todo.id === id);
-          // if (item) {
-          //   item.statuses = status;
-          // }
+          const item = this.TOListDos.find(todo => todo.id === id);
+          if (item) {
+            item.statuses = status;
+          }
         })
         .catch(error => {
           console.error('Error updating status:', error);
