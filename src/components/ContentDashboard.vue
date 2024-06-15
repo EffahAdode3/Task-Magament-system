@@ -123,7 +123,7 @@
     },
 
     statusButtonClass() {
-   switch (this.toTolist.statuses) {
+   switch (this.TOListDos.statuses) {
         case 'Pending':
           return 'btn btn-secondary dropdown-toggle bg-danger text-white';
         case 'Completed':
