@@ -24,7 +24,8 @@
           </th>
       <th scope="col">To Do Task</th>
       <th scope="col">Due Date</th>
-      <th scope="col"> Statuse</th>      
+      <th scope="col"> Statuse</th> 
+      <th scope="col"> Delete</th>    
     </tr>
   </thead>
   <tbody>
@@ -34,7 +35,7 @@
       <td>{{toTolist. category}}</td>
       <td>{{toTolist.newTodo}}</td>
       <td>{{new Date(toTolist.deadline).toDateString()}}</td>
-      <!-- <td>{{toTolist.comments}}</td> -->
+      <td><button>Delete</button></td>
       <td>
             <div class="dropdown">
               <button class="btn btn-primary dropdown-toggle" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
