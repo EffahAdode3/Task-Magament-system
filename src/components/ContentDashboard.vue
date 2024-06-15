@@ -60,7 +60,8 @@
    export default {
      data() {
        return {
-        TOListDos: [],                    
+        TOListDos: [],    
+        statuses: ''                 
        };
      },
      created(){
@@ -121,17 +122,17 @@
         });
     }
   },
-
-  
   computed: {
   statusButtonClass() {
-    switch (this.toTolist.statuses) {
+   switch (this.toTolist.statuses) {
         case 'Pending':
           return 'btn btn-secondary dropdown-toggle bg-danger text-white';
         case 'Completed':
           return 'btn btn-secondary dropdown-toggle bg-primary text-white';
         case 'In-Progress':
           return 'btn btn-secondary dropdown-toggle bg-warning text-white';
+        default:
+          return 'btn btn-secondary dropdown-toggle';
       }
   },
 },
