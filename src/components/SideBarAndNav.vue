@@ -86,8 +86,6 @@ export default {
       isNavOpen: false
     };
   },
-
-
   methods: {
     toggleNav() {
       this.isNavOpen = !this.isNavOpen;
