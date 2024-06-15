@@ -30,7 +30,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr v-for="(toTolist, index) in TOListDos" :key="index">
+    <tr v-for="toTolist in TOListDos" :key="toTolist.id">
     <td>{{ toTolist.id }}</td>
       <td>{{ new Date(toTolist.createdAt).toDateString() }}</td>
       <td>{{toTolist. category}}</td>
