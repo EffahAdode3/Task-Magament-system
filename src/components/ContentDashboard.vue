@@ -24,18 +24,19 @@
       <th scope="col">To Do Task</th>
       <th scope="col">Due Date</th>
       <!-- <th scope="col">Comments</th> -->
-      <th scope="col"> Statuses</th> 
+      <th scope="col"> Statuse</th> 
+        
     </tr>
   </thead>
   <tbody>
     <tr v-for="(toTolist, index) in TOListDos" :key="index">
+    <td>{{ toTolist.id }}</td>
       <td>{{ new Date(toTolist.createdAt).toDateString() }}</td>
       <td>{{toTolist. category}}</td>
       <td>{{toTolist.newTodo}}</td>
       <td>{{new Date(toTolist.deadline).toDateString()}}</td>
       <!-- <td>{{toTolist.comments}}</td> -->
       <td>{{toTolist.statuses}}</td>
-
     </tr>
   </tbody>
 </table>
@@ -43,7 +44,7 @@
 </template>
 <script>                              
   import axios from "axios";
- import {base_url} from '../constant'
+ import {base_url} from '../constant';
    export default {
      data() {
        return {
@@ -88,6 +89,12 @@
       }
     }
      </script>
+
+
+
+
+
+
 <style scoped>
 .card{
   position: relative;
