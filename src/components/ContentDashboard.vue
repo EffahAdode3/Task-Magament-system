@@ -24,9 +24,7 @@
           </th>
       <th scope="col">To Do Task</th>
       <th scope="col">Due Date</th>
-
-      <th scope="col"> Statuse</th> 
-        
+      <th scope="col"> Statuse</th>      
     </tr>
   </thead>
   <tbody>
@@ -39,7 +37,7 @@
       <!-- <td>{{toTolist.comments}}</td> -->
       <td>
             <div class="dropdown">
-              <button class="btn btn-danger dropdown-toggle" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ toTolist.statuses }}
               </button>    
               <ul class="dropdown-menu" aria-labelledby="statusDropdownButton">
