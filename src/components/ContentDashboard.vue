@@ -45,7 +45,7 @@
               <ul class="dropdown-menu" aria-labelledby="statusDropdownButton">
                 <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'Pending')">Pending</a></li>
                 <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'Completed')">Completed</a></li>
-                <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'In Progress')">In Progress</a></li>
+                <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'In-Progress')">In-Progress</a></li>
               </ul>
             </div>
           </td>
@@ -98,7 +98,6 @@
               console.error('Error fetching data:', error);
             });
         },
-
 
         updateStatus(id, status) {
       const token = localStorage.getItem('token');
