@@ -42,7 +42,7 @@
               <button class="btn btn-secondary dropdown-toggle" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ toTolist.statuses }}
               </button>
-              {{ toTolist.statuses }}
+        
               <ul class="dropdown-menu" aria-labelledby="statusDropdownButton">
                 <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'Pending')">Pending</a></li>
                 <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'Completed')">Completed</a></li>
