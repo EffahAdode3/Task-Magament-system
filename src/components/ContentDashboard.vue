@@ -174,7 +174,7 @@
           <td>{{ new Date(toTolist.deadline).toDateString() }}</td>
           <td>
             <div class="dropdown">
-              <button :class="getStatusButtonClass(toTolist.statuses)" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+              <button :class="getStatusButtonClass(status)" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ toTolist.statuses }}
               </button>
               <ul class="dropdown-menu" aria-labelledby="statusDropdownButton">
