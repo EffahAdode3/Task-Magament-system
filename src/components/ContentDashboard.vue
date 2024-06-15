@@ -6,6 +6,7 @@
  <table class="table table-striped table-hover">
   <thead>
     <tr>
+      <th scope="col">id</th>
       <th scope="col">Date</th>
       <th scope="col">
             <div class="dropdown">
