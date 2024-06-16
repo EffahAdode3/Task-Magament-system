@@ -26,7 +26,7 @@
       <th scope="col">To Do Task</th>
       <th scope="col">Due Date</th>
       <th scope="col"> Statuse</th> 
-      <th scope="col"> Delete</th>    
+      <!-- <th scope="col"> Delete</th>     -->
     </tr>
   </thead>
   <tbody>
@@ -49,7 +49,7 @@
               </ul>
             </div>
           </td>
-          <td><button>Delete</button></td>
+          <!-- <td><button>Delete</button></td> -->
     </tr>
   </tbody>
 </table>
