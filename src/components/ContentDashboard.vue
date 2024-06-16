@@ -153,9 +153,8 @@
           console.error('Error updating status:', error);
         });
     }
-  },
-      }
-    
+  }
+ 
      </script>
 
 <style scoped>
