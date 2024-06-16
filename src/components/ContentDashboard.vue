@@ -6,7 +6,7 @@
  <table class="table table-striped table-hover">
   <thead>
     <tr>
-      <th scope="col">id</th>
+      <!-- <th scope="col">id</th> -->
       <th scope="col">Date</th>
       <th scope="col">
             <div class="dropdown">
@@ -26,12 +26,11 @@
       <th scope="col">To Do Task</th>
       <th scope="col">Due Date</th>
       <th scope="col"> Statuse</th> 
-
     </tr>
   </thead>
   <tbody>
     <tr v-for="toTolist in TOListDos" :key="toTolist.id">
-    <td>{{ toTolist.id }}</td>
+    <!-- <td>{{ toTolist.id }}</td> -->
       <td>{{ new Date(toTolist.createdAt).toDateString() }}</td>
       <td>{{toTolist. category}}</td>
       <td>{{toTolist.newTodo}}</td>
