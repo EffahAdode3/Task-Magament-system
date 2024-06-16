@@ -111,9 +111,6 @@
            });
             
           },
-   },
-
-
         // fetching data using category
         fetchData(category) {
           const token = localStorage.getItem('token');
@@ -154,7 +151,7 @@
         });
     }
   }
- 
+}
      </script>
 
 <style scoped>
