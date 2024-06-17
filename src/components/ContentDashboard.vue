@@ -3,7 +3,7 @@
     <br>
     <br>
     <br>
-    <table class="table table-striped table-hover">
+    <table class="table">
       <thead>
         <tr>
           <th scope="col">Date</th>
@@ -31,7 +31,15 @@
         <tr v-for="toTolist in TOListDos" :key="toTolist.id">
           <td>{{ new Date(toTolist.createdAt).toDateString() }}</td>
           <td>{{ toTolist.category }}</td>
-          <td><span @click="showFullText(toTolist.newTodo)">{{ truncateText(toTolist.newTodo) }}</span></td>
+          <td>
+  <span @click="showFullText(toTolist.newTodo)"
+        :title="toTolist.newTodo"
+        class="truncate-text"
+  >
+    {{ truncateText(toTolist.newTodo) }}
+  </span>
+</td>
+          <!-- <td><span @click="showFullText(toTolist.newTodo)">{{ truncateText(toTolist.newTodo) }}</span></td> -->
           <!-- <td><a href="#" @click.prevent="showFullText(toTolist.newTodo)">{{ truncateText(toTolist.newTodo) }}</a></td> -->
           <td>{{ new Date(toTolist.deadline).toDateString() }}</td>
           <td>
@@ -212,4 +220,18 @@
   color: white;
 }
 
+
+.truncate-text {
+  display: inline-block;
+  max-width: 200px; /* Adjust the max-width as needed */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer; /* Add pointer cursor on hover */
+}
+
+.truncate-text:hover {
+  overflow: visible;
+  white-space: normal;
+}
 </style>
