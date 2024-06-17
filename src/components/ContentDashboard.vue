@@ -31,9 +31,8 @@
         <tr v-for="toTolist in TOListDos" :key="toTolist.id">
           <td>{{ new Date(toTolist.createdAt).toDateString() }}</td>
           <td>{{ toTolist.category }}</td>
-          <td><span @click="showFullText(toTolist.newTodo)">{{ truncateText(toTolist.newTodo) }}</span></td>
-
-          <!-- <td><a href="#" @click.prevent="showFullText(toTolist.newTodo)">{{ truncateText(toTolist.newTodo) }}</a></td> -->
+          <!-- <td><span @click="showFullText(toTolist.newTodo)">{{ truncateText(toTolist.newTodo) }}</span></td> -->
+          <td><a href="#" @click.prevent="showFullText(toTolist.newTodo)">{{ truncateText(toTolist.newTodo) }}</a></td>
           <td>{{ new Date(toTolist.deadline).toDateString() }}</td>
           <td>
             <div class="dropdown">
