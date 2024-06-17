@@ -221,7 +221,6 @@
   color: white;
 }
 
-
 .truncate-text {
   display: inline-block;
   max-width: 200px; /* Adjust the max-width as needed */
@@ -234,6 +233,6 @@
 
 .truncate-text:hover {
   opacity: 0.7; /* Reduce opacity on hover */
-  color: #333; /* Change text color on hover */
+  color: blue; /* Change text color on hover */
 }
 </style>
