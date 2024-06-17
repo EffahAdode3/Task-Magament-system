@@ -89,7 +89,6 @@
     </div>
   </body>
 </template>
-
 <script>
   import axios from 'axios'
   import {base_url} from '../constant'

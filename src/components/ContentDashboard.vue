@@ -6,7 +6,6 @@
  <table class="table table-striped table-hover">
   <thead>
     <tr>
-      <!-- <th scope="col">id</th> -->
       <th scope="col">Date</th>
       <th scope="col">
             <div class="dropdown">
@@ -37,17 +36,16 @@
       <td>{{new Date(toTolist.deadline).toDateString()}}</td> 
       <td>
             <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+              <button :class="['btn dropdown-toggle', statusButtonClass(toTolist.statuses)]" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ toTolist.statuses }}
-              </button>    
+              </button> 
               <ul class="dropdown-menu" aria-labelledby="statusDropdownButton">
                 <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'Pending')">Pending</a></li>
                 <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'Completed')">Completed</a></li>
                 <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'In-Progress')">In-Progress</a></li>
               </ul>
             </div>
-          </td>
-        
+          </td>      
     </tr>
   </tbody>
 </table>
@@ -84,13 +82,11 @@
            });
             
           },
-  
 
        methods: {
-
         // fetch Data using the Category
-           fetchAllData(){
-    const token = localStorage.getItem('token');
+     fetchAllData(){
+       const token = localStorage.getItem('token');
        console.log(token)
          axios.get(`${base_url}/getAllToDo`, {
             headers: {
@@ -146,6 +142,16 @@
         .catch(error => {
           console.error('Error updating status:', error);
         });
+    },
+    statusButtonClass(status) {
+      if (status === 'Pending') {
+        return 'btn-danger';
+      } else if (status === 'Completed') {
+        return 'btn-success';
+      } else if (status === 'In-Progress') {
+        return 'btn-warning';
+      }
+      return 'btn-primary';
     }
   }
 }
@@ -154,6 +160,19 @@
 <style scoped>
 .card{
   position: relative;
+}
+
+.btn-danger {
+  background-color: red;
+  color: white;
+}
+.btn-success {
+  background-color: green;
+  color: white;
+}
+.btn-warning {
+  background-color: orange;
+  color: white;
 }
 
 </style>
