@@ -32,7 +32,7 @@
     <!-- <td>{{ toTolist.id }}</td> -->
       <td>{{ new Date(toTolist.createdAt).toDateString() }}</td>
       <td>{{toTolist. category}}</td>
-      <td>{{ truncateText(toTolist.newTodo) }}</td>
+      <td><span @click="showFullText(toTolist.newTodo)">{{ truncateText(toTolist.newTodo) }}</span></td>
       <td>{{new Date(toTolist.deadline).toDateString()}}</td> 
       <td>
             <div class="dropdown">
@@ -49,7 +49,26 @@
     </tr>
   </tbody>
 </table>
+
+  <!-- Bootstrap Modal -->
+  <div class="modal fade" id="todoModal" tabindex="-1" aria-labelledby="todoModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="todoModalLabel">Full To-Do Text</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <textarea class="form-control" id="floatingTextarea2" v-model="newTodo" style="height: 100px" readonly></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
+
 </template>
 <script>                              
   import axios from "axios";
@@ -59,7 +78,8 @@
     mixins: [AuthMixin],
      data() {
        return {
-        TOListDos: [],                    
+        TOListDos: [],        
+        newTodo: '', // To hold the full text            
        };
      },
 
@@ -152,7 +172,13 @@
       }
       return text;
     },
-    
+
+    // show full Text Code
+    showFullText(text) {
+      this.newTodo = text;
+      var myModal = new bootstrap.Modal(document.getElementById('todoModal'));
+      myModal.show();
+    },
     // Color Change when is Pending, Completed and In-Progress
     statusButtonClass(status) {
       if (status === 'Pending') {
