@@ -31,6 +31,7 @@
         <tr v-for="toTolist in TOListDos" :key="toTolist.id">
           <td>{{ new Date(toTolist.createdAt).toDateString() }}</td>
           <td>{{ toTolist.category }}</td>
+        
           <td>
   <span @click="showFullText(toTolist.newTodo)"
         :title="toTolist.newTodo"
@@ -227,11 +228,12 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  cursor: pointer; /* Add pointer cursor on hover */
-  transition: opacity 0.3s ease; /* Smooth transition */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: opacity 0.3s ease, color 0.3s ease; /* Smooth transition for opacity and color */
 }
 
 .truncate-text:hover {
   opacity: 0.7; /* Reduce opacity on hover */
+  color: #333; /* Change text color on hover */
 }
 </style>
