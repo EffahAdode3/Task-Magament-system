@@ -32,7 +32,7 @@
     <!-- <td>{{ toTolist.id }}</td> -->
       <td>{{ new Date(toTolist.createdAt).toDateString() }}</td>
       <td>{{toTolist. category}}</td>
-      <td>{{toTolist.newTodo}}</td>
+      <td>{{ truncateText(toTolist.newTodo) }}</td>
       <td>{{new Date(toTolist.deadline).toDateString()}}</td> 
       <td>
             <div class="dropdown">
@@ -143,6 +143,17 @@
           console.error('Error updating status:', error);
         });
     },
+
+
+    // Truncate Text when To do List or New to do is more than 200
+    truncateText(text, maxLength = 50) {
+      if (text.length > maxLength) {
+        return text.substring(0, maxLength) + '...';
+      }
+      return text;
+    },
+    
+    // Color Change when is Pending, Completed and In-Progress
     statusButtonClass(status) {
       if (status === 'Pending') {
         return 'btn-danger';
