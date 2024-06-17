@@ -228,10 +228,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer; /* Add pointer cursor on hover */
+  transition: opacity 0.3s ease; /* Smooth transition */
 }
 
 .truncate-text:hover {
-  overflow: visible;
-  white-space: normal;
+  opacity: 0.7; /* Reduce opacity on hover */
 }
 </style>
