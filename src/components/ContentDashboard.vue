@@ -233,6 +233,6 @@
 
 .truncate-text:hover {
   opacity: 0.7; /* Reduce opacity on hover */
-  color: blue; /* Change text color on hover */
+  color: #333 !important; /* Change text color on hover */
 }
 </style>
