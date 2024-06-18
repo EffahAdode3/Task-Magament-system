@@ -40,7 +40,11 @@
        </td>
           <!-- <td><span @click="showFullText(toTolist.newTodo)">{{ truncateText(toTolist.newTodo) }}</span></td> -->
           <!-- <td><a href="#" @click.prevent="showFullText(toTolist.newTodo)">{{ truncateText(toTolist.newTodo) }}</a></td> -->
-          <td>{{ new Date(toTolist.deadline).toDateString() }}</td>
+          <!-- <td>{{ new Date(toTolist.deadline).toDateString() }}</td> -->
+          <td :class="{'overdue': isOverdue(toTolist.deadline)}">
+            {{ new Date(toTolist.deadline).toDateString() }}
+            <span v-if="isOverdue(toTolist.deadline)"> - Overdue!</span>
+          </td>
           <td>
             <div class="dropdown">
               <button :class="['btn dropdown-toggle', statusButtonClass(toTolist.statuses)]" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -185,6 +189,14 @@
       var myModal = new bootstrap.Modal(document.getElementById('todoModal'));
       myModal.show();
     },
+
+    // over  Date due
+
+    isOverdue(deadline) {
+    const currentDate = new Date();
+    const taskDeadline = new Date(deadline);
+    return taskDeadline < currentDate;
+  },
     // Color Change when is Pending, Completed and In-Progress
     statusButtonClass(status) {
       if (status === 'Pending') {
@@ -232,5 +244,10 @@
 .truncate-text:hover {
   opacity: 0.7; 
   color: blue !important; 
+}
+
+.overdue {
+  color: red;
+  font-weight: bold;
 }
 </style>
