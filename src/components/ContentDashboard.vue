@@ -176,8 +176,6 @@
            });
             
           },
-
-
           computed: {
     filteredTOListDos() {
       return this.TOListDos.filter(toTolist => !this.isCompletedAndOverdue(toTolist));
@@ -260,13 +258,11 @@
     },
 
     /// 
-
     isCompletedAndOverdue(toTolist) {
       return toTolist.statuses === 'Completed' && this.isOverdue(toTolist.deadline);
     },
 
     // over  Date due
-
     isOverdue(deadline) {
     const currentDate = new Date();
     const taskDeadline = new Date(deadline);
