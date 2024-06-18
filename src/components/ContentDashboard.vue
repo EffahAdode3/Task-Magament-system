@@ -30,16 +30,14 @@
       <tbody>
         <tr v-for="toTolist in TOListDos" :key="toTolist.id">
           <td>{{ new Date(toTolist.createdAt).toDateString() }}</td>
-          <td>{{ toTolist.category }}</td>
-        
+          <td>{{ toTolist.category }}</td>     
           <td>
-  <span @click="showFullText(toTolist.newTodo)"
+         <span @click="showFullText(toTolist.newTodo)"
         :title="toTolist.newTodo"
-        class="truncate-text"
-  >
-    {{ truncateText(toTolist.newTodo) }}
-  </span>
-</td>
+        class="truncate-text">
+        {{truncateText(toTolist.newTodo)}}
+        </span>
+       </td>
           <!-- <td><span @click="showFullText(toTolist.newTodo)">{{ truncateText(toTolist.newTodo) }}</span></td> -->
           <!-- <td><a href="#" @click.prevent="showFullText(toTolist.newTodo)">{{ truncateText(toTolist.newTodo) }}</a></td> -->
           <td>{{ new Date(toTolist.deadline).toDateString() }}</td>
@@ -173,7 +171,6 @@
         });
     },
 
-
     // Truncate Text when To do List or New to do is more than 200
     truncateText(text, maxLength = 50) {
       if (text.length > maxLength) {
@@ -204,6 +201,7 @@
      </script>
 
 <style scoped>
+
 .card{
   position: relative;
 }
@@ -223,16 +221,16 @@
 
 .truncate-text {
   display: inline-block;
-  max-width: 200px; /* Adjust the max-width as needed */
+  max-width: 200px; 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  cursor: pointer; /* Change cursor to pointer on hover */
-  transition: opacity 0.3s ease, color 0.3s ease; /* Smooth transition for opacity and color */
+  cursor: pointer;
+  transition: opacity 0.3s ease, color 0.3s ease; 
 }
 
 .truncate-text:hover {
-  opacity: 0.7; /* Reduce opacity on hover */
-  color: blue !important; /* Change text color on hover */
+  opacity: 0.7; 
+  color: blue !important; 
 }
 </style>
