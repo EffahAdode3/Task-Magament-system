@@ -61,7 +61,7 @@
     </table>  -->
 
 
-    
+
     <table class="table">
       <thead>
         <tr>
@@ -172,6 +172,8 @@
            });
             
           },
+
+          /// filtering To check if the to do Due date is pass and Statues === Completed 
 
           computed: {
     filteredTOListDos() {
@@ -324,8 +326,13 @@
   color: red;
   font-weight: bold;
 }
-.truncate-text {
+/* .truncate-text {
   cursor: pointer;
   text-decoration: underline;
+} */
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
