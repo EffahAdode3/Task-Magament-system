@@ -45,8 +45,7 @@
           <!-- <td><a href="#" @click.prevent="showFullText(toTolist.newTodo)">{{ truncateText(toTolist.newTodo) }}</a></td> -->
           <!-- <td>{{ new Date(toTolist.deadline).toDateString() }}</td> -->
 
-
-  <td :class="{'overdue': isOverdue(toTolist.deadline)}">
+              <td :class="{'overdue': isOverdue(toTolist.deadline)}">
             {{ new Date(toTolist.deadline).toDateString() }}
             <span v-if="isOverdue(toTolist.deadline)"> - Overdue!</span>
           </td>
@@ -65,8 +64,6 @@
         </tr>
       </tbody>
     </table> 
-
-
 
 
 
@@ -89,6 +86,7 @@
     </div>
   </div>
 </template>
+
 
 <script>                              
   import axios from "axios";
