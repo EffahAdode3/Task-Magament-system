@@ -3,7 +3,7 @@
     <br>
     <br>
     <br>
-    <!-- <table class="table">
+    <table class="table">
       <thead>
         <tr>
           <th scope="col">Date</th>
@@ -37,7 +37,7 @@
         class="truncate-text">
         {{truncateText(toTolist.newTodo)}}
         </span>
-       </td> -->
+       </td>
 
 
 
@@ -46,7 +46,7 @@
           <!-- <td>{{ new Date(toTolist.deadline).toDateString() }}</td> -->
 
 
-          <!-- <td :class="{'overdue': isOverdue(toTolist.deadline)}">
+  <td :class="{'overdue': isOverdue(toTolist.deadline)}">
             {{ new Date(toTolist.deadline).toDateString() }}
             <span v-if="isOverdue(toTolist.deadline)"> - Overdue!</span>
           </td>
@@ -64,65 +64,11 @@
           </td>
         </tr>
       </tbody>
-    </table> -->
+    </table> 
 
 
 
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Date</th>
-          <th scope="col">
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                Categories
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#" @click="fetchAllData()">All Category</a></li>
-                <li><a class="dropdown-item" href="#" @click="fetchData('Personal')">Personal</a></li>
-                <li><a class="dropdown-item" href="#" @click="fetchData('I.T Service')">I.T Service</a></li>
-                <li><a class="dropdown-item" href="#" @click="fetchData('Networking')">Networking</a></li>
-                <li><a class="dropdown-item" href="#" @click="fetchData('End User')">End User</a></li>
-                <li><a class="dropdown-item" href="#" @click="fetchData('Cyber-Security')">Cyber-Security</a></li>
-              </ul>
-            </div>
-          </th>
-          <th scope="col">To Do Task</th>
-          <th scope="col">Due Date</th>
-          <th scope="col">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="toTolist in filteredTOListDos" :key="toTolist.id" v-if="!isCompletedAndOverdue(toTolist)">
-          <td>{{ new Date(toTolist.createdAt).toDateString() }}</td>
-          <td>{{ toTolist.category }}</td>     
-          <td>
-            <span @click="showFullText(toTolist.newTodo)"
-              :title="toTolist.newTodo"
-              class="truncate-text">
-              {{truncateText(toTolist.newTodo)}}
-            </span>
-          </td>
-          <td :class="{'overdue': isOverdue(toTolist.deadline)}">
-            {{ new Date(toTolist.deadline).toDateString() }}
-            <span v-if="isOverdue(toTolist.deadline)"> - Overdue!</span>
-          </td>
-          <td>
-            <div class="dropdown">
-              <button :class="['btn dropdown-toggle', statusButtonClass(toTolist.statuses)]" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ toTolist.statuses }}
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="statusDropdownButton">
-                <li v-if="toTolist.statuses !== 'Pending'"><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'Pending')">Pending</a></li>
-                <li v-if="toTolist.statuses !== 'Completed'"><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'Completed')">Completed</a></li>
-                <li v-if="toTolist.statuses !== 'In-Progress'"><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'In-Progress')">In-Progress</a></li>
-              </ul>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
 
     <!-- Modal -->
     <div class="modal fade" id="todoModal" tabindex="-1" aria-labelledby="todoModalLabel" aria-hidden="true">
@@ -176,11 +122,7 @@
            });
             
           },
-          computed: {
-    filteredTOListDos() {
-      return this.TOListDos.filter(toTolist => !this.isCompletedAndOverdue(toTolist));
-    },
-  },
+
        methods: {
         // fetch Data using the Category
      fetchAllData(){
@@ -256,13 +198,14 @@
       var myModal = new bootstrap.Modal(document.getElementById('todoModal'));
       myModal.show();
     },
+    
 
-    /// 
     isCompletedAndOverdue(toTolist) {
       return toTolist.statuses === 'Completed' && this.isOverdue(toTolist.deadline);
     },
 
     // over  Date due
+
     isOverdue(deadline) {
     const currentDate = new Date();
     const taskDeadline = new Date(deadline);
