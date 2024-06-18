@@ -250,4 +250,8 @@
   color: red;
   font-weight: bold;
 }
+.truncate-text {
+  cursor: pointer;
+  text-decoration: underline;
+}
 </style>
