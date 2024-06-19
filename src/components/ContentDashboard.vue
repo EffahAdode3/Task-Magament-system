@@ -326,10 +326,7 @@
   color: red;
   font-weight: bold;
 }
-/* .truncate-text {
-  cursor: pointer;
-  text-decoration: underline;
-} */
+
 .truncate-text {
   white-space: nowrap;
   overflow: hidden;
