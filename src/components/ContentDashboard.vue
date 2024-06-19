@@ -60,7 +60,7 @@
       </tbody>
     </table>  -->
 
-
+    <h1 class="archive-heading">My To-Do Lists</h1>
 
     <table class="table">
       <thead>
@@ -332,4 +332,23 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.archive-heading {
+  color: #ff6347; /* Attractive tomato color */
+  text-align: center; /* Center text horizontally */
+  margin: 20px 0; /* Add some margin for spacing */
+  padding: 10px;
+  font-size: 2em; /* Increase font size for better visibility */
+  font-family: 'Arial', sans-serif; /* Use a clean, sans-serif font */
+  background-color: #f0f0f0; /* Light grey background for contrast */
+  border-radius: 10px; /* Rounded corners for better aesthetics */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+@media (max-width: 600px) {
+  .archive-heading {
+    font-size: 1.5em; /* Adjust font size for smaller screens */
+  }
+}
+
 </style>
