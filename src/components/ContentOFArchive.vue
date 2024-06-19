@@ -106,11 +106,11 @@
                 <button :class="['btn dropdown-toggle', statusButtonClass(toTolist.statuses)]" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
                   {{ toTolist.statuses }}
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="statusDropdownButton">
+                <!-- <ul class="dropdown-menu" aria-labelledby="statusDropdownButton">
                   <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'Pending')">Pending</a></li>
                   <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'Completed')">Completed</a></li>
                   <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'In-Progress')">In-Progress</a></li>
-                </ul>
+                </ul> -->
               </div>
             </td>
           </tr>
@@ -176,13 +176,13 @@
             /// filtering To check if the to do Due date is pass and Statues === Completed 
   
             computed: {
-      filteredTOListDos() {
-        const currentDate = new Date();
-        return this.TOListDos.filter(todo => {
-          const dueDate = new Date(todo.deadline);
-          return !(todo.statuses === 'Completed' && currentDate > dueDate);
-        });
-      }
+                filteredTOListDos() {
+  const currentDate = new Date();
+  return this.TOListDos.filter(todo => {
+    const dueDate = new Date(todo.deadline);
+    return todo.statuses === 'Completed' && currentDate > dueDate;
+  });
+},
     },
   
          methods: {
@@ -225,26 +225,26 @@
           },
   
    // update Status
-          updateStatus(id, status) {
-        const token = localStorage.getItem('token');
-        axios.put(`${base_url}/updateStatus/${id}`, { status }, {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
-        })
-          .then(response => {
-            console.log("Status Updated:", response.data);
-            // Update the status in the local state
-            const item = this.TOListDos.find(todo => todo.id === id);
-            if (item) {
-              item.statuses = status;
-            }
-          })
-          .catch(error => {
-            console.error('Error updating status:', error);
-          });
-      },
+    //       updateStatus(id, status) {
+    //     const token = localStorage.getItem('token');
+    //     axios.put(`${base_url}/updateStatus/${id}`, { status }, {
+    //       headers: {
+    //         'Authorization': `Bearer ${token}`,
+    //         'Content-Type': 'application/json'
+    //       }
+    //     })
+    //       .then(response => {
+    //         console.log("Status Updated:", response.data);
+    //         // Update the status in the local state
+    //         const item = this.TOListDos.find(todo => todo.id === id);
+    //         if (item) {
+    //           item.statuses = status;
+    //         }
+    //       })
+    //       .catch(error => {
+    //         console.error('Error updating status:', error);
+    //       });
+    //   },
   
       // Truncate Text when To do List or New to do is more than 200
       truncateText(text, maxLength = 50) {
@@ -275,17 +275,18 @@
     },
       // Color Change when is Pending, Completed and In-Progress
       statusButtonClass(status) {
-        if (status === 'Pending') {
-          return 'btn-danger';
-        } else if (status === 'Completed') {
-          return 'btn-success';
-        } else if (status === 'In-Progress') {
-          return 'btn-warning';
-        }
-        return 'btn-primary';
+        if (status === 'Completed'){
+            return 'btn-success';
+        // } else if (status === 'Completed') {
+        //   return 'btn-success';
+        // } else if (status === 'In-Progress') {
+        //   return 'btn-warning';
+        // }
+        // return 'btn-primary';
       }
     }
   }
+}
        </script>
   
   <style scoped>
