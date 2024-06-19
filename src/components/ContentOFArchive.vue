@@ -47,7 +47,7 @@
             </td>
             <td :class="[ statusButtonClass(toTolist.statuses)]" type="button">
                   {{ toTolist.statuses }}
-                >
+          
               <!-- <div class="dropdown"> -->
                 <!-- <button :class="['btn dropdown-toggle', statusButtonClass(toTolist.statuses)]" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
                   {{ toTolist.statuses }}
