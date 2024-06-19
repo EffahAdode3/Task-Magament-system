@@ -334,7 +334,7 @@
 }
 
 .archive-heading {
-  color: #ff6347; /* Attractive tomato color */
+  color: blue; /* Attractive tomato color */
   text-align: center; /* Center text horizontally */
   margin: 20px 0; /* Add some margin for spacing */
   padding: 10px;
