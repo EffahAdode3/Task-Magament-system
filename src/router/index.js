@@ -3,6 +3,7 @@ import Login from '@/views/Login.vue'
 import Signpup from '../views/Signup.vue'
  import AddTask from  '../views/Add Task.vue'
 import Dashboard from  '../views/Dashboard.vue'
+import Archive from '../views/Archive.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -25,6 +26,11 @@ const router = createRouter({
       path: '/',
       name: ' Dashboard ',
       component:  Dashboard 
+    },
+    {
+      path: '/archive',
+      name: ' Archive ',
+      component:  Archive 
     },
   ]
 })

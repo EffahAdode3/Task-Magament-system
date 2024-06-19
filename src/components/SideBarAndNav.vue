@@ -25,7 +25,7 @@
               </router-link>
             </li>
             <li class="list">
-              <router-link to="/addTask" class="nav-link" active-class="active">
+              <router-link to="/archive" class="nav-link" active-class="active">
                 <i class="bx bx-message-rounded icon"></i>
                 <span class="link">Archive</span>
               </router-link>
