@@ -6,7 +6,8 @@ export default {
         this.$router.push("/login");
       }
       // Parse the token to get the payload
-      const tokenParts = token.split(".");
+      // const tokenParts = token.split(".");
+      const tokenParts = token.toString().split(".");
       if (tokenParts.length !== 3) {
         throw new Error("Invalid token format");
       }
