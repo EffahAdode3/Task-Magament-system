@@ -5,9 +5,7 @@
       <br>
 
   
-      <h1 class="archive-heading">MY Archive</h1>
-
-  
+      <h1 class="archive-heading">MY Archives</h1>
       <table class="table">
         <thead>
           <tr>
@@ -47,14 +45,16 @@
               {{ new Date(toTolist.deadline).toDateString() }}
               <span v-if="isOverdue(toTolist.deadline)"> - Overdue!</span>
             </td>
-            <td>
+            <td :class="[ statusButtonClass(toTolist.statuses)]" type="button">
+                  {{ toTolist.statuses }}
+                >
               <!-- <div class="dropdown"> -->
                 <!-- <button :class="['btn dropdown-toggle', statusButtonClass(toTolist.statuses)]" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
                   {{ toTolist.statuses }}
                 </button> -->
-                <button :class="[ statusButtonClass(toTolist.statuses)]" type="button">
+                <!-- <button :class="[ statusButtonClass(toTolist.statuses)]" type="button">
                   {{ toTolist.statuses }}
-                </button>
+                </button> -->
               
               <!-- </div> -->
             </td>
