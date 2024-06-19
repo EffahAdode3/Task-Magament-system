@@ -83,8 +83,7 @@
       </div>
     </div>
   </template>
-  
-  
+
   <script>                              
     import axios from "axios";
    import {base_url} from '../constant';
@@ -167,17 +166,15 @@
               .catch(error => {
                 console.error('Error fetching data:', error);
               });
-          },
-  
-  
+          },   
       // Truncate Text when To do List or New to do is more than 200
       truncateText(text, maxLength = 50) {
         if (text.length > maxLength) {
           return text.substring(0, maxLength) + '...';
         }
         return text;
-      },
-  
+      }, 
+
       // show full Text Code
       showFullText(text) {
         this.newTodo = text;
@@ -186,9 +183,9 @@
       },
       
   
-      isCompletedAndOverdue(toTolist) {
-        return toTolist.statuses === 'Completed' && this.isOverdue(toTolist.deadline);
-      },
+    //   isCompletedAndOverdue(toTolist) {
+    //     return toTolist.statuses === 'Completed' && this.isOverdue(toTolist.deadline);
+    //   },
   
       // over  Date due
   
