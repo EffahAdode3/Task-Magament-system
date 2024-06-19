@@ -49,7 +49,10 @@
             </td>
             <td>
               <!-- <div class="dropdown"> -->
-                <button :class="['btn dropdown-toggle', statusButtonClass(toTolist.statuses)]" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <!-- <button :class="['btn dropdown-toggle', statusButtonClass(toTolist.statuses)]" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{ toTolist.statuses }}
+                </button> -->
+                <button :class="[ statusButtonClass(toTolist.statuses)]" type="button">
                   {{ toTolist.statuses }}
                 </button>
               
