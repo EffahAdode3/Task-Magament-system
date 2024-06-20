@@ -238,7 +238,8 @@
   filteredTOListDos() {
     console.log(this.TOListDos, "561345678899");
     const currentDate = new Date();
-    return this.TOListDos.filter(todo => {
+    const todosArray = Object.values(this.TOListDos); // Convert the object to an array of values
+    return todosArray.filter(todo => {
       const dueDate = new Date(todo.deadline);
       console.log(todo, dueDate, 'qwerrtyuiiuytrew'); // Log the complete todo object for better debugging
       // Check if dueDate is a valid date
@@ -250,6 +251,7 @@
     });
   }
 },
+
        methods: {
         // fetch Data using the Category
      fetchAllData(){
