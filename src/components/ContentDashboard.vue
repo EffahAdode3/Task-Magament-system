@@ -99,7 +99,7 @@
             </span>
           </td>
           <td :class="{'overdue': isOverdue(toTolist.deadline)}">
-            <!-- {{ new Date(toTolist.deadline).toDateString() }} -->
+            {{ new Date(toTolist.deadline).toDateString() }}
             <span v-if="isOverdue(toTolist.deadline)"> - Overdue!</span>
           </td>
           <td>
@@ -234,6 +234,7 @@
       const currentDate = new Date();
       return this.TOListDos.filter(todo => {
         const dueDate = new Date(todo.deadline);
+        console.log(dueDate, 'qwerrtyuiiuytrew');
         return !(todo.statuses === 'Completed' && currentDate > dueDate);
       });
     }
