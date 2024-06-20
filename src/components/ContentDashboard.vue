@@ -238,20 +238,13 @@
   filteredTOListDos() {
     console.log(this.TOListDos, "561345678899");
     const currentDate = new Date();
-    const todosArray = Object.values(this.TOListDos); // Convert the object to an array of values
-    return todosArray.filter(todo => {
+    return this.TOListDos.filter(todo => {
       const dueDate = new Date(todo.deadline);
-      console.log(todo, dueDate, 'qwerrtyuiiuytrew'); // Log the complete todo object for better debugging
-      // Check if dueDate is a valid date
-      if (isNaN(dueDate.getTime())) {
-        console.warn(`Invalid date format for todo: ${JSON.stringify(todo)}`);
-        return true; // or handle as per your requirement
-      }
+      console.log(dueDate, 'qwerrtyuiiuytrew');
       return !(todo.statuses === 'Completed' && currentDate > dueDate);
     });
   }
 },
-
        methods: {
         // fetch Data using the Category
      fetchAllData(){
