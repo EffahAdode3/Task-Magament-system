@@ -239,8 +239,13 @@
     console.log(this.TOListDos, "561345678899");
     const currentDate = new Date();
     return this.TOListDos.filter(todo => {
-      const dueDate = todo.deadline;
-      console.log(dueDate, 'qwerrtyuiiuytrew');
+      const dueDate = new Date(todo.deadline);
+      console.log(todo, dueDate, 'qwerrtyuiiuytrew'); // Log the complete todo object for better debugging
+      // Check if dueDate is a valid date
+      if (isNaN(dueDate.getTime())) {
+        console.warn(`Invalid date format for todo: ${JSON.stringify(todo)}`);
+        return true; // or handle as per your requirement
+      }
       return !(todo.statuses === 'Completed' && currentDate > dueDate);
     });
   }
