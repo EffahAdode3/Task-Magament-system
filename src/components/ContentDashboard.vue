@@ -84,6 +84,7 @@
           <th scope="col">To Do Task</th>
           <th scope="col">Due Date</th>
           <th scope="col">Status</th>
+          <th scope="col">Delet/Edit</th>
         </tr>
       </thead>
       <tbody>
@@ -113,6 +114,13 @@
               </ul>
             </div>
           </td>
+
+              <td>
+        <button class="btn btn-danger btn-sm" @click="deleteTodo(toTolist.id)">Delete</button>
+        <button class="btn btn-primary btn-sm" @click="editTodo(toTolist)">Edit</button>
+      </td>
+
+
         </tr>
       </tbody>
     </table>
@@ -136,6 +144,37 @@
         </div>
       </div>
     </div>
+
+
+    <!-- Edit Todo Modal -->
+<div class="modal fade" id="editTodoModal" tabindex="-1" aria-labelledby="editTodoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editTodoModalLabel">Edit To-Do</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form @submit.prevent="submitEditTodo">
+          <div class="mb-3">
+            <label for="editTodoCategory" class="form-label">Category</label>
+            <input type="text" class="form-control" id="editTodoCategory" v-model="editFormData.category">
+          </div>
+          <div class="mb-3">
+            <label for="editTodoTask" class="form-label">To Do Task</label>
+            <input type="text" class="form-control" id="editTodoTask" v-model="editFormData.newTodo">
+          </div>
+          <div class="mb-3">
+            <label for="editTodoDueDate" class="form-label">Due Date</label>
+            <input type="date" class="form-control" id="editTodoDueDate" v-model="editFormData.deadline">
+          </div>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
   </div>
 </template>
 
@@ -149,7 +188,13 @@
      data() {
        return {
         TOListDos: [],        
-        newTodo: '', // To hold the full text            
+        newTodo: '',
+        editFormData: {
+        id: '',
+        category: '',
+        newTodo: '',
+        deadline: ''
+      }         
        };
      },
 
@@ -186,6 +231,8 @@
   },
 
        methods: {
+
+        
         // fetch Data using the Category
      fetchAllData(){
        const token = localStorage.getItem('token');
@@ -273,6 +320,27 @@
     const taskDeadline = new Date(deadline);
     return taskDeadline < currentDate;
   },
+
+   // Edit todo method
+   editTodo(todo) {
+      this.editFormData = { ...todo };
+      const modal = new bootstrap.Modal(document.getElementById('editTodoModal'));
+      modal.show();
+    },
+
+    // Submit edit todo method
+    submitEditTodo() {
+  axios.put(`${base_url}/Updateatodo/${this.editFormData.id}`, this.editFormData)
+    .then(() => {
+      this.fetchAllData(); // Refresh data
+      const modal = bootstrap.Modal.getInstance(document.getElementById('editTodoModal'));
+      modal.hide();
+    })
+    .catch(error => {
+      console.error('Error updating todo:', error);
+    });
+},
+
     // Color Change when is Pending, Completed and In-Progress
     statusButtonClass(status) {
       if (status === 'Pending') {
