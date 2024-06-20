@@ -242,6 +242,7 @@
       const currentDate = new Date();
       return this.TOListDos.filter(todo => {
         const dueDate = new Date(todo.deadline);
+        console.log(tode.deadline, '45454545787711126369874545');
         console.log(dueDate, 'qwerrtyuiiuytrew');
         return !(todo.statuses === 'Completed' && currentDate > dueDate);
       });
