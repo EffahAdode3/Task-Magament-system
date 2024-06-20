@@ -91,6 +91,8 @@
         <tr v-for="toTolist in filteredTOListDos" :key="toTolist.id">
           <td>{{ new Date(toTolist.createdAt).toDateString() }}</td>
           <td>{{ toTolist.category }}</td>
+
+
           <td>
             <span @click="showFullText(toTolist.newTodo)"
                   :title="toTolist.newTodo"
@@ -98,11 +100,15 @@
               {{truncateText(toTolist.newTodo)}}
             </span>
           </td>
+
+
           <td :class="{'overdue': isOverdue(toTolist.deadline)}">
             {{ new Date(toTolist.deadline).toDateString() }}
             <span v-if="isOverdue(toTolist.deadline)"> - Overdue!</span>
           </td>
           <td>
+
+
             <div class="dropdown">
               <button :class="['btn dropdown-toggle', statusButtonClass(toTolist.statuses)]" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ toTolist.statuses }}
@@ -231,6 +237,7 @@
 
           computed: {
     filteredTOListDos() {
+      console.log(this.TOListDos, "561345678899");
       const currentDate = new Date();
       return this.TOListDos.filter(todo => {
         const dueDate = new Date(todo.deadline);
