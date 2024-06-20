@@ -200,6 +200,7 @@
     mixins: [AuthMixin],
      data() {
        return {
+        filteredTOListDos:'',
         TOListDos: [],        
         newTodo: '',
         editFormData: {
