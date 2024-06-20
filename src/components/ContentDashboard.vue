@@ -202,7 +202,7 @@
     mixins: [AuthMixin],
      data() {
        return {
-        TOListDos: '',        
+        TOListDos: [],        
         newTodo: '',
         editFormData: {
         id: '',
@@ -248,8 +248,6 @@
   }
 },
        methods: {
-
-
         // fetch Data using the Category
      fetchAllData(){
        const token = localStorage.getItem('token');
