@@ -339,20 +339,19 @@
 
     // Submit edit todo method
     submitEditTodo() {
-      const token = localStorage.getItem('token');
-  axios.put(`${base_url}/Updateatodo/${this.editFormData.id}`, this.editFormData), {
-    headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-  }.then(() => {
-      this.fetchAllData(); // Refresh data
-      const modal = bootstrap.Modal.getInstance(document.getElementById('editTodoModal'));
-      modal.hide();
-    })
-    .catch(error => {
-      console.error('Error updating todo:', error);
-    });
+      axios.put(`${base_url}/Updateatodo/${this.editFormData.id}`, this.editFormData, {
+  headers: {
+    'Authorization': `Bearer ${token}`,
+    'Content-Type': 'application/json'
+  }
+}).then(() => {
+  this.fetchAllData(); // Refresh data
+  const modal = bootstrap.Modal.getInstance(document.getElementById('editTodoModal'));
+  modal.hide();
+})
+.catch(error => {
+  console.error('Error updating todo:', error);
+});
 },
 
     // Color Change when is Pending, Completed and In-Progress
