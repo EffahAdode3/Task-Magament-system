@@ -236,8 +236,8 @@
 
           /// filtering To check if the to do Due date is pass and Statues === Completed 
 
-          computed: {
-    filteredTOListDos() {
+ computed: {
+       filteredTOListDos() {
       console.log(this.TOListDos, "561345678899");
       const currentDate = new Date();
       return this.TOListDos.filter(todo => {
