@@ -369,7 +369,7 @@ deleteTodo(todoId) {
   .then(response => {
     console.log(response.data);
     // Update the local todos array by filtering out the deleted todo
-    this.todos = this.todos.filter(todo => todo.id !== todoId);
+    this.TOListDos = this.TOListDos.filter(todo => todo.id !== todoId);
   })
   .catch(error => {
     console.error('There was an error deleting the todo:', error);
