@@ -339,6 +339,7 @@
 
     // Submit edit todo method
     submitEditTodo() {
+      const token = localStorage.getItem('token');
       axios.put(`${base_url}/Updateatodo/${this.editFormData.id}`, this.editFormData, {
   headers: {
     'Authorization': `Bearer ${token}`,
