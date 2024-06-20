@@ -157,9 +157,15 @@
       <div class="modal-body">
         <form @submit.prevent="submitEditTodo">
           <div class="mb-3">
-            <label for="editTodoCategory" class="form-label">Category</label>
-            <input type="text" class="form-control" id="editTodoCategory" v-model="editFormData.category">
-          </div>
+  <label for="editTodoCategory" class="form-label">Category</label>
+  <select class="form-select" id="editTodoCategory" v-model="editFormData.category">
+    <option value="Personal">Personal</option>
+    <option value="I.T Service">I.T Service</option>
+    <option value="Networking">Networking</option>
+    <option value="End User">End User</option>
+    <option value="Cyber-Security">Cyber-Security</option>
+  </select>
+</div>
           <div class="mb-3">
             <label for="editTodoTask" class="form-label">To Do Task</label>
             <div class="modal-body">
