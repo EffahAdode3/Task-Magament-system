@@ -245,6 +245,12 @@
     console.log(currentDate)
     return this.TOListDos.filter(todo => {
       const dueDate = new Date(todo.deadline);
+const formattedDate = dueDate.toLocaleDateString(undefined, {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit'
+});
+console.log(formattedDate);
       console.log(dueDate, 'qwerrtyuiiuytrew');
       return !(todo.statuses === 'Completed' && currentDate > dueDate);
     });
