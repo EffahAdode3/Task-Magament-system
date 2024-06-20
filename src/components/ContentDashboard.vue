@@ -100,13 +100,12 @@
               {{truncateText(toTolist.newTodo)}}
             </span>
           </td>
-          <td>{{ new Date(toTolist.deadline).toDateString() }}</td>
 
-          <!-- <td :class="{'overdue': isOverdue(toTolist.deadline)}">
+
+          <td :class="{'overdue': isOverdue(toTolist.deadline)}">
             {{ new Date(toTolist.deadline).toDateString() }}
             <span v-if="isOverdue(toTolist.deadline)"> - Overdue!</span>
-          </td> -->
-
+          </td>
           <td>
 
 
@@ -327,9 +326,7 @@
     },
     
 
-    // isCompletedAndOverdue(toTolist) {
-    //   return toTolist.statuses === 'Completed' && this.isOverdue(toTolist.deadline);
-    // },
+  
 
     // over  Date due
 
