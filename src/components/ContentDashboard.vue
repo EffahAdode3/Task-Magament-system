@@ -339,8 +339,13 @@
 
     // Submit edit todo method
     submitEditTodo() {
-  axios.put(`${base_url}/Updateatodo/${this.editFormData.id}`, this.editFormData)
-    .then(() => {
+      const token = localStorage.getItem('token');
+  axios.put(`${base_url}/Updateatodo/${this.editFormData.id}`, this.editFormData), {
+    headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+  }.then(() => {
       this.fetchAllData(); // Refresh data
       const modal = bootstrap.Modal.getInstance(document.getElementById('editTodoModal'));
       modal.hide();
