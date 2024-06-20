@@ -214,23 +214,24 @@
      },
 
      created(){
-        const token = localStorage.getItem('token');
-       console.log(token)
-         axios.get(`${base_url}/getAllToDo`, {
-            headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-         })
-           .then((response) => {
-             this.TOListDos = response.data.allToDoList;
-             console.log(this.TOListDos);
-             console.log(response.data);
-           })
-           .catch((error) => {
-             console.error("Error fetching products:", error);
-           });
-            
+      //   const token = localStorage.getItem('token');
+      //  console.log(token)
+      //    axios.get(`${base_url}/getAllToDo`, {
+      //       headers: {
+      //     'Authorization': `Bearer ${token}`,
+      //     'Content-Type': 'application/json'
+      //   }
+      //    })
+      //      .then((response) => {
+      //        this.TOListDos = response.data.allToDoList;
+      //        console.log(this.TOListDos);
+      //        console.log(response.data);
+      //      })
+      //      .catch((error) => {
+      //        console.error("Error fetching products:", error);
+      //      });
+
+    this.fetchAllData();          
           },
 
           /// filtering To check if the to do Due date is pass and Statues === Completed 
