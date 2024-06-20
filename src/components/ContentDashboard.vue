@@ -242,6 +242,7 @@
   filteredTOListDos() {
     console.log(this.TOListDos, "561345678899");
     const currentDate = new Date();
+    console.log(currentDate)
     return this.TOListDos.filter(todo => {
       const dueDate = todo.deadline;
       console.log(dueDate, 'qwerrtyuiiuytrew');
