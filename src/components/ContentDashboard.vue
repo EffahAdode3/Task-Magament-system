@@ -357,6 +357,27 @@
 });
 },
 
+// delete to do 
+deleteTodo(todoId) {
+  const token = localStorage.getItem('token');
+  axios.delete(`${base_url}/deleteTodo/${todoId}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => {
+    console.log(response.data);
+    // Update the local todos array by filtering out the deleted todo
+    this.todos = this.todos.filter(todo => todo.id !== todoId);
+  })
+  .catch(error => {
+    console.error('There was an error deleting the todo:', error);
+    // Handle the error, e.g., show an error message
+  });
+},
+
+
     // Color Change when is Pending, Completed and In-Progress
     statusButtonClass(status) {
       if (status === 'Pending') {
