@@ -162,7 +162,10 @@
           </div>
           <div class="mb-3">
             <label for="editTodoTask" class="form-label">To Do Task</label>
-            <input type="text" class="form-control" id="editTodoTask" v-model="editFormData.newTodo">
+            <div class="modal-body">
+            <textarea class="form-control" id="editTodoTask" v-model="editFormData.newTodo" style="height: 200px"></textarea>
+          </div>
+            <!-- <input type="text" class="form-control" id="editTodoTask" v-model="editFormData.newTodo"> -->
           </div>
           <div class="mb-3">
             <label for="editTodoDueDate" class="form-label">Due Date</label>
@@ -232,7 +235,7 @@
 
        methods: {
 
-        
+
         // fetch Data using the Category
      fetchAllData(){
        const token = localStorage.getItem('token');
