@@ -101,7 +101,8 @@
             </span>
           </td>
 
-          <td  :class="{'overdue': isOverdue(toTolist.deadline)}">{{ toTolist.deadline }}
+          <td  :class="{'overdue': isOverdue(toTolist.deadline)}">
+            {{ new Date(toTolist.deadline).toDateString() }}
             <span v-if="isOverdue(toTolist.deadline)"> - Overdue!</span>
 
           </td>
