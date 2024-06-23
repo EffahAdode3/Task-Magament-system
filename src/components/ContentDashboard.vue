@@ -431,7 +431,9 @@ openAssignModal(todoId) {
       assignModal.show();
     },
     closeAssignModal() {
-      const assignModal = new Modal(this.$refs.assignModal);
+      // const assignModal = new Modal(this.$refs.assignModal);
+      // assignModal.hide();
+      const assignModal = new bootstrap.Modal(this.$refs.assignModal);
       assignModal.hide();
     },
     searchUsers() {
