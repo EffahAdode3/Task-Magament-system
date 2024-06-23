@@ -324,7 +324,10 @@
 },
 
 mounted() {
-    this.assignModalInstance = new bootstrap.Modal(this.$refs.assignModal);
+  this.assignModalInstance = new bootstrap.Modal(this.$refs.assignModal, {
+      backdrop: 'static',
+      keyboard: false,
+    });
   },
        methods: {
         // fetch Data using the Category
@@ -471,7 +474,9 @@ openAssignModal(todoId) {
       assignModal.show();
     },
     closeAssignModal() {
-      this.assignModalInstance.hide();
+      if (this.assignModalInstance) {
+        this.assignModalInstance.hide();
+      }
     },
 
     searchUsers() {
