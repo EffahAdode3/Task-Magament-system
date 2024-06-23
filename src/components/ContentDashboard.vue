@@ -494,7 +494,7 @@ openAssignModal(todoId) {
     this.searchedUsers = response.data.users;
   })
   .catch(error => {
-    console.error(error);
+    console.error('Error fetching search Users:', error);
   });
 },
 
@@ -522,7 +522,7 @@ openAssignModal(todoId) {
     }
   })
   .catch(error => {
-    console.error(error);
+    console.error('Error fetching assigning:', error);
   });
 },
 
