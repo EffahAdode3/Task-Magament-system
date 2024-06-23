@@ -105,10 +105,7 @@
             {{new Date(toTolist.deadline).toDateString()}}
             <span v-if="isOverdue(toTolist.deadline)"> - Overdue!</span>
           </td>
-          <!-- <td :class="{'overdue': isOverdue(toTolist.deadline)}">
-            {{ new Date(toTolist.deadline).toDateString() }}
-            <span v-if="isOverdue(toTolist.deadline)"> - Overdue!</span>
-          </td> -->
+      
           <td>
 
 
@@ -192,6 +189,30 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="assignModal" tabindex="-1" aria-labelledby="assignModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="assignModalLabel">Assign To-Do List</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" v-model="searchEmail" @input="searchUsers" placeholder="Search by email">
+        <ul class="list-group mt-2">
+          <li class="list-group-item" v-for="user in searchedUsers" :key="user.id" @click="selectUser(user.email)">
+            {{ user.email }}
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" @click="assignTodo">Assign</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   </div>
 </template>
