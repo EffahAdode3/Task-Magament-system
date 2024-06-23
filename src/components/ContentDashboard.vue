@@ -253,7 +253,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" @click="closeAssignModal">Close</button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">Close</button>
+        <!-- <button type="button" class="btn btn-secondary" @click="closeAssignModal">Close</button> -->
         <button type="button" class="btn btn-primary" @click="assignTodo">Assign</button>
       </div>
     </div>
@@ -474,11 +475,11 @@ openAssignModal(todoId) {
       const assignModal = new Modal(this.$refs.assignModal);
       assignModal.show();
     },
-    closeAssignModal() {
-      if (this.assignModalInstance) {
-        this.assignModalInstance.hide();
-      }
-    },
+    // closeAssignModal() {
+    //   if (this.assignModalInstance) {
+    //     this.assignModalInstance.hide();
+    //   }
+    // },
 
     searchUsers() {
   const token = localStorage.getItem('token');
