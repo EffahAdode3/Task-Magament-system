@@ -85,6 +85,7 @@
           <th scope="col">Due Date</th>
           <th scope="col">Status</th>
           <th scope="col">Delet/Edit</th>
+          <th scope="col">Assign</th>
         </tr>
       </thead>
       <tbody>
@@ -124,6 +125,10 @@
               <td>
         <button class="btn btn-danger btn-sm" @click="deleteTodo(toTolist.id)">Delete</button>
         <button class="btn btn-primary btn-sm" @click="editTodo(toTolist)">Edit</button>
+      </td>
+      
+      <td>
+        <button class="btn btn-secondary btn-sm" @click="openAssignModal(toTolist.id)">Assign</button>
       </td>
 
 
@@ -190,6 +195,8 @@
   </div>
 </div>
 
+
+<!-- Assign Modal -->
 <div class="modal fade" id="assignModal" tabindex="-1" aria-labelledby="assignModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
