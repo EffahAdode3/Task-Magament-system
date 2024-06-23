@@ -233,7 +233,8 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="assignModalLabel">Assign To-Do List</h5>
-        <button type="button" class="btn-close" @click="closeAssignModal" aria-label="Close"></button>
+        <!-- <button type="button" class="btn-close" @click="closeAssignModal" aria-label="Close"></button> -->
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <input type="text" class="form-control" v-model="searchEmail" @input="searchUsers" placeholder="Search by email">
