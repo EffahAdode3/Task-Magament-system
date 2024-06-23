@@ -197,29 +197,36 @@
 
 
 <!-- Assign Modal -->
-<div class="modal fade" id="assignModal" tabindex="-1" aria-labelledby="assignModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="assignModalLabel">Assign To-Do List</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <input type="text" class="form-control" v-model="searchEmail" @input="searchUsers" placeholder="Search by email">
-        <ul class="list-group mt-2">
-          <li class="list-group-item" v-for="user in searchedUsers" :key="user.id" @click="selectUser(user.email)">
-            {{ user.email }}
-          </li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" @click="assignTodo">Assign</button>
+<div class="modal fade" id="assignModal" tabindex="-1" aria-labelledby="assignModalLabel" aria-hidden="true" ref="assignModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="assignModalLabel">Assign To-Do List</h5>
+            <button type="button" class="btn-close" @click="closeAssignModal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <input type="text" class="form-control" v-model="searchEmail" @input="searchUsers" placeholder="Search by email">
+            <ul class="list-group mt-2">
+              <li class="list-group-item" v-for="user in searchedUsers" :key="user.id" @click="selectUser(user.email)">
+                {{ user.email }}
+              </li>
+            </ul>
+            <div class="mt-3">
+              <h6>Selected Users</h6>
+              <ul class="list-group">
+                <li class="list-group-item" v-for="email in selectedUsers" :key="email">
+                  {{ email }}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" @click="closeAssignModal">Close</button>
+            <button type="button" class="btn btn-primary" @click="assignTodo">Assign</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
 
   </div>
 </template>
@@ -413,40 +420,44 @@ deleteTodo(todoId) {
     // Handle the error, e.g., show an error message
   });
 },
-
 openAssignModal(todoId) {
-    this.currentTodoId = todoId;
-    this.searchEmail = '';
-    this.searchedUsers = [];
-    this.selectedUsers = [];
-    $('#assignModal').modal('show');
-  },
-  searchUsers() {
-    axios.get(`/api/users?email=${this.searchEmail}`)
-      .then(response => {
-        this.searchedUsers = response.data;
-      })
-      .catch(error => {
-        console.error('Error fetching users:', error);
-      });
-  },
-  selectUser(email) {
-    if (!this.selectedUsers.includes(email)) {
-      this.selectedUsers.push(email);
-    }
-  },
-  assignTodo() {
-    axios.post(`/api/todos/${this.currentTodoId}/assign`, { emails: this.selectedUsers })
-      .then(response => {
-        if (response.status === 200) {
-          $('#assignModal').modal('hide');
-          // Refresh your to-do list data if necessary
-        }
-      })
-      .catch(error => {
-        console.error('Error assigning todo:', error);
-      });
-  },
+      this.currentTodoId = todoId;
+      this.searchEmail = '';
+      this.searchedUsers = [];
+      this.selectedUsers = [];
+      const assignModal = new Modal(this.$refs.assignModal);
+      assignModal.show();
+    },
+    closeAssignModal() {
+      const assignModal = new Modal(this.$refs.assignModal);
+      assignModal.hide();
+    },
+    searchUsers() {
+      axios.get(`/api/users?email=${this.searchEmail}`)
+        .then(response => {
+          this.searchedUsers = response.data;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+    selectUser(email) {
+      if (!this.selectedUsers.includes(email)) {
+        this.selectedUsers.push(email);
+      }
+    },
+    assignTodo() {
+      axios.post(`/api/todos/${this.currentTodoId}/assign`, { emails: this.selectedUsers })
+        .then(response => {
+          if (response.status === 200) {
+            this.closeAssignModal();
+            // Refresh your to-do list data if necessary
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
 
 
     // Color Change when is Pending, Completed and In-Progress
