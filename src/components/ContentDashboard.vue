@@ -472,6 +472,7 @@ openAssignModal(todoId) {
       //   const assignModal = new bootstrap.Modal(this.$refs.assignModal);
       //   assignModal.show();
       // });
+      console.log(this.currentTodoId, 'weqreqwrweqrkjwekfjqwehjkqwhrqkjwehrkjqwehrjkqwehkje');
       const assignModal = new Modal(this.$refs.assignModal);
       assignModal.show();
     },
