@@ -503,18 +503,19 @@ openAssignModal(todoId) {
         this.selectedUsers.push(email);
       }
     },
-    // assignTodo() {
-    //   axios.post(`/api/todos/${this.currentTodoId}/assign`, { emails: this.selectedUsers })
-    //     .then(response => {
-    //       if (response.status === 200) {
-    //         this.closeAssignModal();
-    //         // Refresh your to-do list data if necessary
-    //       }
-    //     })
-    //     .catch(error => {
-    //       console.error(error);
-    //     });
-    // },
+    assignTodo() {
+      axios.post(`${base_url}/assign/${this.currentTodoId}`, { emails: this.selectedUsers })
+        .then(response => {
+          if (response.status === 201) {
+            console.log(response.data);
+            // this.closeAssignModal();
+            // Refresh your to-do list data if necessary
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
 
 
     // Color Change when is Pending, Completed and In-Progress
