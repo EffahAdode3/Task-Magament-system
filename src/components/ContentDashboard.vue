@@ -467,8 +467,8 @@ openAssignModal(todoId) {
       //   const assignModal = new bootstrap.Modal(this.$refs.assignModal);
       //   assignModal.show();
       // });
-      // const assignModal = new Modal(this.$refs.assignModal);
-      // assignModal.show();
+      const assignModal = new Modal(this.$refs.assignModal);
+      assignModal.show();
     },
     closeAssignModal() {
       this.assignModalInstance.hide();
