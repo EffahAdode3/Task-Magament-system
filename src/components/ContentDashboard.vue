@@ -436,7 +436,7 @@ openAssignModal(todoId) {
     },
     searchUsers() {
   const token = localStorage.getItem('token');
-  axios.get(`/getClientEmail/${this.searchEmail}`, {
+  axios.get(`${base_url}/getClientEmail/${this.searchEmail}`, {
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
