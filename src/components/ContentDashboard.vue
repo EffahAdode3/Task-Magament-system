@@ -504,18 +504,27 @@ openAssignModal(todoId) {
       }
     },
     assignTodo() {
-      axios.post(`${base_url}/assign/${this.currentTodoId}`, { emails: this.selectedUsers })
-        .then(response => {
-          if (response.status === 201) {
-            console.log(response.data);
-            // this.closeAssignModal();
-            // Refresh your to-do list data if necessary
-          }
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    },
+  const token = localStorage.getItem('token');
+  axios.post(`${base_url}/assign/${this.currentTodoId}`, 
+    { emails: this.selectedUsers },
+    {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    }
+  )
+  .then(response => {
+    if (response.status === 200) {
+      console.log(response.data);
+      // this.closeAssignModal();
+      // Refresh your to-do list data if necessary
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+},
 
 
     // Color Change when is Pending, Completed and In-Progress
