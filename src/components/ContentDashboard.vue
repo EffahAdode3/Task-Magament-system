@@ -435,31 +435,38 @@ openAssignModal(todoId) {
       assignModal.hide();
     },
     searchUsers() {
-      axios.get(`/api/users?email=${this.searchEmail}`)
-        .then(response => {
-          this.searchedUsers = response.data;
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    },
+  const token = localStorage.getItem('token');
+  axios.get(`/getClientEmail/${this.searchEmail}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => {
+    this.searchedUsers = response.data.users;
+  })
+  .catch(error => {
+    console.error(error);
+  });
+},
+
     selectUser(email) {
       if (!this.selectedUsers.includes(email)) {
         this.selectedUsers.push(email);
       }
     },
-    assignTodo() {
-      axios.post(`/api/todos/${this.currentTodoId}/assign`, { emails: this.selectedUsers })
-        .then(response => {
-          if (response.status === 200) {
-            this.closeAssignModal();
-            // Refresh your to-do list data if necessary
-          }
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    },
+    // assignTodo() {
+    //   axios.post(`/api/todos/${this.currentTodoId}/assign`, { emails: this.selectedUsers })
+    //     .then(response => {
+    //       if (response.status === 200) {
+    //         this.closeAssignModal();
+    //         // Refresh your to-do list data if necessary
+    //       }
+    //     })
+    //     .catch(error => {
+    //       console.error(error);
+    //     });
+    // },
 
 
     // Color Change when is Pending, Completed and In-Progress
