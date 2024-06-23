@@ -234,6 +234,7 @@
   import axios from "axios";
  import {base_url} from '../constant';
  import AuthMixin from '../authMixin'
+ import { Modal } from 'bootstrap';
    export default {
     mixins: [AuthMixin],
      data() {
@@ -420,6 +421,7 @@ deleteTodo(todoId) {
     // Handle the error, e.g., show an error message
   });
 },
+
 openAssignModal(todoId) {
       this.currentTodoId = todoId;
       this.searchEmail = '';
