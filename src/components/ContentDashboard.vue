@@ -427,15 +427,18 @@ openAssignModal(todoId) {
       this.searchEmail = '';
       this.searchedUsers = [];
       this.selectedUsers = [];
-      const assignModal = new Modal(this.$refs.assignModal);
-      assignModal.show();
+      this.$nextTick(() => {
+        const assignModal = new bootstrap.Modal(this.$refs.assignModal);
+        assignModal.show();
+      });
+      // const assignModal = new Modal(this.$refs.assignModal);
+      // assignModal.show();
     },
     closeAssignModal() {
-      // const assignModal = new Modal(this.$refs.assignModal);
-      // assignModal.hide();
       const assignModal = new bootstrap.Modal(this.$refs.assignModal);
       assignModal.hide();
     },
+
     searchUsers() {
   const token = localStorage.getItem('token');
   axios.get(`${base_url}/getClientEmail/${this.searchEmail}`, {
