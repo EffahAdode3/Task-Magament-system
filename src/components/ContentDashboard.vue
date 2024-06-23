@@ -427,10 +427,10 @@ openAssignModal(todoId) {
       this.searchEmail = '';
       this.searchedUsers = [];
       this.selectedUsers = [];
-      this.$nextTick(() => {
-        const assignModal = new bootstrap.Modal(this.$refs.assignModal);
-        assignModal.show();
-      });
+      // this.$nextTick(() => {
+      //   const assignModal = new bootstrap.Modal(this.$refs.assignModal);
+      //   assignModal.show();
+      // });
       // const assignModal = new Modal(this.$refs.assignModal);
       // assignModal.show();
     },
