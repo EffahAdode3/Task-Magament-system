@@ -239,7 +239,7 @@
       <div class="modal-body">
         <input type="text" class="form-control" v-model="searchEmail" @input="searchUsers" placeholder="Search by email">
         <ul class="list-group mt-2">
-          <li class="list-group-item" v-for="user in searchedUsers" :key="user.id" @click="selectUser(user.id)">
+          <li class="list-group-item" v-for="user in searchedUsers" :key="user.id" @click="selectUser(user.email)">
             {{ user.email }}
           </li>
         </ul>
