@@ -503,6 +503,7 @@ openAssignModal(todoId) {
         this.selectedUsers.push(email);
       }
     },
+    // assign
     assignTodo() {
   const token = localStorage.getItem('token');
   axios.post(`${base_url}/assign/${this.currentTodoId}`, 
@@ -515,8 +516,8 @@ openAssignModal(todoId) {
     }
   )
   .then(response => {
-    if (response.status === 200) {
-      console.log(response.data);
+    if (response.status === 201) {
+      console.log("response.data");
       // this.closeAssignModal();
       // Refresh your to-do list data if necessary
     }
