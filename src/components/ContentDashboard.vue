@@ -255,7 +255,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
         <!-- <button type="button" class="btn btn-secondary" @click="closeAssignModal">Close</button> -->
-        <button type="button" class="btn btn-primary" @click="assignTodo">Assign</button>
+        <button type="button" class="btn btn-primary"   data-bs-dismiss="modal"  @click="assignTodo">Assign</button>
       </div>
     </div>
   </div>
