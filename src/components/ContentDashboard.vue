@@ -126,7 +126,7 @@
         <button class="btn btn-danger btn-sm" @click="deleteTodo(toTolist.id)">Delete</button>
         <button class="btn btn-primary btn-sm" @click="editTodo(toTolist)">Edit</button>
       </td>
-      
+
       <td>
         <button class="btn btn-secondary btn-sm" @click="openAssignModal(toTolist.id)">Assign</button>
       </td>
@@ -234,6 +234,10 @@
         filteredTOListDos:'',
         TOListDos: [],        
         newTodo: '',
+        searchEmail: '',
+      searchedUsers: [],
+      selectedUsers: [],
+      currentTodoId: null,
         editFormData: {
         id: '',
         category: '',
@@ -409,6 +413,40 @@ deleteTodo(todoId) {
     // Handle the error, e.g., show an error message
   });
 },
+
+openAssignModal(todoId) {
+    this.currentTodoId = todoId;
+    this.searchEmail = '';
+    this.searchedUsers = [];
+    this.selectedUsers = [];
+    $('#assignModal').modal('show');
+  },
+  searchUsers() {
+    axios.get(`/api/users?email=${this.searchEmail}`)
+      .then(response => {
+        this.searchedUsers = response.data;
+      })
+      .catch(error => {
+        console.error('Error fetching users:', error);
+      });
+  },
+  selectUser(email) {
+    if (!this.selectedUsers.includes(email)) {
+      this.selectedUsers.push(email);
+    }
+  },
+  assignTodo() {
+    axios.post(`/api/todos/${this.currentTodoId}/assign`, { emails: this.selectedUsers })
+      .then(response => {
+        if (response.status === 200) {
+          $('#assignModal').modal('hide');
+          // Refresh your to-do list data if necessary
+        }
+      })
+      .catch(error => {
+        console.error('Error assigning todo:', error);
+      });
+  },
 
 
     // Color Change when is Pending, Completed and In-Progress
