@@ -518,12 +518,15 @@ openAssignModal(todoId) {
   .then(response => {
     if (response.status === 201) {
       console.log("response.data");
-      console.log(this.selectedUsers, "USer Emails");
-      console.log(this.currentTodoId, "currentTodoID");
+      // console.log(this.selectedUsers, "USer Emails");
+      // console.log(this.currentTodoId, "currentTodoID");
       // this.closeAssignModal();
       // Refresh your to-do list data if necessary
     }
+    console.log(this.selectedUsers, "USer Emails");
+    console.log(this.currentTodoId, "currentTodoID");
   })
+  
   .catch(error => {
     console.error('Error fetching assigning:', error);
   });
