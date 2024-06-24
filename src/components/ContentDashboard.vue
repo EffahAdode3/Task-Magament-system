@@ -216,6 +216,7 @@
           <ul class="list-group">
             <li class="list-group-item" v-for="email in selectedUsers" :key="email">
               {{ email }}
+              <button type="button" class="btn btn-danger btn-sm" @click="removeUser(email)">Remove</button>
             </li>
           </ul>
         </div>
@@ -436,6 +437,11 @@ openAssignModal(todoId) {
         this.selectedUsers.push(email);
       }
     },
+
+    // remove seleted email 
+    removeUser(email) {
+    this.selectedUsers = this.selectedUsers.filter(userEmail => userEmail !== email);
+  },
     // assign
     assignTodo() {
   const token = localStorage.getItem('token');
