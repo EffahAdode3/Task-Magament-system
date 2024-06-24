@@ -415,19 +415,6 @@ openAssignModal(todoId) {
       console.log(this.currentTodoId, 'weqreqwrweqrkjwekfjqwehjkqwhrqkjwehrkjqwehrjkqwehkje');
       const modal = new bootstrap.Modal(document.getElementById('assignModal'));
       modal.show();
-
-//       const assignModal = document.getElementById('assignModal');
-//   assignModal.classList.add('show');
-//   assignModal.style.display = 'block';
-// },
-    //   const assignModal = new Modal(this.$refs.assignModal);
-    //   assignModal.show();
-    // },
-    // closeAssignModal() {
-    //   if (this.assignModal) {
-    //     this.assignModal.hide();
-    //   }
-    // },
 },
 
     searchUsers() {
@@ -468,9 +455,6 @@ openAssignModal(todoId) {
   .then(response => {
     if (response.status === 201) {
       console.log("Response data:", response.data);
-      // Uncomment and use these lines as needed
-      // console.log(this.selectedUsers, "User Emails");
-      // console.log(this.currentTodoId, "Current Todo ID");
       const modal = bootstrap.Modal.getInstance(document.getElementById('assignModal'));
       modal.hide();
       // Refresh your to-do list data if necessary
