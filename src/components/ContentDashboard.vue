@@ -471,7 +471,8 @@ openAssignModal(todoId) {
       // Uncomment and use these lines as needed
       // console.log(this.selectedUsers, "User Emails");
       // console.log(this.currentTodoId, "Current Todo ID");
-      this.closeAssignModal();
+      const modal = bootstrap.Modal.getInstance(document.getElementById('assignModal'));
+      modal.hide();
       // Refresh your to-do list data if necessary
     }
   })
