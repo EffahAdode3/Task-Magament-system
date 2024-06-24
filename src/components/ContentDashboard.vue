@@ -196,38 +196,6 @@
 </div>
 
 
-<!-- Assign Modal -->
-<!-- <div class="modal fade" id="assignModal" tabindex="-1" aria-labelledby="assignModalLabel" aria-hidden="true" ref="assignModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="assignModalLabel">Assign To-Do List</h5>
-            <button type="button" class="btn-close" @click="closeAssignModal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <input type="text" class="form-control" v-model="searchEmail" @input="searchUsers" placeholder="Search by email">
-            <ul class="list-group mt-2">
-              <li class="list-group-item" v-for="user in searchedUsers" :key="user.id" @click="selectUser(user.email)">
-                {{ user.email }}
-              </li>
-            </ul>
-            <div class="mt-3">
-              <h6>Selected Users</h6>
-              <ul class="list-group">
-                <li class="list-group-item" v-for="email in selectedUsers" :key="email">
-                  {{ email }}
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" @click="closeAssignModal">Close</button>
-            <button type="button" class="btn btn-primary" @click="assignTodo">Assign</button>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
     <div class="modal fade" id="assignModal" tabindex="-1" aria-labelledby="assignModalLabel" aria-hidden="true" ref="assignModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -290,22 +258,6 @@
      },
 
      created(){
-      //   const token = localStorage.getItem('token');
-      //  console.log(token)
-      //    axios.get(`${base_url}/getAllToDo`, {
-      //       headers: {
-      //     'Authorization': `Bearer ${token}`,
-      //     'Content-Type': 'application/json'
-      //   }
-      //    })
-      //      .then((response) => {
-      //        this.TOListDos = response.data.allToDoList;
-      //        console.log(this.TOListDos);
-      //        console.log(response.data);
-      //      })
-      //      .catch((error) => {
-      //        console.error("Error fetching products:", error);
-      //      });
 
     this.fetchAllData();          
           },
@@ -325,12 +277,6 @@
   }
 },
 
-// mounted() {
-//   this.assignModalInstance = new bootstrap.Modal(this.$refs.assignModal, {
-//       backdrop: 'static',
-//       keyboard: false,
-//     });
-//   },
        methods: {
         // fetch Data using the Category
      fetchAllData(){
@@ -466,19 +412,15 @@ openAssignModal(todoId) {
       this.searchEmail = '';
       this.searchedUsers = [];
       this.selectedUsers = [];
-      // this.$nextTick(() => {
-      //   const assignModal = new bootstrap.Modal(this.$refs.assignModal);
-      //   assignModal.show();
-      // });
       console.log(this.currentTodoId, 'weqreqwrweqrkjwekfjqwehjkqwhrqkjwehrkjqwehrjkqwehkje');
       const assignModal = new Modal(this.$refs.assignModal);
       assignModal.show();
     },
-    closeAssignModal() {
-      if (this.assignModal) {
-        this.assignModal.hide();
-      }
-    },
+    // closeAssignModal() {
+    //   if (this.assignModal) {
+    //     this.assignModal.hide();
+    //   }
+    // },
 
     searchUsers() {
   const token = localStorage.getItem('token');
