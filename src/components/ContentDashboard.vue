@@ -476,11 +476,11 @@ openAssignModal(todoId) {
       const assignModal = new Modal(this.$refs.assignModal);
       assignModal.show();
     },
-    // closeAssignModal() {
-    //   if (this.assignModalInstance) {
-    //     this.assignModalInstance.hide();
-    //   }
-    // },
+    closeAssignModal() {
+      if (this.assignModal) {
+        this.assignModal.hide();
+      }
+    },
 
     searchUsers() {
   const token = localStorage.getItem('token');
@@ -523,7 +523,7 @@ openAssignModal(todoId) {
       // Uncomment and use these lines as needed
       // console.log(this.selectedUsers, "User Emails");
       // console.log(this.currentTodoId, "Current Todo ID");
-      // this.closeAssignModal();
+      this.closeAssignModal();
       // Refresh your to-do list data if necessary
     }
   })
