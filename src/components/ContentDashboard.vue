@@ -236,7 +236,7 @@
   import axios from "axios";
  import {base_url} from '../constant';
  import AuthMixin from '../authMixin'
- import { Modal } from 'bootstrap';
+//  import { Modal } from 'bootstrap';
    export default {
     mixins: [AuthMixin],
      data() {
@@ -413,10 +413,13 @@ openAssignModal(todoId) {
       this.searchedUsers = [];
       this.selectedUsers = [];
       console.log(this.currentTodoId, 'weqreqwrweqrkjwekfjqwehjkqwhrqkjwehrkjqwehrjkqwehkje');
-      const assignModal = document.getElementById('assignModal');
-  assignModal.classList.add('show');
-  assignModal.style.display = 'block';
-},
+      const modal = new bootstrap.Modal(document.getElementById('assignModal'));
+      modal.show();
+
+//       const assignModal = document.getElementById('assignModal');
+//   assignModal.classList.add('show');
+//   assignModal.style.display = 'block';
+// },
     //   const assignModal = new Modal(this.$refs.assignModal);
     //   assignModal.show();
     // },
@@ -425,6 +428,7 @@ openAssignModal(todoId) {
     //     this.assignModal.hide();
     //   }
     // },
+},
 
     searchUsers() {
   const token = localStorage.getItem('token');
