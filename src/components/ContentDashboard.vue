@@ -413,9 +413,13 @@ openAssignModal(todoId) {
       this.searchedUsers = [];
       this.selectedUsers = [];
       console.log(this.currentTodoId, 'weqreqwrweqrkjwekfjqwehjkqwhrqkjwehrkjqwehrjkqwehkje');
-      const assignModal = new Modal(this.$refs.assignModal);
-      assignModal.show();
-    },
+      const assignModal = document.getElementById('assignModal');
+  assignModal.classList.add('show');
+  assignModal.style.display = 'block';
+},
+    //   const assignModal = new Modal(this.$refs.assignModal);
+    //   assignModal.show();
+    // },
     // closeAssignModal() {
     //   if (this.assignModal) {
     //     this.assignModal.hide();
