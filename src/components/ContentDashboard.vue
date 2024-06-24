@@ -236,7 +236,7 @@
   import axios from "axios";
  import {base_url} from '../constant';
  import AuthMixin from '../authMixin'
- import { Modal } from 'bootstrap';
+//  import { Modal } from 'bootstrap';
    export default {
     mixins: [AuthMixin],
      data() {
