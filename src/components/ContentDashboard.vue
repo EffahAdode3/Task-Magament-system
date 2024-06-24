@@ -325,12 +325,12 @@
   }
 },
 
-mounted() {
-  this.assignModalInstance = new bootstrap.Modal(this.$refs.assignModal, {
-      backdrop: 'static',
-      keyboard: false,
-    });
-  },
+// mounted() {
+//   this.assignModalInstance = new bootstrap.Modal(this.$refs.assignModal, {
+//       backdrop: 'static',
+//       keyboard: false,
+//     });
+//   },
        methods: {
         // fetch Data using the Category
      fetchAllData(){
