@@ -289,7 +289,7 @@
        };
      },
 
-     created(){
+     mounted(){
       //   const token = localStorage.getItem('token');
       //  console.log(token)
       //    axios.get(`${base_url}/getAllToDo`, {
@@ -518,6 +518,8 @@ openAssignModal(todoId) {
   .then(response => {
     if (response.status === 201) {
       console.log("response.data");
+      console.log(this.selectedUsers, "USer Emails");
+      console.log(this.currentTodoId, "currentTodoID");
       // this.closeAssignModal();
       // Refresh your to-do list data if necessary
     }
