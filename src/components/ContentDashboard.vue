@@ -214,7 +214,7 @@
         <div class="mt-3">
           <h6>Selected Users</h6>
           <ul class="list-group">
-            <li class="list-group-item" v-for="email in selectedUsers" :key="email">
+            <li class="list-group-item d-flex justify-content-between align-items-center" v-for="email in selectedUsers" :key="email">
               {{ email }}
               <button type="button" class="btn btn-danger btn-sm" @click="removeUser(email)">Remove</button>
             </li>
