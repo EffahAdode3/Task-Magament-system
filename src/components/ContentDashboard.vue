@@ -407,9 +407,6 @@ mounted() {
       myModal.show();
     },
     
-
-  
-
     // over  Date due
 
     isOverdue(deadline) {
@@ -445,6 +442,7 @@ mounted() {
 
 // delete to do 
 deleteTodo(todoId) {
+  alert("Are sure you want to Logout");
   const token = localStorage.getItem('token');
   axios.delete(`${base_url}/deleteTodo/${todoId}`, {
     headers: {
