@@ -472,7 +472,7 @@ openAssignModal(todoId) {
 /// canEditor not
 canEditOrDelete(todo) {
     const currentUser = this.getCurrentUser();
-    return todo.creatorId === currentUser.id || todo.sharedWith.includes(currentUser.email);
+    return todo.creatorId === currentUser.id || todo.sharedWith.includes(currentUser.id);
   },
   getCurrentUser() {
     // Fetch the current user details (you might be storing user details in localStorage or Vuex store)
