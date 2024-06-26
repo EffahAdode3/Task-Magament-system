@@ -122,10 +122,10 @@
             </div>
           </td>
 
-              <td>
-        <button class="btn btn-danger btn-sm" @click="deleteTodo(toTolist.id)">Delete</button>
-        <button class="btn btn-primary btn-sm" @click="editTodo(toTolist)">Edit</button>
-      </td>
+          <td v-if="canEditOrDelete(toTolist)">
+    <button class="btn btn-danger btn-sm" @click="deleteTodo(toTolist.id)">Delete</button>
+    <button class="btn btn-primary btn-sm" @click="editTodo(toTolist)">Edit</button>
+  </td>
 
       <td>
         <button class="btn btn-secondary btn-sm" @click="openAssignModal(toTolist.id)">Assign</button>
@@ -432,6 +432,7 @@ openAssignModal(todoId) {
   });
 },
 
+
     selectUser(email) {
       if (!this.selectedUsers.includes(email)) {
         this.selectedUsers.push(email);
@@ -468,7 +469,15 @@ openAssignModal(todoId) {
     console.error('Error assigning:', error.response ? error.response.data : error.message);
   });
 },
-
+/// canEditor not
+canEditOrDelete(todo) {
+    const currentUser = this.getCurrentUser();
+    return todo.creatorId === currentUser.id || todo.sharedWith.includes(currentUser.email);
+  },
+  getCurrentUser() {
+    // Fetch the current user details (you might be storing user details in localStorage or Vuex store)
+    return JSON.parse(localStorage.getItem('currentUser'));
+  },
 
     // Color Change when is Pending, Completed and In-Progress
     statusButtonClass(status) {
