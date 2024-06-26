@@ -128,9 +128,10 @@
             <button class="btn btn-primary btn-sm" @click="editTodo(toTolist)">Edit</button>
           </div>
           <div v-else>
-            <button class="btn btn-danger btn-sm" disabled>Delete</button>
-            <button class="btn btn-primary btn-sm" disabled>Edit</button>
+            <!-- <button class="btn btn-danger btn-sm" disabled>Delete</button>
+            <button class="btn btn-primary btn-sm" disabled>Edit</button> -->
             <!-- <small class="text-muted">Not authorized to edit or delete</small> -->
+            <span class="text-muted">Not authorized</span>
           </div>
         </td>
      
