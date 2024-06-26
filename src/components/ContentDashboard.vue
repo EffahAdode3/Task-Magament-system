@@ -476,7 +476,7 @@ canEditOrDelete(todo) {
   },
   getCurrentUser() {
     // Fetch the current user details (you might be storing user details in localStorage or Vuex store)
-    return JSON.parse(localStorage.getItem('currentUser'));
+    return JSON.parse(localStorage.getItem('user'));
   },
 
     // Color Change when is Pending, Completed and In-Progress
