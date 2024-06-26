@@ -122,10 +122,18 @@
             </div>
           </td>
 
-          <td v-if="canEditOrDelete(toTolist)">
-    <button class="btn btn-danger btn-sm" @click="deleteTodo(toTolist.id)">Delete</button>
-    <button class="btn btn-primary btn-sm" @click="editTodo(toTolist)">Edit</button>
-  </td>
+          <td>
+          <div v-if="canEditOrDelete(toTolist)">
+            <button class="btn btn-danger btn-sm" @click="deleteTodo(toTolist.id)">Delete</button>
+            <button class="btn btn-primary btn-sm" @click="editTodo(toTolist)">Edit</button>
+          </div>
+          <div v-else>
+            <button class="btn btn-danger btn-sm" disabled>Delete</button>
+            <button class="btn btn-primary btn-sm" disabled>Edit</button>
+            <small class="text-muted">Not authorized to edit or delete</small>
+          </div>
+        </td>
+     
 
       <td>
         <button class="btn btn-secondary btn-sm" @click="openAssignModal(toTolist.id)">Assign</button>
@@ -472,7 +480,7 @@ openAssignModal(todoId) {
 /// canEditor not
 canEditOrDelete(todo) {
     const currentUser = this.getCurrentUser();
-    return todo.creatorId === currentUser.id || todo.sharedWith.includes(currentUser.id);
+    return todo.client_Id_As_Foreignkey === currentUser.id 
   },
   getCurrentUser() {
     // Fetch the current user details (you might be storing user details in localStorage or Vuex store)
