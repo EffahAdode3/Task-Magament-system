@@ -130,7 +130,7 @@
           <div v-else>
             <button class="btn btn-danger btn-sm" disabled>Delete</button>
             <button class="btn btn-primary btn-sm" disabled>Edit</button>
-            <small class="text-muted">Not authorized to edit or delete</small>
+            <!-- <small class="text-muted">Not authorized to edit or delete</small> -->
           </div>
         </td>
      
