@@ -43,7 +43,6 @@
             </td>
             <td>
               {{ new Date(toTolist.deadline).toDateString() }}
-              <!-- <span v-if="isOverdue(toTolist.deadline)"> - Overdue!</span> -->
             </td>
             <td>
 <div class="dropdown">
@@ -60,9 +59,7 @@
           </tr>
         </tbody>
       </table>
-  
-  
-  
+   
       <!-- Modal -->
       <div class="modal fade" id="todoModal" tabindex="-1" aria-labelledby="todoModalLabel" aria-hidden="true">
         <div class="modal-dialog">

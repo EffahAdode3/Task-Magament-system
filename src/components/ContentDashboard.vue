@@ -396,7 +396,9 @@
 
 // delete to do 
 deleteTodo(todoId) {
-  alert("Are sure you want to Logout");
+  if(window.confirm("Are you sure you want to delete this?")) {
+
+
   const token = localStorage.getItem('token');
   axios.delete(`${base_url}/deleteTodo/${todoId}`, {
     headers: {
@@ -413,6 +415,7 @@ deleteTodo(todoId) {
     console.error('There was an error deleting the todo:', error);
     // Handle the error, e.g., show an error message
   });
+}
 },
 
 openAssignModal(todoId) {
