@@ -41,7 +41,7 @@
                 {{truncateText(toTolist.newTodo)}}
               </span>
             </td>
-            <td :class="{'overdue': isOverdue(toTolist.deadline)}">
+            <td>
               {{ new Date(toTolist.deadline).toDateString() }}
               <!-- <span v-if="isOverdue(toTolist.deadline)"> - Overdue!</span> -->
             </td>
