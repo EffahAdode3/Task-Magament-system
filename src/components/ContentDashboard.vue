@@ -404,8 +404,6 @@
 // delete to do 
 deleteTodo(todoId) {
   if(window.confirm("Are you sure you want to delete this?")) {
-
-
   const token = localStorage.getItem('token');
   axios.delete(`${base_url}/deleteTodo/${todoId}`, {
     headers: {
