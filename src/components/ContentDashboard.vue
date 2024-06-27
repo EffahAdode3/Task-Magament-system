@@ -84,7 +84,8 @@
           <th scope="col">To Do Task</th>
           <th scope="col">Due Date</th>
           <th scope="col">Status</th>
-          <th scope="col">Delet/Edit</th>
+          <th scope="col">Delete</th>
+          <th scope="col">Edit</th>
           <th scope="col">Assign</th>
         </tr>
       </thead>
@@ -136,11 +137,22 @@
         </td>
      
 
+        <td>
+          <div v-if="canEditOrDelete(toTolist)">
+            <!-- <button class="btn btn-danger btn-sm" @click="deleteTodo(toTolist.id)">Delete</button> -->
+            <button class="btn btn-primary btn-sm" @click="editTodo(toTolist)">Edit</button>
+          </div>
+          <div v-else>
+            <!-- <button class="btn btn-danger btn-sm" disabled>Delete</button> -->
+            <button class="btn btn-primary btn-sm" disabled>Edit</button>
+            <!-- <small class="text-muted">Not authorized to edit or delete</small> -->
+            <span class="text-muted">Not authorized</span>
+          </div>
+        </td>
+
       <td>
         <button class="btn btn-secondary btn-sm" @click="openAssignModal(toTolist.id)">Assign</button>
       </td>
-
-
         </tr>
       </tbody>
     </table>
