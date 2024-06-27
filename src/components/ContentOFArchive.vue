@@ -43,21 +43,20 @@
             </td>
             <td :class="{'overdue': isOverdue(toTolist.deadline)}">
               {{ new Date(toTolist.deadline).toDateString() }}
-              <span v-if="isOverdue(toTolist.deadline)"> - Overdue!</span>
+              <!-- <span v-if="isOverdue(toTolist.deadline)"> - Overdue!</span> -->
             </td>
-            <td :class="[ statusButtonClass(toTolist.statuses)]" type="button">
-                  {{ toTolist.statuses }}
-          
-              <!-- <div class="dropdown"> -->
-                <!-- <button :class="['btn dropdown-toggle', statusButtonClass(toTolist.statuses)]" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-                  {{ toTolist.statuses }}
-                </button> -->
-                <!-- <button :class="[ statusButtonClass(toTolist.statuses)]" type="button">
-                  {{ toTolist.statuses }}
-                </button> -->
-              
-              <!-- </div> -->
-            </td>
+            <td>
+<div class="dropdown">
+  <button :class="['btn dropdown-toggle', statusButtonClass(toTolist.statuses)]" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+    {{ toTolist.statuses }}
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="statusDropdownButton">
+    <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'Pending')">Pending</a></li>
+    <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'Completed')">Completed</a></li>
+    <li><a class="dropdown-item" href="#" @click="updateStatus(toTolist.id, 'In-Progress')">In-Progress</a></li>
+  </ul>
+</div>
+</td>
           </tr>
         </tbody>
       </table>
@@ -167,6 +166,7 @@
                 console.error('Error fetching data:', error);
               });
           },   
+
       // Truncate Text when To do List or New to do is more than 200
       truncateText(text, maxLength = 50) {
         if (text.length > maxLength) {
@@ -183,22 +183,44 @@
       },
       
   
-    //   isCompletedAndOverdue(toTolist) {
-    //     return toTolist.statuses === 'Completed' && this.isOverdue(toTolist.deadline);
-    //   },
-  
-      // over  Date due
-  
-      isOverdue(deadline) {
-      const currentDate = new Date();
-      const taskDeadline = new Date(deadline);
-      return taskDeadline < currentDate;
+    //   isOverdue(deadline) {
+    //   const currentDate = new Date();
+    //   const taskDeadline = new Date(deadline);
+    //   return taskDeadline < currentDate;
+    // },
+
+    // update Status
+    updateStatus(id, status) {
+      const token = localStorage.getItem('token');
+      axios.put(`${base_url}/updateStatus/${id}`, { status }, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => {
+          console.log("Status Updated:", response.data);
+          // Update the status in the local state
+          const item = this.TOListDos.find(todo => todo.id === id);
+          if (item) {
+            item.statuses = status;
+          }
+        })
+        .catch(error => {
+          console.error('Error updating status:', error);
+        });
     },
+
       // Color Change when is Pending, Completed and In-Progress
       statusButtonClass(status) {
-        if (status === 'Completed'){
-            return 'btn-success';
+      if (status === 'Pending') {
+        return 'btn-danger';
+      } else if (status === 'Completed') {
+        return 'btn-success';
+      } else if (status === 'In-Progress') {
+        return 'btn-warning';
       }
+      return 'btn-primary';
     }
   }
 }
@@ -210,18 +232,18 @@
     position: relative;
   }
   
-  /* .btn-danger {
+  .btn-danger {
     background-color: red;
     color: white;
-  } */
+  }
   .btn-success {
     background-color: green;
     color: white;
   }
-  /* .btn-warning {
+  .btn-warning {
     background-color: orange;
     color: white;
-  } */
+  }
   
   .truncate-text {
     display: inline-block;
