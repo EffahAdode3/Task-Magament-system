@@ -116,7 +116,7 @@ methods: {
       };
 
       const { unit, amount } = reminderMap[this.reminderInterval];
-      const reminderTime = moment(this.deadline).subtract(amount, unit).format('YYYY-MM-DD HH:mm:ss');
+      const reminderTime = moment(this.deadline).subtract(amount, unit).format('YYYY-MM-DD');
 
         const todoData = {
             newTodo: this.newTodo,
