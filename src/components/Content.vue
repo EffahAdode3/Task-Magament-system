@@ -147,6 +147,7 @@ methods: {
                 this.newTodo = '';
                 this.category = '';
                 this.deadline = '';
+                this.reminderInterval = '';
             })
             .catch(error => {
                 console.error('There was an error adding the todo:', error);
