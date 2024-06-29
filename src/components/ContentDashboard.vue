@@ -90,6 +90,7 @@
       <td>
         <button class="btn btn-secondary btn-sm" @click="openAssignModal(toTolist.id)">Assign</button>
       </td>
+      <td>{{ new Date(toTolist.reminderTime).toDateString() }}</td>
         </tr>
       </tbody>
     </table>
@@ -188,7 +189,7 @@
   </div>
 </div> 
 
-<td>{{ new Date(toTolist.reminderTime).toDateString() }}</td>
+
   </div>
 </template>
 <script>                              
