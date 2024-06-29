@@ -44,6 +44,25 @@
                 <input v-model="deadline" type="date" id="start" name="trip-start" class="date-input w-100"/>
             </div>
         </div>
+
+        <div class="container my-4">
+      <div class="row">
+        <div class="col-12 col-md-6 d-flex align-items-center mb-3 mb-md-0">
+          <label class="Category-label">Set Reminder</label>
+          <select v-model="reminderInterval" class="custom-select w-100">
+            <option value="1d">1 Day</option>
+            <option value="2d">2 Days</option>
+            <option value="3d">3 Days</option>
+            <option value="4d">4 Days</option>
+            <option value="5d">5 Days</option>
+            <option value="1w">1 Week</option>
+            <option value="2w">2 Weeks</option>
+            <option value="1m">1 Month</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    
     </div>
     <div class="col-auto px-0 mx-0 mr-2 d-flex justify-content-center">
     <button @click="addTodo" type="button" class="btn btn-primary">Add</button>
