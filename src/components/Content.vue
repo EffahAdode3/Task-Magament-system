@@ -122,7 +122,7 @@ methods: {
             newTodo: this.newTodo,
             category: this.category,
             deadline: this.deadline,
-            reminderTime,
+            reminderTime: reminderTime,
             statuses: 'Pending',
         };
 
