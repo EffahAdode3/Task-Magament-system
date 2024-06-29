@@ -62,7 +62,7 @@
         </div>
       </div>
     </div>
-    
+
     </div>
     <div class="col-auto px-0 mx-0 mr-2 d-flex justify-content-center">
     <button @click="addTodo" type="button" class="btn btn-primary">Add</button>
@@ -91,6 +91,7 @@ export default {
       newTodo: '',
       category: '',
       deadline: '',
+      reminderInterval: '',
     };
   },
 
@@ -101,10 +102,26 @@ methods: {
             swal('All Fields Are Required');
             return;
         }
+
+        const reminderMap = {
+        '1d': { unit: 'days', amount: 1 },
+        '2d': { unit: 'days', amount: 2 },
+        '3d': { unit: 'days', amount: 3 },
+        '4d': { unit: 'days', amount: 4 },
+        '5d': { unit: 'days', amount: 5 },
+        '1w': { unit: 'weeks', amount: 1 },
+        '2w': { unit: 'weeks', amount: 2 },
+        '1m': { unit: 'months', amount: 1 },
+      };
+
+      const { unit, amount } = reminderMap[this.reminderInterval];
+      const reminderTime = moment(this.deadline).subtract(amount, unit).format('YYYY-MM-DD HH:mm:ss');
+
         const todoData = {
             newTodo: this.newTodo,
             category: this.category,
             deadline: this.deadline,
+            reminderTime,
             statuses: 'Pending',
         };
 
@@ -112,6 +129,7 @@ methods: {
         console.log(this.category);
         console.log(this.deadline);
         console.log(todoData.statuses);
+        console.log(todoData.reminderTime);
         // Retrieve token from localStorage
         const token = localStorage.getItem('token');
         console.log(token);
