@@ -30,6 +30,7 @@
           <th scope="col">Edit</th>
           <th scope="col">Delete</th>        
           <th scope="col">Assign</th>
+          <th scope="col">Reminder</th>
         </tr>
       </thead>
       <tbody>
@@ -185,7 +186,9 @@
       </div>
     </div>
   </div>
-</div>
+</div> 
+
+<td>{{ new Date(toTolist.reminderTime).toDateString() }}</td>
   </div>
 </template>
 <script>                              
