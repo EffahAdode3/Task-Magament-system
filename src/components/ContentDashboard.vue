@@ -340,8 +340,7 @@
       const modal = new bootstrap.Modal(document.getElementById('editTodoModal'));
       modal.show();
     },
-
-    
+ 
     // Submit edit todo method
     submitEditTodo() {
       const reminderMap = {
@@ -355,7 +354,7 @@
     '1m': { unit: 'months', amount: 1 },
   };
 
-  const { unit, amount } = reminderMap[reminderInterval];
+  const { unit, amount } = reminderMap[this.editFormData.reminderInterval];
   const reminderTime = moment(this.editFormData.deadline).subtract(amount, unit).format('YYYY-MM-DD HH:mm:ss');
 
   const updatedTodoData = {
