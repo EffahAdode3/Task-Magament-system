@@ -208,7 +208,8 @@
 <script>                              
   import axios from "axios";
  import {base_url} from '../constant';
- import AuthMixin from '../authMixin'
+ import AuthMixin from '../authMixin';
+ import moment from 'moment';
 //  import { Modal } from 'bootstrap';
    export default {
     mixins: [AuthMixin],
