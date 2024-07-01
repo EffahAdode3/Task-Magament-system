@@ -149,7 +149,7 @@
           </div>
           <div class="mb-3">
             <label for="editReminderInterval" class="form-label">Set Reminder</label>
-            <select class="form-select" id="editReminderInterval" v-model="reminderInterval">
+            <select class="form-select" id="editReminderInterval" v-model="editFormData.reminderInterval">
               <option value="1d">1 Day</option>
               <option value="2d">2 Days</option>
               <option value="3d">3 Days</option>
@@ -221,13 +221,14 @@
         searchEmail: '',
       searchedUsers: [],
       selectedUsers: [],
-      reminderInterval: '',
+ 
       currentTodoId: null,
         editFormData: {
         id: '',
         category: '',
         newTodo: '',
         deadline: '',
+        reminderInterval: '',
       
       }         
        };
