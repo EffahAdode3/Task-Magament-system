@@ -364,7 +364,7 @@
   //   reminderTime,
   // }
       const token = localStorage.getItem('token');
-      axios.put(`${base_url}/Updateatodo/${this.editFormData.id}`, this.editFormData,  reminderTime, {
+      axios.put(`${base_url}/Updateatodo/${this.editFormData.id}`, this.editFormData,  reminderTime,  {
   headers: {
     'Authorization': `Bearer ${token}`,
     'Content-Type': 'application/json'
