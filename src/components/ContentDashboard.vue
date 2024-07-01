@@ -147,6 +147,19 @@
             <label for="editTodoDueDate" class="form-label">Due Date</label>
             <input type="date" class="form-control" id="editTodoDueDate" v-model="editFormData.deadline">
           </div>
+          <div class="mb-3">
+            <label for="editReminderInterval" class="form-label">Set Reminder</label>
+            <select class="form-select" id="editReminderInterval" v-model="editFormData.reminderInterval">
+              <option value="1d">1 Day</option>
+              <option value="2d">2 Days</option>
+              <option value="3d">3 Days</option>
+              <option value="4d">4 Days</option>
+              <option value="5d">5 Days</option>
+              <option value="1w">1 Week</option>
+              <option value="2w">2 Weeks</option>
+              <option value="1m">1 Month</option>
+            </select>
+          </div>
           <button type="submit" class="btn btn-primary">Save changes</button>
         </form>
       </div>
@@ -212,7 +225,8 @@
         id: '',
         category: '',
         newTodo: '',
-        deadline: ''
+        deadline: '',
+        reminderInterval: '',
       }         
        };
      },
@@ -327,10 +341,29 @@
       modal.show();
     },
 
+    
     // Submit edit todo method
     submitEditTodo() {
+      const reminderMap = {
+    '1d': { unit: 'days', amount: 1 },
+    '2d': { unit: 'days', amount: 2 },
+    '3d': { unit: 'days', amount: 3 },
+    '4d': { unit: 'days', amount: 4 },
+    '5d': { unit: 'days', amount: 5 },
+    '1w': { unit: 'weeks', amount: 1 },
+    '2w': { unit: 'weeks', amount: 2 },
+    '1m': { unit: 'months', amount: 1 },
+  };
+
+  const { unit, amount } = reminderMap[reminderInterval];
+  const reminderTime = moment(this.editFormData.deadline).subtract(amount, unit).format('YYYY-MM-DD HH:mm:ss');
+
+  const updatedTodoData = {
+    ...this.editFormData,
+    reminderTime,
+  }
       const token = localStorage.getItem('token');
-      axios.put(`${base_url}/Updateatodo/${this.editFormData.id}`, this.editFormData, {
+      axios.put(`${base_url}/Updateatodo/${this.editFormData.id}`, updatedTodoData, {
   headers: {
     'Authorization': `Bearer ${token}`,
     'Content-Type': 'application/json'

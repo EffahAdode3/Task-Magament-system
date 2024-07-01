@@ -16,14 +16,7 @@
             <div class="row bg-white rounded shadow-sm p-2 add-todo-wrapper align-items-center justify-content-center">
                 <div class="">
   <textarea class="form-control" placeholder="Add new .." id="floatingTextarea2" v-model="newTodo"  style="height: 100px"></textarea>
-  <!-- <label for="floatingTextarea2">Comments</label> -->
 </div>
-                <!-- <div class="col">
-                    <input class="form-control form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" v-model="newTodo"  placeholder="Add new ..">
-                </div> -->
-                <!-- <div class="col-auto px-0 mx-0 mr-2">
-                    <button @click="addTodo" type="button" class="btn btn-primary">Add</button>
-                </div> -->
             </div>
         </div>
     </div>
@@ -68,15 +61,7 @@
     <button @click="addTodo" type="button" class="btn btn-primary">Add</button>
 </div>
 
-    <!-- <div class="p-2 mx-4 border-black-25 border-bottom"></div>
-    <div class="row m-1 p-3 px-5 justify-content-end">
-        <div class="col-auto d-flex align-items-center px-1 pr-3">
-        </div>
-    </div>  -->
-    <!-- <div class="row mx-1 px-5 pb-3 w-80">
-        <div class="col mx-auto">
-        </div>
-    </div> -->
+ 
 </div>
 </template>
 <script>
@@ -152,10 +137,8 @@ methods: {
             .catch(error => {
                 console.error('There was an error adding the todo:', error);
             });
-    },
 },
-
-};
+},};
 </script>
 <style scoped>
 body {
