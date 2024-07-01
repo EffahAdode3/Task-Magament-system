@@ -364,7 +364,6 @@
 
     submitEditTodo() {
       let updatedTodoData = { ...this.editFormData };
-
       if (this.editFormData.reminderInterval) {
         const reminderTime = this.calculateReminderTime(this.editFormData.deadline, this.editFormData.reminderInterval);
         updatedTodoData = { ...updatedTodoData, reminderTime };
