@@ -210,7 +210,7 @@
  import {base_url} from '../constant';
  import AuthMixin from '../authMixin';
  import moment from 'moment';
-//  import { Modal } from 'bootstrap';
+
    export default {
     mixins: [AuthMixin],
      data() {
@@ -360,10 +360,10 @@
   const { unit, amount } = reminderMap[this.editFormData.reminderInterval];
   const reminderTime = moment(this.editFormData.deadline).subtract(amount, unit).format('YYYY-MM-DD HH:mm:ss');
 
-  const updatedTodoData = {
-    ...this.editFormData,
+  const updatedTodoData = [
+    this.editFormData,
     reminderTime,
-  };
+]
 
   const token = localStorage.getItem('token');
   axios.put(`${base_url}/Updateatodo/${this.editFormData.id}`, updatedTodoData, {
