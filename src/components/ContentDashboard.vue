@@ -344,8 +344,6 @@
       modal.show();
     },
  
-
-    
     calculateReminderTime(deadline, reminderInterval) {
       const reminderMap = {
         '1d': { unit: 'days', amount: 1 },
