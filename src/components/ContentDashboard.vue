@@ -345,7 +345,7 @@
  
     // Submit edit todo method
     submitEditTodo() {
-      const reminderMap = {
+  const reminderMap = {
     '1d': { unit: 'days', amount: 1 },
     '2d': { unit: 'days', amount: 2 },
     '3d': { unit: 'days', amount: 3 },
@@ -356,28 +356,31 @@
     '1m': { unit: 'months', amount: 1 },
   };
 
-  const { unit, amount } = reminderMap[this.reminderInterval];
+  const { unit, amount } = reminderMap[this.editFormData.reminderInterval];
   const reminderTime = moment(this.editFormData.deadline).subtract(amount, unit).format('YYYY-MM-DD HH:mm:ss');
 
-  // const updatedTodoData = {
-  //   ...this.editFormData,
-  //   reminderTime,
-  // }
-      const token = localStorage.getItem('token');
-      axios.put(`${base_url}/Updateatodo/${this.editFormData.id}`, this.editFormData,  reminderTime,  {
-  headers: {
-    'Authorization': `Bearer ${token}`,
-    'Content-Type': 'application/json'
-  }
-}).then(() => {
-  this.fetchAllData(); // Refresh data
-  const modal = bootstrap.Modal.getInstance(document.getElementById('editTodoModal'));
-  modal.hide();
-})
-.catch(error => {
-  console.error('Error updating todo:', error);
-});
+  const updatedTodoData = {
+    ...this.editFormData,
+    reminderTime,
+  };
+
+  const token = localStorage.getItem('token');
+  axios.put(`${base_url}/Updateatodo/${this.editFormData.id}`, updatedTodoData, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(() => {
+    this.fetchAllData(); // Refresh data
+    const modal = bootstrap.Modal.getInstance(document.getElementById('editTodoModal'));
+    modal.hide();
+  })
+  .catch(error => {
+    console.error('Error updating todo:', error);
+  });
 },
+
 
 // delete to do 
 deleteTodo(todoId) {
