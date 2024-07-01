@@ -149,7 +149,7 @@
           </div>
           <div class="mb-3">
             <label for="editReminderInterval" class="form-label">Set Reminder</label>
-            <select class="form-select" id="editReminderInterval" v-model="editFormData.reminderInterval">
+            <select class="form-select" id="editReminderInterval" v-model="reminderInterval">
               <option value="1d">1 Day</option>
               <option value="2d">2 Days</option>
               <option value="3d">3 Days</option>
@@ -221,13 +221,14 @@
         searchEmail: '',
       searchedUsers: [],
       selectedUsers: [],
+      reminderInterval: '',
       currentTodoId: null,
         editFormData: {
         id: '',
         category: '',
         newTodo: '',
         deadline: '',
-        reminderInterval: '',
+      
       }         
        };
      },
@@ -355,15 +356,15 @@
     '1m': { unit: 'months', amount: 1 },
   };
 
-  const { unit, amount } = reminderMap[this.editFormData.reminderInterval];
+  const { unit, amount } = reminderMap[this.reminderInterval];
   const reminderTime = moment(this.editFormData.deadline).subtract(amount, unit).format('YYYY-MM-DD HH:mm:ss');
 
-  const updatedTodoData = {
-    ...this.editFormData,
-    reminderTime,
-  }
+  // const updatedTodoData = {
+  //   ...this.editFormData,
+  //   reminderTime,
+  // }
       const token = localStorage.getItem('token');
-      axios.put(`${base_url}/Updateatodo/${this.editFormData.id}`, updatedTodoData, {
+      axios.put(`${base_url}/Updateatodo/${this.editFormData.id}`, this.editFormData,  reminderTime, {
   headers: {
     'Authorization': `Bearer ${token}`,
     'Content-Type': 'application/json'
