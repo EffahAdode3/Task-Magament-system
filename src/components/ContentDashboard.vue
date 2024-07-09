@@ -166,8 +166,6 @@
     </div>
   </div>
 </div>
-
-
     <div class="modal fade" id="assignModal" tabindex="-1" aria-labelledby="assignModalLabel" aria-hidden="true" ref="assignModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -228,19 +226,14 @@
         category: '',
         newTodo: '',
         deadline: '',
-        reminderInterval: '',
-      
+        reminderInterval: '',     
       }         
        };
      },
-
      created(){
-
     this.fetchAllData();          
           },
-
-          /// filtering To check if the to do Due date is pass and Statues === Completed 
-
+/// filtering To check if the to do Due date is pass and Statues === Completed 
    computed: {
   filteredTOListDos() {
     console.log(this.TOListDos, "561345678899");
@@ -253,7 +246,6 @@
     });
   }
 },
-
        methods: {
         // fetch Data using the Category
      fetchAllData(){
@@ -355,7 +347,6 @@
         '2w': { unit: 'weeks', amount: 2 },
         '1m': { unit: 'months', amount: 1 }
       };
-
       const { unit, amount } = reminderMap[reminderInterval];
       return moment(deadline).subtract(amount, unit).format('YYYY-MM-DD HH:mm:ss');
     },
@@ -433,7 +424,7 @@ openAssignModal(todoId) {
   });
 },
 
-/// 
+
     selectUser(email) {
       if (!this.selectedUsers.includes(email)) {
         this.selectedUsers.push(email);

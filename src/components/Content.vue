@@ -84,7 +84,7 @@ export default {
 methods: {
     addTodo() {
        
-        if (!this.category || !this.deadline || !this.newTodo) {
+        if (!this.category || !this.deadline || !this.newTodo || !this.reminderInterval) {
             swal('All Fields Are Required');
             return;
         }
