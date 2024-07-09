@@ -57,9 +57,16 @@
     </div>
 
     </div>
+
     <div class="col-auto px-0 mx-0 mr-2 d-flex justify-content-center">
-    <button @click="addTodo" type="button" class="btn btn-primary">Add</button>
+  <button @click="addTodo" :disabled="loading" type="button" class="btn btn-primary">
+    <span v-if="loading">Adding...</span>
+    <span v-else>Add</span>
+  </button>
 </div>
+    <!-- <div class="col-auto px-0 mx-0 mr-2 d-flex justify-content-center">
+    <button @click="addTodo" type="button" class="btn btn-primary">Add</button>
+</div> -->
 
  
 </div>
@@ -78,6 +85,7 @@ export default {
       category: '',
       deadline: '',
       reminderInterval: '',
+      loading: false, // loading state
     };
   },
 
@@ -120,6 +128,9 @@ methods: {
         const token = localStorage.getItem('token');
         console.log(token);
 
+          // Set loading to true when request starts
+    this.loading = true;
+
         axios.post(`${base_url}/todoList`, todoData, {
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -133,9 +144,13 @@ methods: {
                 this.category = '';
                 this.deadline = '';
                 this.reminderInterval = '';
+                 // Set loading to false when request completes
+        this.loading = false;
             })
             .catch(error => {
                 console.error('There was an error adding the todo:', error);
+                   // Set loading to false in case of error
+        this.loading = false;
             });
 },
 },};
