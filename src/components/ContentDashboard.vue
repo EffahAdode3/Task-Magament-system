@@ -327,7 +327,7 @@
     const currentDate = new Date();
     const taskDeadline = new Date(deadline);
     // return taskDeadline < currentDate;
-    return currentDate >= taskDeadline ;
+    return currentDate > taskDeadline ;
   },
 
    // Edit todo method
