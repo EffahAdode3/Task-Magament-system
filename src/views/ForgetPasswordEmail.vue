@@ -5,9 +5,9 @@
       <div class="col-12 col-xxl-11">
         <div class="card border-light-subtle shadow-sm">
           <div class="row g-0">
-            <div class="col-12 col-md-6">
+            <!-- <div class="col-12 col-md-6">
               <img class="img-fluid rounded-start w-100 h-100 object-fit-cover" loading="lazy" src="./assets/img/logo-img-1.webp" alt="Welcome back you've been missed!">
-            </div>
+            </div> -->
             <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
               <div class="col-12 col-lg-11 col-xl-10">
                 <div class="card-body p-3 p-md-4 p-xl-5">
