@@ -376,7 +376,6 @@
       });
     },
 
-
 // delete to do 
 deleteTodo(todoId) {
   if(window.confirm("Are you sure you want to delete this?")) {

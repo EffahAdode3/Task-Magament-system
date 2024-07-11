@@ -4,6 +4,7 @@ import Signpup from '../views/Signup.vue'
  import AddTask from  '../views/Add Task.vue'
 import Dashboard from  '../views/Dashboard.vue'
 import Archive from '../views/Archive.vue'
+import ForgetPasswordEmail from '../views/ForgetPasswordEmail.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -32,6 +33,12 @@ const router = createRouter({
       name: ' Archive ',
       component:  Archive 
     },
+    {
+      path: '/ForgetPasswordEmail',
+      name: ' ForgetPasswordEmail ',
+      component:  ForgetPasswordEmail 
+    },
+
   ]
 })
 export default router
