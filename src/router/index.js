@@ -5,6 +5,7 @@ import Signpup from '../views/Signup.vue'
 import Dashboard from  '../views/Dashboard.vue'
 import Archive from '../views/Archive.vue'
 import ForgetPasswordEmail from '../views/ForgetPasswordEmail.vue'
+import ResetPassword from '../views/ResetPassword.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -37,6 +38,12 @@ const router = createRouter({
       path: '/forgetPasswordEmail',
       name: ' ForgetPasswordEmail ',
       component:  ForgetPasswordEmail 
+    },
+
+    {
+      path: '/reset_password',
+      name: 'ResetPassword ',
+      component:  ResetPassword  
     },
 
   ]
