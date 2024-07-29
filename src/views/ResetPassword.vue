@@ -71,7 +71,7 @@
                         </label>
                       </div> -->
                       <div class="field padding-bottom--24">
-                        <input type="submit" name="submit" value="Continue">
+                        <input type="submit" name="submit" value="Submit">
                       </div>
                       <!-- <div class="field">
                         <a class="ssolink" href="#">Use single sign-on (Google) instead</a>
