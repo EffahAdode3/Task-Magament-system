@@ -112,7 +112,7 @@ export default{
      axios.post(`${base_url}/login`, {email: this.formdata.email,
       password: this.formdata.password,}).then((res)=>{
         console.log('Response:', res);
-      if(res.status === 200){
+      if(res.status === 201){
         localStorage.setItem('token', res.data.token)   
         localStorage.setItem('user', JSON.stringify(res.data.user))  
         this.$router.push('/addTask');

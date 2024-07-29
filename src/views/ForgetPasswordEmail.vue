@@ -43,8 +43,8 @@
               <div class="formbg">
                 <div class="formbg-inner padding-horizontal--48">
                   <!-- <div class="error" v-if="errorMessage" @click="clearEmailError">{{ errorMessage }}</div> -->
-                  <span class="padding-bottom--15">Type Your Email To Received Forget Password Link</span>
-                  <form id="stripe-login" @submit.prevent="login" :class="{ disabled: toggledisabled }">
+                  <span class="padding-bottom--15">Type Email Here</span>
+                  <form id="stripe-login" @submit.prevent="RequestForPasswordReset" :class="{ disabled: toggledisabled }">
                
                     <div class="field padding-bottom--24">
                       <label for="email">Email</label>
@@ -107,16 +107,12 @@
       }
     },
     methods:{
-      login(){ 
+      RequestForPasswordReset(){ 
         this.toggledisabled = true;
-       axios.post(`${base_url}/login`, {email: this.formdata.email,
-        password: this.formdata.password,}).then((res)=>{
+       axios.post(`${base_url}/forgetPassword`, {email: this.formdata.email}).then((res)=>{
           console.log('Response:', res);
-        if(res.status === 200){
-          localStorage.setItem('token', res.data.token)   
-          localStorage.setItem('user', JSON.stringify(res.data.user))  
-          this.$router.push('/addTask');
-          console.log("Login Succefully");
+        if(res.status === 200){     
+          swal('Your Password Reset is sent to Your email');
         }
       }).catch((error) => {
         this.toggledisabled = false;
