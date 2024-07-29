@@ -114,6 +114,7 @@
         if(res.status === 200){     
           swal('Your Password Reset is sent to Your email');
         }
+        this.toggledisabled = false;
       }).catch((error) => {
         this.toggledisabled = false;
         console.log('Error:', error.response.data); 
