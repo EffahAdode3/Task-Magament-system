@@ -37,13 +37,13 @@
           <!-- </div> -->
           <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
             <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
-              <h1><a href="#" rel="dofollow">Type Your Email To Received Link</a></h1>
+              <h1><a href="#" rel="dofollow">My Todo-s</a></h1>
             </div>
             <div class="formbg-outer">
               <div class="formbg">
                 <div class="formbg-inner padding-horizontal--48">
                   <!-- <div class="error" v-if="errorMessage" @click="clearEmailError">{{ errorMessage }}</div> -->
-                  <!-- <span class="padding-bottom--15">Sign in to your account</span> -->
+                  <span class="padding-bottom--15">Type Your Email To Received Forget Password Link</span>
                   <form id="stripe-login" @submit.prevent="login" :class="{ disabled: toggledisabled }">
                
                     <div class="field padding-bottom--24">
