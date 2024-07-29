@@ -145,7 +145,6 @@
     clearError(field) {
       this.errors[field] = '';
     },
-
         ResetYourPassword(){ 
             if (!this.validateForm()) {
         return;
@@ -428,4 +427,10 @@
     .loading-overlay img {
       max-height: 200px;
     }
+
+    .error {
+  color: red;
+  font-size: 0.875rem;
+
+}
     </style>
