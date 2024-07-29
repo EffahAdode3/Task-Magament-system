@@ -47,8 +47,8 @@
                  
                       <div class="field padding-bottom--24">
                         <label for="email">Password</label>
-                        <input type="password" name="password" v-model="formdata.password"  @focus="clearError('password')"  required >
-                        <div v-if="errors.password" class="error">{{ errors.password }}</div>
+                        <input type="password" name="password" v-model="formdata.newPassword"  @focus="clearError('newPassword')"  required >
+                        <div v-if="errors.newPassword" class="error">{{ errors.newPassword }}</div>
                       </div>
 
                       <div class="field padding-bottom--24">
@@ -109,10 +109,10 @@
           token:'',
           confirmPassword: '', 
           formdata:{
-        password: '',
+            newPassword: '',
      },
      errors: {
-        password: '',
+        newPassword: '',
         confirmPassword: ''
       }
         }
@@ -127,14 +127,14 @@
     },
 
     validateForm() {
-      this.errors = { password: '', confirmPassword: '' };
+      this.errors = { newPassword: '', confirmPassword: '' };
       let valid = true;
-      if (!this.validatePassword(this.formdata.password)) {
-        this.errors.password = 'Password must be at least 8 characters long and contain both letters and numbers.';
+      if (!this.validatePassword(this.formdata.newPassword)) {
+        this.errors.newPassword = 'Password must be at least 8 characters long and contain both letters and numbers.';
         valid = false;
       }
 
-      if (this.formdata.password !== this.confirmPassword) {
+      if (this.formdata.newPassword !== this.confirmPassword) {
         this.errors.confirmPassword = 'Passwords do not match.';
         valid = false;
       }
@@ -150,7 +150,7 @@
         return;
       }
           this.toggledisabled = true;
-         axios.post(`${base_url}/resetPassword/${this.token}`, {  token: this.token,  password: this.formdata.password}).then((res)=>{
+         axios.post(`${base_url}/resetPassword/${this.token}`, {  token: this.token,  newPassword: this.formdata.newPassword}).then((res)=>{
             console.log('Response:', res);
           if(res.status === 200){     
             this.$router.push('/login');
