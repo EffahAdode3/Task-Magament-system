@@ -2,8 +2,8 @@
   <body>
       <div class="login-root">
         <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
-          <div class="loginbackground box-background--white padding-top--64">
-            <div class="loginbackground-gridContainer">
+          <!-- <div class="loginbackground box-background--white padding-top--64"> -->
+            <!-- <div class="loginbackground-gridContainer">
               <div class="box-root flex-flex" style="grid-area: top / start / 8 / end;">
                 <div class="box-root" style="background-image: linear-gradient(white 0%, rgb(247, 250, 252) 33%); flex-grow: 1;">
                 </div>
@@ -32,12 +32,12 @@
               <div class="box-root flex-flex" style="grid-area: 5 / 14 / auto / 17;">
                 <div class="box-root box-divider--light-all-2 animationRightLeft tans3s" style="flex-grow: 1;"></div>
               </div>
-            </div>
-          </div>
+            </div> -->
+          <!-- </div> -->
           <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
-            <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
+            <!-- <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
               <h1><a href="http://blog.stackfindover.com/" rel="dofollow">My Todo-s</a></h1>
-            </div>
+            </div> -->
             <div class="formbg-outer">
               <div class="formbg">
                 <div class="formbg-inner padding-horizontal--48">
