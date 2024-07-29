@@ -107,13 +107,10 @@
           errorMessage:'',
           toggledisabled:false,
           token:'',
-
-          confirmPassword: '',
-          
+          confirmPassword: '', 
           formdata:{
-                       password: '',
+        password: '',
      },
-
      errors: {
         password: '',
         confirmPassword: ''
