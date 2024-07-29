@@ -37,7 +37,7 @@
           <!-- </div> -->
           <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
             <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
-              <h1><a>Type Your Email To Received Link</a></h1>
+              <h1><a href="#" rel="dofollow">Type Your Email To Received Link</a></h1>
             </div>
             <div class="formbg-outer">
               <div class="formbg">
