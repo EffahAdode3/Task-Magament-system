@@ -112,7 +112,7 @@
        axios.post(`${base_url}/forgetPassword`, {email: this.formdata.email}).then((res)=>{
           console.log('Response:', res);
         if(res.status === 200){     
-          swal('Your Password Reset is sent to Your email');
+          swal('Your Password Reset Link is sent to Your email');
         }
         this.toggledisabled = false;
       }).catch((error) => {
