@@ -58,27 +58,18 @@
                     </div>
                     <input type="password" name="password" v-model="formdata.password">
                   </div>
-                  <!-- <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
-                    <label for="checkbox">
-                      <input type="checkbox" name="checkbox"> Stay signed in for a week
-                    </label>
-                  </div> -->
                   <div class="field padding-bottom--24">
                     <input type="submit" name="submit" value="Continue">
                   </div>
-                  <!-- <div class="field">
-                    <a class="ssolink" href="#">Use single sign-on (Google) instead</a>
-                  </div> -->
                 </form>
                 <div v-if="toggledisabled" class="loading-overlay">
-      <img src="../assets/loading.gif" alt="Loading">
-    </div>
+                <img src="../assets/loading.gif" alt="Loading">
+                </div>
               </div>
             </div>
             <div class="footer-link padding-top--24">
               <span>Don't have an account? <a href="/Signpup">Sign up</a></span>
               <div class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
-                <!-- <span><a href="#">© Stackfindover</a></span> -->
                 <span><a href="#">Contact</a></span>
                 <span><a href="#">Privacy & terms</a></span>
               </div>
