@@ -31,6 +31,8 @@
           <th scope="col">Delete</th>        
           <th scope="col">Assign</th>
           <th scope="col">Reminder</th>
+          <th scope="col">Document</th>
+
         </tr>
       </thead>
       <tbody>
@@ -90,7 +92,12 @@
       <td>
         <button class="btn btn-secondary btn-sm" @click="openAssignModal(toTolist.id)">Assign</button>
       </td>
-      <td>{{ new Date(toTolist.reminderTime).toDateString() }}</td>
+      <td>
+        {{ new Date(toTolist.reminderTime).toDateString() }}
+      </td>
+      <td>
+        {{ toTolist.documents }}
+      </td>
         </tr>
       </tbody>
     </table>

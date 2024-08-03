@@ -64,7 +64,7 @@
               </select>
             </div>
             <div class="col-12 col-md-6 d-flex align-items-center">
-              <label for="fileUpload" class="file-label">Upload Document:</label>
+              <label for="fileUpload" class="file-label">Upload File:</label>
               <input
                 type="file"
                 class="form-control-file"
@@ -268,8 +268,8 @@ body {
 }
 
 .form-control-file {
-  font-size: 1em;
-  padding: 5px;
+  font-size: 0.8em;
+  padding: 10px;
   border: 2px solid blue;
   border-radius: 4px;
 }
