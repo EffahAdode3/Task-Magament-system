@@ -96,8 +96,8 @@
         {{ new Date(toTolist.reminderTime).toDateString() }}
       </td>
       <td>
-            <a v-if="toTolist.documents" :href="`/file/${toTolist.documents}`" target="_blank">Preview</a>
-            <a v-if="toTolist.documents" :href="`/file/${toTolist.documents}`" download>Download</a>
+            <a v-if="toTolist.documents" :href="`${toTolist.documents}`" target="_blank">Preview</a>
+            <a v-if="toTolist.documents" :href="`${toTolist.documents}`" download>Download</a>
           </td>
         </tr>
       </tbody>
