@@ -118,10 +118,10 @@ export default {
       fileInput.value = ''; // Clear the value of the input
     },
     addTodo() {
-    //   if (!this.category || !this.deadline || !this.newTodo || !this.reminderInterval) {
-    //     swal('All Fields Are Required');
-    //     return;
-    //   }
+      if (!this.category || !this.deadline || !this.newTodo || !this.reminderInterval) {
+        swal('All Fields Are Required');
+        return;
+      }
 
       const reminderMap = {
         '1d': { unit: 'days', amount: 1 },
@@ -146,20 +146,18 @@ export default {
       const formData = new FormData();
       formData.append('newTodo', this.newTodo);
       formData.append('category', this.category);
-      formData.append('deadline', this.deadline);
+      formData.append('deadline', this.deadline); 
       formData.append('reminderTime', reminderTime);
+      formData.append('fileName', this.fileName);
       formData.append('statuses', 'Pending');
       if (this.documents) {
         formData.append('documents', this.documents);
       }
-
       // Retrieve token from localStorage
       const token = localStorage.getItem('token');
       console.log(token);
-
       // Set loading to true when request starts
       this.loading = true;
-
       axios.post(`${base_url}/todoList`, formData, {
         headers: {
           'Authorization': `Bearer ${token}`,

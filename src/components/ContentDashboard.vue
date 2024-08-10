@@ -32,14 +32,12 @@
           <th scope="col">Assign</th>
           <th scope="col">Reminder</th>
           <th scope="col">Document</th>
-
         </tr>
       </thead>
       <tbody>
         <tr v-for="toTolist in filteredTOListDos" :key="toTolist.id">
           <td>{{ new Date(toTolist.createdAt).toDateString() }}</td>
-          <td>{{ toTolist.category }}</td>
-          
+          <td>{{ toTolist.category }}</td>  
           <td>
             <span @click="showFullText(toTolist.newTodo)"
                   :title="toTolist.newTodo"
@@ -47,15 +45,11 @@
               {{truncateText(toTolist.newTodo)}}
             </span>
           </td>
-
           <td  :class="{'overdue': isOverdue(toTolist.deadline)}">
             {{new Date(toTolist.deadline).toDateString()}}
             <span v-if="isOverdue(toTolist.deadline)"> - Overdue!</span>
-          </td>
-      
+          </td>     
           <td>
-
-
             <div class="dropdown">
               <button :class="['btn dropdown-toggle', statusButtonClass(toTolist.statuses)]" type="button" id="statusDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ toTolist.statuses }}
@@ -96,14 +90,13 @@
         {{ new Date(toTolist.reminderTime).toDateString() }}
       </td>
       <td>
-            <a v-if="toTolist.documents" :href="`${toTolist.documents}`" target="_blank">Preview</a>
-            <a v-if="toTolist.documents" :href="`${toTolist.documents}`" download>Download</a>
+            <!-- <a v-if="toTolist.documents" :href="`${toTolist.documents}`" download>Download</a> -->
+            <a :href="`https://task-managment-system-backend-api.onrender.com/${toTolist.documents}`" target="_blank">{{toTolist.fileName}}</a>
+            <!-- <a :href="`http://localhost:9878/${toTolist.documents}`" target="_blank">{{toTolist.fileName}}</a> -->
           </td>
         </tr>
       </tbody>
     </table>
-
-
 
     <!-- Modal -->
     <div class="modal fade" id="todoModal" tabindex="-1" aria-labelledby="todoModalLabel" aria-hidden="true">
@@ -202,13 +195,14 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
         <!-- <button type="button" class="btn btn-secondary" @click="closeAssignModal">Close</button> -->
-        <button type="button" class="btn btn-primary"   @click="assignTodo">Assign</button>
+        <button type="button" class="btn btn-primary"   @click="assignTodo" :disabled="loading">
+          <span v-if="loading">Assigning...</span>
+          <span v-else>Assign</span>
+        </button>
       </div>
     </div>
   </div>
 </div> 
-
-
   </div>
 </template>
 <script>                              
@@ -221,13 +215,14 @@
     mixins: [AuthMixin],
      data() {
        return {
+        loading: false, // Loading state
         filteredTOListDos:'',
         TOListDos: [],        
         newTodo: '',
         searchEmail: '',
       searchedUsers: [],
       selectedUsers: [],
- 
+      // fileName:'',
       currentTodoId: null,
         editFormData: {
         id: '',
@@ -254,7 +249,15 @@
     });
   }
 },
-       methods: {
+   methods: {
+
+    // handleFileUpload(event) {
+    //   // this.documents = event.target.files[0];
+    //   // console.log(this.documents)
+    //   this.fileName = event.target.files[0].name;
+    //   console.log(this.fileName)
+    // },
+
         // fetch Data using the Category
      fetchAllData(){
        const token = localStorage.getItem('token');
@@ -315,13 +318,17 @@
         });
     },
 
-    // Truncate Text when To do List or New to do is more than 200
-    truncateText(text, maxLength = 50) {
-      if (text.length > maxLength) {
-        return text.substring(0, maxLength) + '...';
-      }
-      return text;
-    },
+
+ truncateText(text, maxLength = 50) {
+  if (typeof text !== 'string') {
+    return '';
+  }
+  if (text.length > maxLength) {
+    return text.substring(0, maxLength) + '...';
+  }
+  
+  return text;
+},
 
     // show full Text Code
     showFullText(text) {
@@ -448,6 +455,7 @@ openAssignModal(todoId) {
   const token = localStorage.getItem('token');
   console.log('Selected Users:', this.selectedUsers);
   console.log('Current Todo ID:', this.currentTodoId);
+  this.loading = true;
   axios.post(`${base_url}/assign/${this.currentTodoId}`, 
     { emails: this.selectedUsers },
     {
@@ -462,6 +470,7 @@ openAssignModal(todoId) {
       console.log("Response data:", response.data);
       const modal = bootstrap.Modal.getInstance(document.getElementById('assignModal'));
       modal.hide();
+      this.loading = false;
       // Refresh your to-do list data if necessary
     }
   })
