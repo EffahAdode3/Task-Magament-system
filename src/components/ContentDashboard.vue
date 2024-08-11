@@ -69,7 +69,7 @@
           </div>
           <div v-else>
             <button class="btn btn-primary btn-sm" disabled>Edit</button>
-            <span class="text-muted">Not authorized</span>
+            <!-- <span class="text-muted">Not authorized</span> -->
           </div>
         </td>
 
@@ -79,7 +79,7 @@
           </div>
           <div v-else>
             <button class="btn btn-danger btn-sm" disabled>Delete</button>
-            <span class="text-muted">Not authorized</span>
+            <!-- <span class="text-muted">Not authorized</span> -->
           </div>
         </td>
 

@@ -54,21 +54,21 @@
                 <span class="link">Likes</span>
               </a>
             </li> -->
-            <li class="list">
+            <!-- <li class="list">
               <router-link to="/files" class="nav-link" active-class="active">
                 <i class="bx bx-folder-open icon"></i>
                 <span class="link">Files</span>
               </router-link>
-            </li>
+            </li> -->
           </ul>
 
           <div class="bottom-content">
-            <li class="list">
+            <!-- <li class="list">
               <router-link to="/settings" class="nav-link" active-class="active">
                 <i class="bx bx-cog icon"></i>
                 <span class="link">Settings</span>
               </router-link>
-            </li>
+            </li> -->
             <li class="list">
               <button @click="logout" class="nav-link">
     <i class="bx bx-log-out icon"></i>
