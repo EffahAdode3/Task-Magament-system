@@ -6,7 +6,9 @@
     <h1 class="archive-heading">Task Management Lists</h1> 
     <!-- Check if there are tasks -->
     <div v-if="filteredTOListDos.length === 0">
+    <h1>
       <p class="text-center text-muted">No tasks are available at the moment. Please go to the sidebar and create a task.</p>
+    </h1>  
     </div>
     
     <!-- Display the table if there are tasks -->
