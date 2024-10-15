@@ -3,7 +3,7 @@
     <br>
     <br>
     <br>
-    <h1 class="archive-heading">My To-Do Lists</h1>
+    <h1 class="archive-heading">Task Management Lists</h1> 
 
     <table class="table">
       <thead>
@@ -270,6 +270,10 @@
          })
            .then((response) => {
              this.TOListDos = response.data.allToDoList;
+             if (this.ToListDos === 0){
+              swal('You have no tasks')
+              this.$router.push('/addTask');
+             }
              console.log(this.TOListDos);
              console.log(response.data);
            })
