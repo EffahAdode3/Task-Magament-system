@@ -74,13 +74,15 @@
         </td>
 
           <td>
-          <div v-if="canEditOrDelete(toTolist)">
+            <div>
+          <!-- <div v-if="canEditOrDelete(toTolist)"> -->  
             <button class="btn btn-danger btn-sm" @click="deleteTodo(toTolist.id)">Delete</button>
           </div>
-          <div v-else>
-            <button class="btn btn-danger btn-sm" disabled>Delete</button>
+          <!-- </div> -->
+          <!-- <div v-else> -->
+            <!-- <button class="btn btn-danger btn-sm" disabled>Delete</button> -->
             <!-- <span class="text-muted">Not authorized</span> -->
-          </div>
+          <!-- </div> -->
         </td>
 
       <td>
