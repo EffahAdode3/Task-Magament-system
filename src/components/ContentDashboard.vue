@@ -5,10 +5,22 @@
     <br>
     <h1 class="archive-heading">Task Management Lists</h1> 
     <!-- Check if there are tasks -->
-    <div v-if="filteredTOListDos.length === 0">
+    <!-- <div v-if="filteredTOListDos.length === 0">
     <h3>
       <p class="text-center text-muted">No tasks are available at the moment. Please go to the sidebar and create a task.</p>
     </h3>  
+    </div> -->
+    <div v-if="isLoading">
+      <h3>
+        <p class="text-center text-muted">Loading tasks...</p>
+      </h3>
+    </div>
+
+    <!-- Check if there are no tasks -->
+    <div v-if="!isLoading && filteredTOListDos.length === 0">
+      <h3>
+        <p class="text-center text-muted">No tasks are available at the moment. Please go to the sidebar and create a task.</p>
+      </h3>
     </div>
     
     <!-- Display the table if there are tasks -->
