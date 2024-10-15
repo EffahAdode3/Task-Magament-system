@@ -10,7 +10,7 @@
     </div>
     
     <!-- Display the table if there are tasks -->
-    <!-- <div v-else></div> -->
+     <div v-else>
 
     <table class="table">
       <thead>
