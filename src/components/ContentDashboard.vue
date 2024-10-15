@@ -240,7 +240,7 @@
     mixins: [AuthMixin],
      data() {
        return {
-        loading: false, // Loading state
+        isLoading: true, 
         filteredTOListDos:'',
         TOListDos: [],        
         newTodo: '',
