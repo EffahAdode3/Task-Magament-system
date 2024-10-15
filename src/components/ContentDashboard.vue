@@ -254,7 +254,8 @@
         category: '',
         newTodo: '',
         deadline: '',
-        reminderInterval: '',     
+        reminderInterval: '',    
+        isLoading: true,  
       }         
        };
      },
@@ -295,6 +296,7 @@
          })
            .then((response) => {
              this.TOListDos = response.data.allToDoList;
+             this.isLoading = false;
              console.log(this.TOListDos);
              console.log(response.data);
            })
