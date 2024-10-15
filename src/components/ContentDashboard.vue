@@ -4,6 +4,13 @@
     <br>
     <br>
     <h1 class="archive-heading">Task Management Lists</h1> 
+    <!-- Check if there are tasks -->
+    <div v-if="filteredTOListDos.length === 0">
+      <p class="text-center text-muted">No tasks available at the moment. Please add or select a different category.</p>
+    </div>
+    
+    <!-- Display the table if there are tasks -->
+    <!-- <div v-else></div> -->
 
     <table class="table">
       <thead>
@@ -272,10 +279,6 @@
          })
            .then((response) => {
              this.TOListDos = response.data.allToDoList;
-             if (this.ToListDos === 0){
-              swal('You have no tasks')
-              this.$router.push('/addTask');
-             }
              console.log(this.TOListDos);
              console.log(response.data);
            })
