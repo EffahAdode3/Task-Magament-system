@@ -106,6 +106,7 @@
         </tr>
       </tbody>
     </table>
+  </div>
 
     <!-- Modal -->
     <div class="modal fade" id="todoModal" tabindex="-1" aria-labelledby="todoModalLabel" aria-hidden="true">
@@ -212,7 +213,7 @@
     </div>
   </div>
 </div> 
-  </div>
+
 </template>
 <script>                              
   import axios from "axios";
