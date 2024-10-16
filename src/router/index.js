@@ -6,7 +6,7 @@ import Dashboard from  '../views/Dashboard.vue'
 import Archive from '../views/Archive.vue'
 import ForgetPasswordEmail from '../views/ForgetPasswordEmail.vue'
 import ResetPassword from '../views/ResetPassword.vue'
-import chat from '../views/Chat.vue'
+// import chat from '../views/Chat.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
