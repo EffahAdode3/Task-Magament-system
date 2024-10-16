@@ -8,7 +8,7 @@
       <div class="sidebar">
         <div class="logo">
           <i class="bx bx-menu menu-icon" @click="toggleNav"></i>
-          <span class="logo-name">My Todo-s</span>
+          <span class="logo-name">MY Task Management</span>
         </div>
         <div class="sidebar-content">
           <ul class="lists">
