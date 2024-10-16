@@ -5,7 +5,7 @@
         <div class="col">
           <div class="p-1 h1 text-primary text-center mx-auto display-inline-block">
             <i class="fa fa-check bg-primary text-white rounded p-2"></i>
-            <u>Add Your Todo-s</u>
+            <u>Add Your Task</u>
           </div>
         </div>
       </div>
