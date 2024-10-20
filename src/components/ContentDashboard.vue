@@ -203,7 +203,10 @@
         <input type="text" class="form-control" v-model="searchEmail" @input="searchUsers" placeholder="Search by email">
         <ul class="list-group mt-2">
           <li class="list-group-item" v-for="user in searchedUsers" :key="user.id" @click="selectUser(user.email)">
-            {{ user.email }}
+            <div>
+        <h6 class="mb-0">{{ user.userName }}</h6>
+        <small class="text-muted">{{ user.email }}</small>
+      </div>
           </li>
         </ul>
         <div class="mt-3">
