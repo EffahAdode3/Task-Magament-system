@@ -2,7 +2,6 @@
   
 <template>
     <br>
-    <br>
     <h1 class="archive-heading">Collaboration Platform</h1> 
     <div class="modal-dialog">
       <div class="modal-content">
