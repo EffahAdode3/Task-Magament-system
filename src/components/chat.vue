@@ -31,7 +31,7 @@
             </li>
           </ul>
   
-       <div class="mt-1">
+       <!-- <div class="mt-1">
     <h6>Selected User: {{ chatPartner }}</h6>
     <ul class="list-group chat-box">
       <li
@@ -47,7 +47,24 @@
       </li>
     </ul>
   </div>
-  
+   -->
+
+   <div class="mt-1">
+  <h6>Selected User: {{ chatPartner }}</h6>
+  <ul ref="chatBox" class="list-group chat-box">
+    <li
+      v-for="(msg, index) in messages"
+      :key="index"
+      :class="{
+        'message-left': msg.senderId !== currentUserId,
+        'message-right': msg.senderId === currentUserId
+      }"
+      class="list-group-item message-item"
+    >
+      <div class="message-content">{{ msg.message }}</div>
+    </li>
+  </ul>
+</div>
           <!-- Message Input -->
           <div class="mt-3">
             <input
@@ -226,5 +243,4 @@
     font-size: 1.5em; /* Adjust font size for smaller screens */
   }
 }
-  
   </style>
