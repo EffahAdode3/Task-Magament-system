@@ -177,7 +177,7 @@
     margin-top: 10px;
   }
   .chat-box {
-    max-height: 400px;
+    max-height: 500px;
     overflow-y: auto;
     padding: 0;
     margin: 0;
