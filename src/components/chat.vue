@@ -1,14 +1,14 @@
   
 <template>
     <br>
-  
+    <br>
     <h1 class="archive-heading">Collaboration Platform</h1> 
     <div class="modal-dialog">
       <div class="modal-content">
         <!-- Search and Select User Section -->
         <div class="modal-header">
           <h5 class="modal-title">Chat</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
         </div>
         <div class="modal-body">
           <input
@@ -28,18 +28,17 @@
               <h6 class="mb-0">{{ user.userName }}</h6>
               <small class="text-muted">{{ user.email }}</small>
             </li>
-          </ul>
-  
+          </ul> 
        <div class="mt-1">
-    <h6> Name : {{ chatPartnerName }} Email : {{ chatPartner }}   </h6>
-    <!-- <h6 class="mb-0"> {{ chatPartnerName }} </h6> -->
+    <h6 class="mb-0"> Name : {{ chatPartnerName }}  </h6>
+    <small class="text-muted">Email : {{ chatPartner }}  </small>
     <ul class="list-group chat-box">
       <li
         v-for="(msg, index) in messages"
         :key="index"
         :class="{
-          'message-left': msg.senderId !== currentUserId,
-          'message-right': msg.senderId === currentUserId
+          'message-right': msg.senderId !== currentUserId,
+          'message-left': msg.senderId === currentUserId
         }"
         class="list-group-item message-item"
       >
