@@ -1,7 +1,7 @@
-
   
 <template>
     <br>
+  
     <h1 class="archive-heading">Collaboration Platform</h1> 
     <div class="modal-dialog">
       <div class="modal-content">
@@ -23,7 +23,7 @@
               class="list-group-item"
               v-for="user in searchedUsers"
               :key="user.id"
-              @click="selectUser(user.email, user.id)"
+              @click="selectUser(user.email, user.id, user.userName)"
             >
               <h6 class="mb-0">{{ user.userName }}</h6>
               <small class="text-muted">{{ user.email }}</small>
@@ -31,7 +31,8 @@
           </ul>
   
        <div class="mt-1">
-    <h6>Selected User: {{ chatPartner }}</h6>
+    <h6>  {{ chatPartnerName }} {{ chatPartner }}   </h6>
+    <!-- <h6 class="mb-0"> {{ chatPartnerName }} </h6> -->
     <ul class="list-group chat-box">
       <li
         v-for="(msg, index) in messages"
@@ -45,10 +46,7 @@
         <div class="message-content">{{ msg.message }}</div>
       </li>
     </ul>
-  </div>
-  
-
-   
+  </div>   
           <!-- Message Input -->
           <div class="mt-3">
             <input
@@ -75,6 +73,7 @@
         searchEmail: '',
         searchedUsers: [],
         chatPartner: '',
+        chatPartnerName:'',
         chatPartnerId: null,
         newMessage: '',
         messages: [],
@@ -121,9 +120,10 @@
           console.error('Error fetching users:', error);
         });
       },
-      selectUser(email, userId) {
+      selectUser(email, userId, userName) {
         this.chatPartner = email;
         this.chatPartnerId = userId;
+        this.chatPartnerName = userName
         this.searchedUsers = [];
         this.fetchMessages();
       },
@@ -138,7 +138,6 @@
       },
       sendMessage() {
         if (this.newMessage.trim() === '') return;
-  
         // Emit the message to the server
         this.socket.emit('sendMessage', {
           senderId: this.currentUserId,
@@ -146,22 +145,18 @@
           message: this.newMessage,
           fromEmail: this.getCurrentUser().email,
         });
-  
         // Add the message to the chat window
         this.messages.push({
           senderId: this.currentUserId,
           message: this.newMessage,
         });
-  
         // Clear the input
         this.newMessage = '';
       },
     },
   };
   </script>
-  
-  
-    
+
   <style scoped>
   .modal-dialog {
     max-width: 500px;
