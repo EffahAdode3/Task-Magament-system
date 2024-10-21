@@ -31,7 +31,7 @@
           </ul>
   
        <div class="mt-1">
-    <h6> Email:{{ chatPartnerName }} Name:{{ chatPartner }}   </h6>
+    <h6> Name : {{ chatPartnerName }} Email : {{ chatPartner }}   </h6>
     <!-- <h6 class="mb-0"> {{ chatPartnerName }} </h6> -->
     <ul class="list-group chat-box">
       <li
