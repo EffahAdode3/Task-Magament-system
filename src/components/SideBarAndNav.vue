@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="indexZindex">
     <nav :class="{ open: isNavOpen }">
       <div class="logo">
@@ -35,52 +35,9 @@
                 <i class="bx bx-message-rounded icon"></i>
                 <span class="link">Chat</span>
               </router-link>
-            </li>
-            <!-- <li class="list">
-              <router-link to="/liveStreaming" class="nav-link" active-class="active">
-                <i class="bx bx-message-rounded icon"></i>
-                <span class="link">Live Streaming</span>
-              </router-link>
-            </li> -->
-            <!-- <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-bell icon"></i>
-                <span class="link">Notifications</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-message-rounded icon"></i>
-                <span class="link">Messages</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-pie-chart-alt-2 icon"></i>
-                <span class="link">Analytics</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-heart icon"></i>
-                <span class="link">Likes</span>
-              </a>
-            </li> -->
-            <!-- <li class="list">
-              <router-link to="/files" class="nav-link" active-class="active">
-                <i class="bx bx-folder-open icon"></i>
-                <span class="link">Files</span>
-              </router-link>
-            </li> -->
+            </li>    
           </ul>
-
-          <div class="bottom-content">
-            <!-- <li class="list">
-              <router-link to="/settings" class="nav-link" active-class="active">
-                <i class="bx bx-cog icon"></i>
-                <span class="link">Settings</span>
-              </router-link>
-            </li> -->
+          <div class="bottom-content">   
             <li class="list">
               <button @click="logout" class="nav-link">
     <i class="bx bx-log-out icon"></i>
@@ -120,7 +77,6 @@ export default {
 };
 </script>
 <style  scoped>
-/* Google Fonts - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
 * {
@@ -237,5 +193,115 @@ nav.open ~ .overlay {
 }
 .nav-link.active .icon {
   color: #fff;
+}
+</style> -->
+
+<template>
+  <div class="indexZindex">
+    <nav :class="{ open: isNavOpen }">
+      <div class="logo">
+        <i class="bx bx-menu menu-icon" @click="toggleNav"></i>
+        <span class="logo-name">MY Task Management</span>
+      </div>
+      <div class="sidebar">
+        <div class="logo">
+          <i class="bx bx-menu menu-icon" @click="toggleNav"></i>
+          <span class="logo-name">MY Task Management</span>
+        </div>
+        <div class="sidebar-content">
+          <ul class="lists">
+            <li class="list">
+              <router-link to="/" class="nav-link" active-class="active">
+                <i class="bx bx-home-alt icon"></i>
+                <span class="link">Dashboard</span>
+              </router-link>
+            </li>
+            <li class="list">
+              <router-link to="/addTask" class="nav-link" active-class="active">
+                <i class="bx bx-bar-chart-alt-2 icon"></i>
+                <span class="link">Add Task</span>
+              </router-link>
+            </li>
+            <li class="list">
+              <router-link to="/archive" class="nav-link" active-class="active">
+                <i class="bx bx-message-rounded icon"></i>
+                <span class="link">Archive</span>
+              </router-link>
+            </li>
+            <li class="list">
+              <router-link to="/chat" class="nav-link" active-class="active">
+                <i class="bx bx-message-rounded icon"></i>
+                <span class="link">Chat</span>
+                <!-- Notification Badge -->
+                <span v-if="notifications.length > 0" class="notification-badge">{{ notifications.length }}</span>
+              </router-link>
+            </li>
+          </ul>
+          <div class="bottom-content">   
+            <li class="list">
+              <button @click="logout" class="nav-link">
+                <i class="bx bx-log-out icon"></i>
+                <span class="link">Logout</span>
+              </button>
+            </li>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <section class="overlay" @click="closeNav"></section>
+  </div>
+</template>
+
+<script>
+import AuthMixin from '../authMixin';
+export default {
+  mixins: [AuthMixin],
+  data() {
+    return {
+      isNavOpen: false,
+      notifications: [] // Initialize notifications
+    };
+  },
+  methods: {
+    toggleNav() {
+      this.isNavOpen = !this.isNavOpen;
+    },
+    closeNav() {
+      this.isNavOpen = false;
+    },
+    logout() {
+      localStorage.clear();
+      this.$router.push('/login');
+    },
+    addNotification(message) {
+      this.notifications.push(message);
+      this.saveNotifications();
+    },
+    saveNotifications() {
+      localStorage.setItem('notifications', JSON.stringify(this.notifications));
+    },
+    loadNotifications() {
+      const storedNotifications = JSON.parse(localStorage.getItem('notifications')) || [];
+      this.notifications = storedNotifications;
+    }
+  },
+  mounted() {
+    this.loadNotifications(); // Load notifications when the component mounts
+  }
+};
+</script>
+
+<style scoped>
+/* Your existing styles here... */
+
+.notification-badge {
+  background-color: #ff4c4c;
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
 }
 </style>
