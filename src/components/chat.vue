@@ -1,5 +1,4 @@
-  
-<template>
+  <template>
     <br>
     <br>
     <h1 class="archive-heading">Collaboration Platform</h1> 
@@ -29,7 +28,26 @@
               <small class="text-muted">{{ user.email }}</small>
             </li>
           </ul> 
-       <div class="mt-1">
+
+          <div class="mt-1">
+  <h6 class="mb-0">Name: {{ chatPartnerName }}</h6>
+  <small class="text-muted">Email: {{ chatPartner }}</small>
+  <ul class="list-group chat-box" ref="chatBox">
+    <li
+      v-for="(msg, index) in messages"
+      :key="index"
+      :class="{
+        'message-right': msg.senderId !== currentUserId,
+        'message-left': msg.senderId === currentUserId
+      }"
+      class="list-group-item message-item"
+    >
+      <div class="message-content">{{ msg.message }}</div>
+    </li>
+  </ul>
+</div>
+
+       <!-- <div class="mt-1">
     <h6 class="mb-0"> Name : {{ chatPartnerName }}  </h6>
     <small class="text-muted">Email : {{ chatPartner }}  </small>
     <ul class="list-group chat-box">
@@ -45,9 +63,9 @@
         <div class="message-content">{{ msg.message }}</div>
       </li>
     </ul>
-  </div>   
+  </div>    -->
           <!-- Message Input -->
-          <div class="mt-3">
+          <!-- <div class="mt-3">
             <input
               type="text"
               class="form-control"
@@ -55,7 +73,17 @@
               placeholder="Type a message"
             />
             <button class="btn btn-primary mt-2" @click="sendMessage">Send</button>
-          </div>
+          </div> -->
+
+          <div class="mt-3">
+  <textarea
+    class="form-control"
+    v-model="newMessage"
+    placeholder="Type a message"
+    @keydown.enter="handleKeyDown"
+  ></textarea>
+  <button class="btn btn-primary mt-2" @click="sendMessage">Send</button>
+</div>
         </div>
       </div>
     </div>
@@ -72,7 +100,7 @@
         searchEmail: '',
         searchedUsers: [],
         chatPartner: '',
-        chatPartnerName:'',
+        chatPartnerName: '',
         chatPartnerId: null,
         newMessage: '',
         messages: [],
@@ -83,6 +111,7 @@
     mounted() {
       const currentUser = this.getCurrentUser();
       this.currentUserId = currentUser.id;
+      this.scrollToBottom();
   
       // Initialize Socket.IO connection
       this.socket = io(base_url);
@@ -94,11 +123,15 @@
             senderId: this.chatPartnerId,
             message: data.message,
           });
+          this.saveChatData(); // Save messages to localStorage
         }
       });
   
-      // Join the chat room with current user's email
+      // Join the chat room with the current user's email
       this.socket.emit('joinChat', currentUser.email);
+  
+      // Restore chat partner and messages from localStorage
+      this.restoreChatData();
     },
     methods: {
       getCurrentUser() {
@@ -106,37 +139,50 @@
       },
       searchUsers() {
         const token = localStorage.getItem('token');
-        axios.get(`${base_url}/getClientEmail/${this.searchEmail}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          }
-        })
-        .then(response => {
-          this.searchedUsers = response.data.users;
-        })
-        .catch(error => {
-          console.error('Error fetching users:', error);
-        });
+        axios
+          .get(`${base_url}/getClientEmail/${this.searchEmail}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          })
+          .then((response) => {
+            this.searchedUsers = response.data.users;
+          })
+          .catch((error) => {
+            console.error('Error fetching users:', error);
+          });
       },
       selectUser(email, userId, userName) {
         this.chatPartner = email;
         this.chatPartnerId = userId;
-        this.chatPartnerName = userName
+        this.chatPartnerName = userName;
         this.searchedUsers = [];
         this.fetchMessages();
+  
+        // Save the chat partner info to localStorage
+        this.saveChatData();
+      },
+      handleKeyDown(event) {
+        if (event.key === 'Enter' && !event.shiftKey) {
+          event.preventDefault(); // Prevent default "Enter" behavior (new line)
+          this.sendMessage(); // Call the sendMessage function
+        }
       },
       fetchMessages() {
-        axios.get(`${base_url}/messages/${this.currentUserId}/${this.chatPartnerId}`)
-          .then(response => {
+        axios
+          .get(`${base_url}/messages/${this.currentUserId}/${this.chatPartnerId}`)
+          .then((response) => {
             this.messages = response.data.messages;
+            this.saveChatData(); // Save fetched messages to localStorage
           })
-          .catch(error => {
+          .catch((error) => {
             console.error('Error fetching messages:', error);
           });
       },
       sendMessage() {
         if (this.newMessage.trim() === '') return;
+  
         // Emit the message to the server
         this.socket.emit('sendMessage', {
           senderId: this.currentUserId,
@@ -144,18 +190,64 @@
           message: this.newMessage,
           fromEmail: this.getCurrentUser().email,
         });
+  
         // Add the message to the chat window
         this.messages.push({
           senderId: this.currentUserId,
           message: this.newMessage,
         });
+
+         // Scroll to the latest message
+      this.$nextTick(() => {
+        this.scrollToBottom();
+      });
+  
+        // Save the messages to localStorage
+        this.saveChatData();
+  
         // Clear the input
         this.newMessage = '';
       },
+
+      scrollToBottom() {
+      const chatBox = this.$refs.chatBox;
+      if (chatBox) {
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
     },
+      // Save chat partner and messages to localStorage
+      saveChatData() {
+        const chatData = {
+          chatPartner: this.chatPartner,
+          chatPartnerId: this.chatPartnerId,
+          chatPartnerName: this.chatPartnerName,
+          messages: this.messages,
+        };
+        localStorage.setItem('chatData', JSON.stringify(chatData));
+      },
+      // Restore chat partner and messages from localStorage
+      restoreChatData() {
+        const chatData = JSON.parse(localStorage.getItem('chatData'));
+        if (chatData) {
+          this.chatPartner = chatData.chatPartner;
+          this.chatPartnerId = chatData.chatPartnerId;
+          this.chatPartnerName = chatData.chatPartnerName;
+          this.messages = chatData.messages;
+        }
+      },
+    },
+
+    watch: {
+    // Watch the messages array, and scroll to bottom when a new message is added
+    messages() {
+      this.$nextTick(() => {
+        this.scrollToBottom();
+      });
+    },
+  },
   };
   </script>
-
+  
   <style scoped>
   .modal-dialog {
     max-width: 500px;

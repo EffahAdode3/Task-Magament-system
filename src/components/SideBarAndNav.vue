@@ -36,6 +36,12 @@
                 <span class="link">Chat</span>
               </router-link>
             </li>
+            <li class="list">
+              <router-link to="/liveStreaming" class="nav-link" active-class="active">
+                <i class="bx bx-message-rounded icon"></i>
+                <span class="link">Live Streaming</span>
+              </router-link>
+            </li>
             <!-- <li class="list">
               <a href="#" class="nav-link">
                 <i class="bx bx-bell icon"></i>

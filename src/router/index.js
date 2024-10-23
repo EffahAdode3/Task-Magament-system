@@ -7,6 +7,7 @@ import Archive from '../views/Archive.vue'
 import ForgetPasswordEmail from '../views/ForgetPasswordEmail.vue'
 import ResetPassword from '../views/ResetPassword.vue'
 import chat from '../views/chat.vue'
+import liveStreaming from '../views/liveStreaming.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -19,6 +20,11 @@ const router = createRouter({
       path: '/chat',
       name: ' chat ',
       component:  chat 
+    },
+    {
+      path: '/liveStreaming',
+      name: ' liveStreaming ',
+      component:  liveStreaming 
     },
     {
       path: '/Signpup',
