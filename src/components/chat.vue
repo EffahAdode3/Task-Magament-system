@@ -46,10 +46,7 @@
   </li>
 </ul>
 </div>
-
-
-
-        <div class="mt-3">
+<div class="mt-3">
 <textarea
   class="form-control"
   v-model="newMessage"
@@ -67,7 +64,6 @@
 import axios from 'axios';
 import { io } from 'socket.io-client'; // Import Socket.IO client
 import { base_url } from '../constant';
-
 export default {
   data() {
     return {
