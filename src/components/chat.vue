@@ -30,32 +30,34 @@
         </ul> 
 
         <div class="mt-1">
-          <h6 class="mb-0">Name: {{ chatPartnerName }}</h6>
-          <small class="text-muted">Email: {{ chatPartner }}</small>
-          <ul class="list-group chat-box" ref="chatBox">
-            <li
-              v-for="(msg, index) in messages"
-              :key="index"
-              :class="{
-                'message-right': msg.senderId === currentUserId,
-                'message-left': msg.senderId !== currentUserId
-              }"
-              class="list-group-item message-item"
-            >
-              <div class="message-content">{{ msg.message }}</div>
-            </li>
-          </ul>
-        </div>
+<h6 class="mb-0">Name: {{ chatPartnerName }}</h6>
+<small class="text-muted">Email: {{ chatPartner }}</small>
+<ul class="list-group chat-box" ref="chatBox">
+  <li
+    v-for="(msg, index) in messages"
+    :key="index"
+    :class="{
+      'message-right': msg.senderId !== currentUserId,
+      'message-left': msg.senderId === currentUserId
+    }"
+    class="list-group-item message-item"
+  >
+    <div class="message-content">{{ msg.message }}</div>
+  </li>
+</ul>
+</div>
+
+
 
         <div class="mt-3">
-          <textarea
-            class="form-control"
-            v-model="newMessage"
-            placeholder="Type a message"
-            @keydown.enter="handleKeyDown"
-          ></textarea>
-          <button class="btn btn-primary mt-2" @click="sendMessage">Send</button>
-        </div>
+<textarea
+  class="form-control"
+  v-model="newMessage"
+  placeholder="Type a message"
+  @keydown.enter="handleKeyDown"
+></textarea>
+<button class="btn btn-primary mt-2" @click="sendMessage">Send</button>
+</div>
       </div>
     </div>
   </div>
@@ -90,12 +92,9 @@ export default {
 
     // Listen for incoming messages
     this.socket.on('receiveMessage', (data) => {
-      if (
-        (data.senderId === this.chatPartnerId && data.receiverId === this.currentUserId) || 
-        (data.receiverId === this.chatPartnerId && data.senderId === this.currentUserId)
-      ) {
+      if (data.fromEmail === this.chatPartner) {
         this.messages.push({
-          senderId: data.senderId,
+          senderId: this.chatPartnerId,
           message: data.message,
         });
         this.saveChatData(); // Save messages to localStorage
@@ -172,10 +171,10 @@ export default {
         message: this.newMessage,
       });
 
-      // Scroll to the latest message
-      this.$nextTick(() => {
-        this.scrollToBottom();
-      });
+       // Scroll to the latest message
+    this.$nextTick(() => {
+      this.scrollToBottom();
+    });
 
       // Save the messages to localStorage
       this.saveChatData();
@@ -185,11 +184,11 @@ export default {
     },
 
     scrollToBottom() {
-      const chatBox = this.$refs.chatBox;
-      if (chatBox) {
-        chatBox.scrollTop = chatBox.scrollHeight;
-      }
-    },
+    const chatBox = this.$refs.chatBox;
+    if (chatBox) {
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  },
     // Save chat partner and messages to localStorage
     saveChatData() {
       const chatData = {
@@ -213,13 +212,13 @@ export default {
   },
 
   watch: {
-    // Watch the messages array, and scroll to bottom when a new message is added
-    messages() {
-      this.$nextTick(() => {
-        this.scrollToBottom();
-      });
-    },
+  // Watch the messages array, and scroll to bottom when a new message is added
+  messages() {
+    this.$nextTick(() => {
+      this.scrollToBottom();
+    });
   },
+},
 };
 </script>
 
@@ -238,7 +237,6 @@ export default {
 .message-input {
   margin-top: 10px;
 }
-
 .chat-box {
   max-height: 500px;
   overflow-y: auto;
@@ -246,7 +244,6 @@ export default {
   margin: 0;
   list-style-type: none;
 }
-
 .message-item {
   display: inline-block;
   margin-bottom: 10px;
@@ -274,20 +271,21 @@ export default {
 }
 
 .archive-heading {
-  color: blue;
-  text-align: center;
-  margin: 20px 0;
-  padding: 10px;
-  font-size: 2em;
-  font-family: 'Arial', sans-serif;
-  background-color: #f0f0f0;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+color: blue; /* Attractive tomato color */
+text-align: center; /* Center text horizontally */
+margin: 20px 0; /* Add some margin for spacing */
+padding: 10px;
+font-size: 2em; /* Increase font size for better visibility */
+font-family: 'Arial', sans-serif; /* Use a clean, sans-serif font */
+background-color: #f0f0f0; /* Light grey background for contrast */
+border-radius: 10px; /* Rounded corners for better aesthetics */
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 @media (max-width: 600px) {
-  .archive-heading {
-    font-size: 1.5em;
-  }
+.archive-heading {
+  font-size: 1.5em; /* Adjust font size for smaller screens */
+}
 }
 </style>
+
