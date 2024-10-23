@@ -21,7 +21,7 @@
         <video ref="remoteVideo" autoplay playsinline></video>
   
         <!-- Streamer starts the stream -->
-        <button v-if="!isStreaming && !streamInvite" @click="startStreaming">Start Streaming</button>
+        <button v-if="!isStreaming" @click="startStreaming">Start Streaming</button>
   
         <!-- Viewer sees available stream -->
         <div v-if="streamAvailable && !isStreaming">
@@ -49,7 +49,6 @@
         localStream: null,
         remoteStream: null,
         peerConnection: null,
-        streamingUser: '', // To store the email of the user who is streaming
       };
     },
     mounted() {
@@ -68,6 +67,7 @@
   
       initSocket() {
         this.socket = io(base_url);
+  
         this.socket.emit('joinChat', this.localEmail);
   
         this.socket.on('receiveInvite', (data) => {
@@ -81,7 +81,6 @@
   
         // Listen for incoming stream offers
         this.socket.on('streamOffer', (data) => {
-          this.streamingUser = data.fromEmail; // Store who is streaming
           this.joinStream(data.offer);
         });
   
@@ -169,10 +168,6 @@
       // Handle the incoming offer from the inviter (when joining a stream)
       async joinStream(offer) {
         try {
-          // Create a new RTCPeerConnection for the joining user
-          this.peerConnection = new RTCPeerConnection();
-  
-          // Access the user's media devices (for their own camera and microphone)
           this.localStream = await navigator.mediaDevices.getUserMedia({
             video: true,
             audio: true,
@@ -180,6 +175,9 @@
   
           // Set the local video element source for the joining user
           this.$refs.localVideo.srcObject = this.localStream;
+  
+          // Create a new RTCPeerConnection
+          this.peerConnection = new RTCPeerConnection();
   
           // Add local stream tracks to the peer connection
           this.localStream.getTracks().forEach(track => {
@@ -196,7 +194,7 @@
           // Emit the answer back to the inviter
           this.socket.emit('streamAnswer', {
             answer: answer,
-            toEmail: this.streamingUser,
+            toEmail: this.streamInvite,
             fromEmail: this.localEmail,
           });
         } catch (error) {
