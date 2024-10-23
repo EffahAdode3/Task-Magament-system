@@ -78,6 +78,16 @@
           console.log(`${data.toEmail} has accepted your live stream invitation.`);
           this.startStreaming(); // Start streaming when invite is accepted
         });
+  
+        // Listen for incoming stream offers
+        this.socket.on('streamOffer', (data) => {
+          this.joinStream(data.offer);
+        });
+  
+        // Listen for incoming stream answers
+        this.socket.on('streamAnswer', (data) => {
+          this.peerConnection.setRemoteDescription(new RTCSessionDescription(data.answer));
+        });
       },
   
       searchUsers() {
@@ -138,7 +148,7 @@
             this.$refs.remoteVideo.srcObject = this.remoteStream;
           };
   
-          // Create an offer and send it to the remote peer
+          // Create an offer and send it to the invited user
           const offer = await this.peerConnection.createOffer();
           await this.peerConnection.setLocalDescription(offer);
   
@@ -156,19 +166,42 @@
       },
   
       // Handle the incoming offer from the inviter (when joining a stream)
-      joinStream(offer) {
-        this.peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
-        this.peerConnection.createAnswer().then(answer => {
-          this.peerConnection.setLocalDescription(answer);
+      async joinStream(offer) {
+        try {
+          this.localStream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: true,
+          });
+          
+          // Set the local video element source for the joining user
+          this.$refs.localVideo.srcObject = this.localStream;
+  
+          // Create a new RTCPeerConnection
+          this.peerConnection = new RTCPeerConnection();
+  
+          // Add local stream tracks to the peer connection
+          this.localStream.getTracks().forEach(track => {
+            this.peerConnection.addTrack(track, this.localStream);
+          });
+  
+          // Set the remote description using the offer
+          await this.peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
+  
+          // Create an answer
+          const answer = await this.peerConnection.createAnswer();
+          await this.peerConnection.setLocalDescription(answer);
+  
+          // Emit the answer back to the inviter
           this.socket.emit('streamAnswer', {
             answer: answer,
             toEmail: this.streamInvite,
             fromEmail: this.localEmail,
           });
-        });
+        } catch (error) {
+          console.error('Error joining stream:', error);
+        }
       },
     },
   };
   </script>
-  
   
