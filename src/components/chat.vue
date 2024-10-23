@@ -47,33 +47,7 @@
   </ul>
 </div>
 
-       <!-- <div class="mt-1">
-    <h6 class="mb-0"> Name : {{ chatPartnerName }}  </h6>
-    <small class="text-muted">Email : {{ chatPartner }}  </small>
-    <ul class="list-group chat-box">
-      <li
-        v-for="(msg, index) in messages"
-        :key="index"
-        :class="{
-          'message-right': msg.senderId !== currentUserId,
-          'message-left': msg.senderId === currentUserId
-        }"
-        class="list-group-item message-item"
-      >
-        <div class="message-content">{{ msg.message }}</div>
-      </li>
-    </ul>
-  </div>    -->
-          <!-- Message Input -->
-          <!-- <div class="mt-3">
-            <input
-              type="text"
-              class="form-control"
-              v-model="newMessage"
-              placeholder="Type a message"
-            />
-            <button class="btn btn-primary mt-2" @click="sendMessage">Send</button>
-          </div> -->
+  
 
           <div class="mt-3">
   <textarea
