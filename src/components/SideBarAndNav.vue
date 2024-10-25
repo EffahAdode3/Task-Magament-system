@@ -34,12 +34,12 @@
             <!-- Chat Route with Notification Badge -->
             <li class="list">
               <router-link to="/chat" class="nav-link" active-class="active">
-      <i class="bx bx-message-rounded icon"></i>
-      <span class="link">
-        Chat
-        <span v-if="hasNewMessage > 0" class="notification-badge">{{ hasNewMessage }}</span>
-      </span>
-    </router-link>
+         <i class="bx bx-message-rounded icon"></i>
+         <span class="link">
+          Chat
+         <span v-if="hasNewMessage > 0" class="notification-badge">{{ hasNewMessage }}</span>
+         </span>
+         </router-link>
             </li>    
           </ul>
 
