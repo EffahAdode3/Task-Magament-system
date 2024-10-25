@@ -59,17 +59,15 @@
 </template>
 
 <script>
- import AuthMixin from '../authMixin';
+ import AuthMixin from '../authMixin'
  import io from 'socket.io-client';
 const socket = io('https://task-managment-system-backend-api.onrender.com');
-
 export default {
   mixins: [AuthMixin],
   data() {
     return {
       isNavOpen: false,
       hasNewMessage: 0,
-      currentUser: null, // Holds the current user information
     };
   },
   methods: {
@@ -79,27 +77,22 @@ export default {
     closeNav() {
       this.isNavOpen = false;
     },
-    logout() {
-      localStorage.clear();
-      this.$router.push('/login');
-    }
+    logout(){
+        // alert("Are sure you want to Logout");
+        localStorage.clear();
+        this.$router.push('/login');
+      }
   },
-  created() {
-    // Retrieve the current user from localStorage
-    this.currentUser = JSON.parse(localStorage.getItem('user'));
-    this.chaptPanterId = JSON.parse(localStorage.getItem('chatData'));
 
+  created() {
     // Listen for new messages from the server
     socket.on('receiveMessage', (message) => {
       console.log('New message received: ', message);
-
-      // Check if the message is for the current user (only notify the receiver)
-      if (message.receiverId === this.currentUser.id) {
-        // Increment notification badge count
-        this.hasNewMessage++;
-      }
+      // Increment notification badge count
+      this.hasNewMessage++;
     });
   },
+
   watch: {
     '$route.path'(newPath) {
       if (newPath === '/chat') {
@@ -109,7 +102,6 @@ export default {
   }
 };
 </script>
-
 <style  scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
