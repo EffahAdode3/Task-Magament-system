@@ -26,23 +26,29 @@
             </li>
             <li class="list">
               <router-link to="/archive" class="nav-link" active-class="active">
-                <i class="bx bx-message-rounded icon"></i>
+                <i class="bx bx-archive icon"></i>
                 <span class="link">Archive</span>
               </router-link>
             </li>
+
+            <!-- Chat Route with Notification Badge -->
             <li class="list">
               <router-link to="/chat" class="nav-link" active-class="active">
                 <i class="bx bx-message-rounded icon"></i>
-                <span class="link">Chat</span>
+                <span class="link">
+                  Chat
+                  <span v-if="hasNewMessage" class="notification-badge">1</span>
+                </span>
               </router-link>
             </li>    
           </ul>
-          <div class="bottom-content">   
+
+          <div class="bottom-content">
             <li class="list">
               <button @click="logout" class="nav-link">
-    <i class="bx bx-log-out icon"></i>
-    <span class="link">Logout</span>
-  </button>
+                <i class="bx bx-log-out icon"></i>
+                <span class="link">Logout</span>
+              </button>
             </li>
           </div>
         </div>
@@ -54,11 +60,14 @@
 
 <script>
  import AuthMixin from '../authMixin'
+ import io from 'socket.io-client';
+const socket = io('https://task-managment-system-backend-api.onrender.com');
 export default {
   mixins: [AuthMixin],
   data() {
     return {
-      isNavOpen: false
+      isNavOpen: false,
+      hasNewMessage: false, 
     };
   },
   methods: {
@@ -73,7 +82,24 @@ export default {
         localStorage.clear();
         this.$router.push('/login');
       }
+  },
+
+  created() {
+    // Listen for new messages from the server
+    socket.on('receiveMessage', (message) => {
+      console.log('New message received: ', message);
+      // Show notification badge for the chat
+      this.hasNewMessage = true;
+    });
+  },
+
+  watch: {
+  '$route.path'(newPath) {
+    if (newPath === '/chat') {
+      this.hasNewMessage = false; // Clear notification badge when user navigates to chat
+    }
   }
+}
 };
 </script>
 <style  scoped>
@@ -90,6 +116,15 @@ export default {
   z-index: 100;
   position: absolute;
 
+}
+
+.notification-badge {
+  background-color: red;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 50%;
+  margin-left: 8px;
+  font-size: 12px;
 }
 body {
   min-height: 100%;
