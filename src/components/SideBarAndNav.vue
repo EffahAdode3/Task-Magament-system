@@ -96,11 +96,18 @@ export default {
       this.messageCount = parseInt(storedCount, 10); // Set the message count from localStorage
     }
 
+    socket.on('receiveMessage', (data) => {
+  // Show notification to the receiver
+  // e.g., Update message count or display popup
+  console.log('New message received:', data.message);
+  this.incrementNotification();
+});
+
     // Listen for new messages from other users
-    socket.on('receiveMessage', (message) => {
-      console.log('New message received: ', message);
-      this.incrementNotification(); // Increment notification count on receiving a new message
-    });
+    // socket.on('receiveMessage', (message) => {
+    //   console.log('New message received: ', message);
+    //   this.incrementNotification(); // Increment notification count on receiving a new message
+    // });
   }
 };
 </script>
