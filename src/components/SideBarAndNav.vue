@@ -190,7 +190,7 @@ export default {
       this.$router.push('/login');
     },
     clearNotification() {
-      this.messageCount = 0; // Reset message count when user opens the chat
+      this.hasNewMessage = 0; // Reset message count when user opens the chat
       localStorage.setItem('hasNewMessage', 0); // Update localStorage
     },
     updateNotificationCount() {
