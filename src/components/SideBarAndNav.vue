@@ -33,7 +33,7 @@
 
             <!-- Chat Route with Notification Badge -->
             <li class="list">
-              <router-link to="/chat" class="nav-link" active-class="active" @click.native="clearNotification">
+              <router-link to="/chat" class="nav-link" active-class="active" @click="clearNotification">
                 <i class="bx bx-message-rounded icon"></i>
                 <span class="link">
                   Chat
