@@ -59,15 +59,17 @@
 </template>
 
 <script>
- import AuthMixin from '../authMixin'
+ import AuthMixin from '../authMixin';
  import io from 'socket.io-client';
 const socket = io('https://task-managment-system-backend-api.onrender.com');
+
 export default {
   mixins: [AuthMixin],
   data() {
     return {
       isNavOpen: false,
       hasNewMessage: 0,
+      currentUser: null, // Holds the current user information
     };
   },
   methods: {
@@ -77,23 +79,26 @@ export default {
     closeNav() {
       this.isNavOpen = false;
     },
-    logout(){
-        // alert("Are sure you want to Logout");
-        localStorage.clear();
-        this.$router.push('/login');
-      }
+    logout() {
+      localStorage.clear();
+      this.$router.push('/login');
+    }
   },
-
-  
   created() {
+    // Retrieve the current user from localStorage
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
+
     // Listen for new messages from the server
     socket.on('receiveMessage', (message) => {
       console.log('New message received: ', message);
-      // Increment notification badge count
-      this.hasNewMessage++;
+
+      // Check if the message is not from the current user
+      if (message.senderId !== this.currentUser.id) {
+        // Increment notification badge count
+        this.hasNewMessage++;
+      }
     });
   },
-
   watch: {
     '$route.path'(newPath) {
       if (newPath === '/chat') {
