@@ -69,7 +69,8 @@ export default {
     return {
       isNavOpen: false,
       hasNewMessage: 0,
-      currentUser: null, // Holds the current user information
+      currentUser: null, 
+      chaptPanterId: null   // Holds the current user information
     };
   },
   methods: {
@@ -87,13 +88,14 @@ export default {
   created() {
     // Retrieve the current user from localStorage
     this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.chaptPanterId = JSON.parse(localStorage.getItem('chatData'));
 
     // Listen for new messages from the server
     socket.on('receiveMessage', (message) => {
       console.log('New message received: ', message);
 
       // Check if the message is for the current user (only notify the receiver)
-      if (message.receiverId === this.currentUser.id) {
+      if (chaptPanterId) {
         // Increment notification badge count
         this.hasNewMessage++;
       }
