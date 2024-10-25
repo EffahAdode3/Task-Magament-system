@@ -33,13 +33,13 @@
 
             <!-- Chat Route with Notification Badge -->
             <li class="list">
-              <router-link to="/chat" class="nav-link" active-class="active" @click="clearNotification">
-                <i class="bx bx-message-rounded icon"></i>
-                <span class="link">
-                  Chat
-                  <span v-if="messageCount > 0" class="notification-badge">{{ messageCount }}</span>
-                </span>
-              </router-link>
+              <router-link to="/chat" class="nav-link" active-class="active">
+      <i class="bx bx-message-rounded icon"></i>
+      <span class="link">
+        Chat
+        <span v-if="hasNewMessage > 0" class="notification-badge">{{ hasNewMessage }}</span>
+      </span>
+    </router-link>
             </li>    
           </ul>
 
@@ -59,14 +59,15 @@
 </template>
 
 <script>
-import io from 'socket.io-client';
-const socket = io('https://task-managment-system-backend-api.onrender.com'); // Replace with your actual backend server URL
-
+ import AuthMixin from '../authMixin'
+ import io from 'socket.io-client';
+const socket = io('https://task-managment-system-backend-api.onrender.com');
 export default {
+  mixins: [AuthMixin],
   data() {
     return {
       isNavOpen: false,
-      messageCount: 0, // Track new message notifications
+      hasNewMessage: 0,
     };
   },
   methods: {
@@ -76,41 +77,36 @@ export default {
     closeNav() {
       this.isNavOpen = false;
     },
-    logout() {
-      localStorage.clear();
-      this.$router.push('/login');
-    },
-    clearNotification() {
-      this.messageCount = 0; // Reset message count when user opens the chat
-      localStorage.setItem('messageCount', 0); // Update localStorage
-    },
-    incrementNotification() {
-      this.messageCount++;
-      localStorage.setItem('messageCount', this.messageCount); // Save notification count in localStorage
-    }
+    logout(){
+        // alert("Are sure you want to Logout");
+        localStorage.clear();
+        this.$router.push('/login');
+      }
   },
+
+  // created() {
+  //   // Listen for new messages from the server
+  //   socket.on('receiveMessage', (message) => {
+  //     console.log('New message received: ', message);
+  //     // Show notification badge for the chat
+  //     this.hasNewMessage = true;
+  //   });
+  // },
   created() {
-    // Get the persisted notification count from localStorage
-    const storedCount = localStorage.getItem('messageCount');
-    if (storedCount) {
-      this.messageCount = parseInt(storedCount, 10); // Set the message count from localStorage
-    }
+    // Listen for new messages from the server
+    socket.on('receiveMessage', (message) => {
+      console.log('New message received: ', message);
+      // Increment notification badge count
+      this.hasNewMessage++;
+    });
+  },
 
-
-
-    socket.on('receiveMessage', (data) => {
-  // Check if the logged-in user is the receiver
-  const loggedInEmail = localStorage.getItem('userEmail'); // Assuming you have saved the user's email
-  if (loggedInEmail === data.fromEmail) {
-    console.log('This message is from the current user, no notification.');
-    return;
-  }
-
-  // If the user is the receiver, show the notification
-  console.log('New message received for the current user:', data.message);
-  this.incrementNotification();
-});
-
+  watch: {
+    '$route.path'(newPath) {
+      if (newPath === '/chat') {
+        this.hasNewMessage = 0; // Reset count when navigating to chat
+      }
+    },
   }
 };
 </script>
