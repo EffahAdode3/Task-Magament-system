@@ -34,12 +34,12 @@
             <!-- Chat Route with Notification Badge -->
             <li class="list">
               <router-link to="/chat" class="nav-link" active-class="active">
-         <i class="bx bx-message-rounded icon"></i>
-         <span class="link">
-          Chat
-         <span v-if="hasNewMessage > 0" class="notification-badge">{{ hasNewMessage }}</span>
-         </span>
-         </router-link>
+                <i class="bx bx-message-rounded icon"></i>
+                <span class="link">
+                  Chat
+                  <span v-if="hasNewMessage > 0" class="notification-badge">{{ hasNewMessage }}</span>
+                </span>
+              </router-link>
             </li>    
           </ul>
 
@@ -59,9 +59,10 @@
 </template>
 
 <script>
- import AuthMixin from '../authMixin'
- import io from 'socket.io-client';
+import AuthMixin from '../authMixin'
+import io from 'socket.io-client';
 const socket = io('https://task-managment-system-backend-api.onrender.com');
+
 export default {
   mixins: [AuthMixin],
   data() {
@@ -77,31 +78,42 @@ export default {
     closeNav() {
       this.isNavOpen = false;
     },
-    logout(){
-        // alert("Are sure you want to Logout");
-        localStorage.clear();
-        this.$router.push('/login');
-      }
+    logout() {
+      // alert("Are you sure you want to Logout?");
+      localStorage.clear();
+      this.$router.push('/login');
+    },
+    updateNotificationCount() {
+      localStorage.setItem('hasNewMessage', this.hasNewMessage);
+    },
+    loadNotificationCount() {
+      const count = localStorage.getItem('hasNewMessage');
+      this.hasNewMessage = count ? parseInt(count, 10) : 0;
+    },
   },
-
   created() {
+    // Load notification count from localStorage
+    this.loadNotificationCount();
+
     // Listen for new messages from the server
     socket.on('receiveMessage', (message) => {
       console.log('New message received: ', message);
       // Increment notification badge count
       this.hasNewMessage++;
+      this.updateNotificationCount(); // Update localStorage
     });
   },
-
   watch: {
     '$route.path'(newPath) {
       if (newPath === '/chat') {
         this.hasNewMessage = 0; // Reset count when navigating to chat
+        this.updateNotificationCount(); // Update localStorage
       }
     },
   }
 };
 </script>
+
 <style  scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
