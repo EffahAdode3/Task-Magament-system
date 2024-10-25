@@ -120,10 +120,6 @@ export default {
         <span class="logo-name">MY Task Management</span>
       </div>
       <div class="sidebar">
-        <div class="logo">
-          <i class="bx bx-menu menu-icon" @click="toggleNav"></i>
-          <span class="logo-name">MY Task Management</span>
-        </div>
         <div class="sidebar-content">
           <ul class="lists">
             <li class="list">
@@ -144,19 +140,16 @@ export default {
                 <span class="link">Archive</span>
               </router-link>
             </li>
-
-            <!-- Chat Route with Notification Badge -->
             <li class="list">
-              <router-link to="/chat" class="nav-link" active-class="active" @click="clearNotification">
+              <router-link to="/chat" class="nav-link" active-class="active">
                 <i class="bx bx-message-rounded icon"></i>
                 <span class="link">
                   Chat
-                  <span v-if="messageCount > 0" class="notification-badge">{{ messageCount }}</span>
+                  <span v-if="hasNewMessage > 0" class="notification-badge">{{ hasNewMessage }}</span>
                 </span>
               </router-link>
-            </li>    
+            </li>
           </ul>
-
           <div class="bottom-content">
             <li class="list">
               <button @click="logout" class="nav-link">
@@ -173,14 +166,16 @@ export default {
 </template>
 
 <script>
+import AuthMixin from '../authMixin';
 import io from 'socket.io-client';
-const socket = io('http://localhost:3000'); // Replace with your actual backend server URL
+const socket = io('https://task-managment-system-backend-api.onrender.com');
 
 export default {
+  mixins: [AuthMixin],
   data() {
     return {
       isNavOpen: false,
-      messageCount: 0, // Track new message notifications
+      hasNewMessage: parseInt(localStorage.getItem('hasNewMessage')) || 0,
     };
   },
   methods: {
@@ -196,25 +191,26 @@ export default {
     },
     clearNotification() {
       this.messageCount = 0; // Reset message count when user opens the chat
-      localStorage.setItem('messageCount', 0); // Update localStorage
+      localStorage.setItem('hasNewMessage', 0); // Update localStorage
     },
-    incrementNotification() {
-      this.messageCount++;
-      localStorage.setItem('messageCount', this.messageCount); // Save notification count in localStorage
-    }
+    updateNotificationCount() {
+      localStorage.setItem('hasNewMessage', this.hasNewMessage);
+    },
   },
   created() {
-    // Get the persisted notification count from localStorage
-    const storedCount = localStorage.getItem('messageCount');
-    if (storedCount) {
-      this.messageCount = parseInt(storedCount, 10); // Set the message count from localStorage
-    }
-
-    // Listen for new messages from other users
-    socket.on('receiveMessage', (message) => {
-      console.log('New message received: ', message);
-      this.incrementNotification(); // Increment notification count on receiving a new message
+    socket.on('receiveMessage', () => {
+      this.hasNewMessage++;
+      this.updateNotificationCount();
+      this.clearNotification() // Save to localStorage
     });
+  },
+  watch: {
+    '$route.path'(newPath) {
+      if (newPath === '/chat') {
+        this.hasNewMessage = 0; // Reset when navigating to chat
+        this.updateNotificationCount(); // Update localStorage
+      }
+    },
   }
 };
 </script>
@@ -232,15 +228,6 @@ export default {
   z-index: 100;
   position: absolute;
 
-}
-
-.notification-badge {
-  background-color: red;
-  color: white;
-  padding: 2px 8px;
-  border-radius: 50%;
-  margin-left: 8px;
-  font-size: 12px;
 }
 
 .notification-badge {
