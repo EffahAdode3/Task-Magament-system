@@ -86,7 +86,7 @@ export default {
   },
   created() {
     // Retrieve the current user from localStorage
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
 
     // Listen for new messages from the server
     socket.on('receiveMessage', (message) => {
