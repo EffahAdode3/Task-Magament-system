@@ -58,11 +58,6 @@
   </div>
 </template>
 
-<script>
- import AuthMixin from '../authMixin';
- import io from 'socket.io-client';
-const socket = io('https://task-managment-system-backend-api.onrender.com');
-
 export default {
   mixins: [AuthMixin],
   data() {
@@ -70,11 +65,10 @@ export default {
       isNavOpen: false,
       hasNewMessage: 0,
       currentUser: null, 
-      chaptPanterId: null   // Holds the current user information
+      chaptPanterId: null // Holds the current user information
     };
   },
   methods: {
-
     getCurrentUser() {
       return JSON.parse(localStorage.getItem('user'));
     },
@@ -91,16 +85,16 @@ export default {
   },
   created() {
     // Retrieve the current user from localStorage
-    // this.currentUser = JSON.parse(localStorage.getItem('user'));
- const chatPartner = getCurrentUser();
- this.chaptPanterId = chatPartner.id;
+    const chatPartner = this.getCurrentUser();
+    this.chaptPanterId = chatPartner.id;
+
     // Listen for new messages from the server
     socket.on('receiveMessage', (message) => {
       console.log('New message received: ', message);
-      // Check if the message is for the current user (only notify the receiver)
-      if (chaptPanterId) {
-        // Increment notification badge count
-        this.hasNewMessage++;
+      
+      // Only notify the current user if they are the intended receiver
+      if (message.receiverId === this.chaptPanterId) {
+        this.hasNewMessage++; // Increment notification badge count
       }
     });
   },
@@ -109,10 +103,10 @@ export default {
       if (newPath === '/chat') {
         this.hasNewMessage = 0; // Reset count when navigating to chat
       }
-    },
+    }
   }
 };
-</script>
+
 
 <style  scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
