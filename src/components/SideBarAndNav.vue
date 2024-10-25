@@ -58,7 +58,7 @@
   </div>
 </template>
 
-<!-- <script>
+<script>
  import AuthMixin from '../authMixin'
  import io from 'socket.io-client';
 const socket = io('https://task-managment-system-backend-api.onrender.com');
@@ -102,64 +102,9 @@ export default {
     },
   }
 };
-</script> -->
-<script>
-import AuthMixin from '../authMixin';
-import io from 'socket.io-client';
-
-const socket = io('https://task-managment-system-backend-api.onrender.com');
-
-export default {
-  mixins: [AuthMixin],
-  data() {
-    return {
-      isNavOpen: false,
-      hasNewMessage: 0,      // To track new messages
-      currentUserId: null,   // Store the ID of the logged-in user
-    };
-  },
-  methods: {
-    // Get the currently logged-in user from localStorage
-    getCurrentUser() {
-      return JSON.parse(localStorage.getItem('user'));
-    },
-    toggleNav() {
-      this.isNavOpen = !this.isNavOpen;
-    },
-    closeNav() {
-      this.isNavOpen = false;
-    },
-    logout() {
-      localStorage.clear();
-      this.$router.push('/login');
-    }
-  },
-  created() {
-    // Get the current user and set the currentUserId
-    const user = this.getCurrentUser();
-    this.currentUserId = user ? user.id : null; // Assuming user.id contains the user ID
-
-    // Listen for new messages from the server
-    socket.on('receiveMessage', (message) => {
-      console.log('New message received: ', message);
-
-      // Check if the current user is the recipient of the message
-      if (message.recipientId === this.currentUserId) {
-        // Increment notification badge count if the user is the recipient
-        this.hasNewMessage++;
-      }
-    });
-  },
-  watch: {
-    '$route.path'(newPath) {
-      // Reset notification count when navigating to the chat page
-      if (newPath === '/chat') {
-        this.hasNewMessage = 0;
-      }
-    }
-  }
-};
 </script>
+
+
 <style  scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
