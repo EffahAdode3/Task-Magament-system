@@ -86,14 +86,14 @@ export default {
   },
   created() {
     // Retrieve the current user from localStorage
-    this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     // Listen for new messages from the server
     socket.on('receiveMessage', (message) => {
       console.log('New message received: ', message);
 
-      // Check if the message is not from the current user
-      if (message.senderId !== this.currentUser.id) {
+      // Check if the message is for the current user (only notify the receiver)
+      if (message.receiverId === this.currentUser.id) {
         // Increment notification badge count
         this.hasNewMessage++;
       }
@@ -108,6 +108,7 @@ export default {
   }
 };
 </script>
+
 <style  scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
