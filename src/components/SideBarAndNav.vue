@@ -59,6 +59,9 @@
 </template>
 
 <script>
+import AuthMixin from '../authMixin';
+ import io from 'socket.io-client';
+const socket = io('https://task-managment-system-backend-api.onrender.com');
 export default {
   mixins: [AuthMixin],
   data() {
