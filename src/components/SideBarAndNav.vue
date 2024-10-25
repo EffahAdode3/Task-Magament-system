@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="indexZindex">
     <nav :class="{ open: isNavOpen }">
       <div class="logo">
@@ -31,7 +31,6 @@
               </router-link>
             </li>
 
-            <!-- Chat Route with Notification Badge -->
             <li class="list">
               <router-link to="/chat" class="nav-link" active-class="active">
                 <i class="bx bx-message-rounded icon"></i>
@@ -112,7 +111,105 @@ export default {
     },
   }
 };
+</script> -->
+<template>
+  <div class="indexZindex">
+    <nav :class="{ open: isNavOpen }">
+      <div class="logo">
+        <i class="bx bx-menu menu-icon" @click="toggleNav"></i>
+        <span class="logo-name">MY Task Management</span>
+      </div>
+      <div class="sidebar">
+        <div class="sidebar-content">
+          <ul class="lists">
+            <li class="list">
+              <router-link to="/" class="nav-link" active-class="active">
+                <i class="bx bx-home-alt icon"></i>
+                <span class="link">Dashboard</span>
+              </router-link>
+            </li>
+            <li class="list">
+              <router-link to="/addTask" class="nav-link" active-class="active">
+                <i class="bx bx-bar-chart-alt-2 icon"></i>
+                <span class="link">Add Task</span>
+              </router-link>
+            </li>
+            <li class="list">
+              <router-link to="/archive" class="nav-link" active-class="active">
+                <i class="bx bx-archive icon"></i>
+                <span class="link">Archive</span>
+              </router-link>
+            </li>
+            <li class="list">
+              <router-link to="/chat" class="nav-link" active-class="active">
+                <i class="bx bx-message-rounded icon"></i>
+                <span class="link">
+                  Chat
+                  <span v-if="hasNewMessage > 0" class="notification-badge">{{ hasNewMessage }}</span>
+                </span>
+              </router-link>
+            </li>
+          </ul>
+          <div class="bottom-content">
+            <li class="list">
+              <button @click="logout" class="nav-link">
+                <i class="bx bx-log-out icon"></i>
+                <span class="link">Logout</span>
+              </button>
+            </li>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <section class="overlay" @click="closeNav"></section>
+  </div>
+</template>
+
+<script>
+import AuthMixin from '../authMixin';
+import io from 'socket.io-client';
+const socket = io('https://task-managment-system-backend-api.onrender.com');
+
+export default {
+  mixins: [AuthMixin],
+  data() {
+    return {
+      isNavOpen: false,
+      hasNewMessage: parseInt(localStorage.getItem('hasNewMessage')) || 0,
+    };
+  },
+  methods: {
+    toggleNav() {
+      this.isNavOpen = !this.isNavOpen;
+    },
+    closeNav() {
+      this.isNavOpen = false;
+    },
+    logout() {
+      localStorage.clear();
+      this.$router.push('/login');
+    },
+    updateNotificationCount() {
+      localStorage.setItem('hasNewMessage', this.hasNewMessage);
+    },
+  },
+  created() {
+    socket.on('receiveMessage', () => {
+      this.hasNewMessage++;
+      this.updateNotificationCount(); // Save to localStorage
+    });
+  },
+  watch: {
+    '$route.path'(newPath) {
+      if (newPath === '/chat') {
+        this.hasNewMessage = 0; // Reset when navigating to chat
+        this.updateNotificationCount(); // Update localStorage
+      }
+    },
+  }
+};
 </script>
+
 
 <style  scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
