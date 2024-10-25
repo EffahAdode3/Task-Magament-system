@@ -33,11 +33,11 @@
 
             <!-- Chat Route with Notification Badge -->
             <li class="list">
-              <router-link to="/chat" class="nav-link" active-class="active">
+              <router-link to="/chat" class="nav-link" active-class="active" @click.native="clearNotification">
                 <i class="bx bx-message-rounded icon"></i>
                 <span class="link">
                   Chat
-                  <span v-if="hasNewMessage" class="notification-badge">1</span>
+                  <span v-if="messageCount > 0" class="notification-badge">{{ messageCount }}</span>
                 </span>
               </router-link>
             </li>    
@@ -59,15 +59,14 @@
 </template>
 
 <script>
- import AuthMixin from '../authMixin'
- import io from 'socket.io-client';
-const socket = io('https://task-managment-system-backend-api.onrender.com');
+import io from 'socket.io-client';
+const socket = io('https://task-managment-system-backend-api.onrender.com'); // Replace with your actual backend server URL
+
 export default {
-  mixins: [AuthMixin],
   data() {
     return {
       isNavOpen: false,
-      hasNewMessage: false, 
+      messageCount: 0, // Track new message notifications
     };
   },
   methods: {
@@ -77,29 +76,32 @@ export default {
     closeNav() {
       this.isNavOpen = false;
     },
-    logout(){
-        // alert("Are sure you want to Logout");
-        localStorage.clear();
-        this.$router.push('/login');
-      }
+    logout() {
+      localStorage.clear();
+      this.$router.push('/login');
+    },
+    clearNotification() {
+      this.messageCount = 0; // Reset message count when user opens the chat
+      localStorage.setItem('messageCount', 0); // Update localStorage
+    },
+    incrementNotification() {
+      this.messageCount++;
+      localStorage.setItem('messageCount', this.messageCount); // Save notification count in localStorage
+    }
   },
-
   created() {
-    // Listen for new messages from the server
+    // Get the persisted notification count from localStorage
+    const storedCount = localStorage.getItem('messageCount');
+    if (storedCount) {
+      this.messageCount = parseInt(storedCount, 10); // Set the message count from localStorage
+    }
+
+    // Listen for new messages from other users
     socket.on('receiveMessage', (message) => {
       console.log('New message received: ', message);
-      // Show notification badge for the chat
-      this.hasNewMessage = true;
+      this.incrementNotification(); // Increment notification count on receiving a new message
     });
-  },
-
-  watch: {
-  '$route.path'(newPath) {
-    if (newPath === '/chat') {
-      this.hasNewMessage = false; // Clear notification badge when user navigates to chat
-    }
   }
-}
 };
 </script>
 <style  scoped>
