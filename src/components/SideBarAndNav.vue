@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     getCurrentUser() {
-      return JSON.parse(localStorage.getItem('user'));
+      return JSON.parse(localStorage.getItem('chatData'));
     },
     toggleNav() {
       this.isNavOpen = !this.isNavOpen;
