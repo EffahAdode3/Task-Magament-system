@@ -97,7 +97,7 @@ export default {
       console.log('New message received: ', message);
       
       // Only notify the current user if they are the intended receiver
-      if (message.receiverId === this.chaptPanterId) {
+      if ( this.chaptPanterId) {
         this.hasNewMessage++; // Increment notification badge count
       }
     });
