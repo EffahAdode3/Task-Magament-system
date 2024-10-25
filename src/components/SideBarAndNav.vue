@@ -59,23 +59,20 @@
 </template>
 
 <script>
-import AuthMixin from '../authMixin';
+ import AuthMixin from '../authMixin';
  import io from 'socket.io-client';
 const socket = io('https://task-managment-system-backend-api.onrender.com');
+
 export default {
   mixins: [AuthMixin],
   data() {
     return {
       isNavOpen: false,
       hasNewMessage: 0,
-      currentUser: null, 
-      chaptPanterId: null // Holds the current user information
+      currentUser: null, // Holds the current user information
     };
   },
   methods: {
-    getCurrentUser() {
-      return JSON.parse(localStorage.getItem('chatData'));
-    },
     toggleNav() {
       this.isNavOpen = !this.isNavOpen;
     },
@@ -89,16 +86,17 @@ export default {
   },
   created() {
     // Retrieve the current user from localStorage
-    const chatPartner = this.getCurrentUser();
-    this.chaptPanterId = chatPartner.id;
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.chaptPanterId = JSON.parse(localStorage.getItem('chatData'));
 
     // Listen for new messages from the server
     socket.on('receiveMessage', (message) => {
       console.log('New message received: ', message);
-      
-      // Only notify the current user if they are the intended receiver
-      if ( this.chaptPanterId) {
-        this.hasNewMessage++; // Increment notification badge count
+
+      // Check if the message is for the current user (only notify the receiver)
+      if (message.receiverId === this.currentUser.id) {
+        // Increment notification badge count
+        this.hasNewMessage++;
       }
     });
   },
@@ -107,7 +105,7 @@ export default {
       if (newPath === '/chat') {
         this.hasNewMessage = 0; // Reset count when navigating to chat
       }
-    }
+    },
   }
 };
 </script>
