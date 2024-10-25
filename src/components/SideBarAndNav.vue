@@ -201,8 +201,9 @@ export default {
     socket.on('receiveMessage', () => {
       this.hasNewMessage++;
       this.updateNotificationCount();
-      this.clearNotification() // Save to localStorage
+       // Save to localStorage
     });
+    this.clearNotification()
   },
   watch: {
     '$route.path'(newPath) {
