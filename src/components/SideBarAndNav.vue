@@ -203,7 +203,7 @@ export default {
       this.updateNotificationCount();
        // Save to localStorage
     });
-    this.clearNotification()
+    // this.clearNotification()
   },
   watch: {
     '$route.path'(newPath) {
